@@ -1,0 +1,35 @@
+FEB 21 2014 - Version 1.00
+--------------------------
+- Initial Release
+
+FEB 25 2014 - Version 1.01
+--------------------------
+- Added order and orderby parameters for shortcode and widget
+- General code cleanup
+- Bug fix: LinkedIn field now calling the correct meta key, was previously duplicating the Facebook link.
+- 1 column layout now supported
+
+FEB 26 2014 - Version 1.02
+--------------------------
+- Switched to Human Made version of Custom-Meta-Boxes class - https://github.com/humanmade/Custom-Meta-Boxes
+
+MAR 07 2014 - Version 1.03
+--------------------------
+- Added more custom fields
+
+APR 04 2014 - Version 1.04
+--------------------------
+- Shortcode button and UI in editor
+- Metakey updates
+- Shortcode output restructured
+- Responsive and center image settings removed
+
+APR 07 2014 - Version 1.05
+--------------------------
+- Plugin Settings added: Disable Single and Placeholder Image
+- Excerpt length setting added
+- Dashicon icon added for CPT
+- TinyMCE shortcode button icon updated
+- Template tag added
+- Readme Updated
+- Now compatible with Homepage Control
