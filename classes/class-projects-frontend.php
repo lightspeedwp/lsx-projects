@@ -16,11 +16,16 @@ class LSX_Projects_Frontend {
 	}
 
 	public function enqueue_style() {
-        wp_enqueue_script( 'lsx_projects', LSX_PROJECTS_URL . 'assets/css/lsx-projects.css', array(), LSX_PROJECTS_VER, all );
+        wp_enqueue_script( 'lsx_projects', LSX_PROJECTS_URL . 'assets/css/lsx-projects.css', array(), LSX_PROJECTS_VER);
 	}
 	
 	public function post_type_single_template_include( $template ) {
-        $template = LSX_PROJECTS_PATH . 'templates/full-projects.php';
+
+        if ( is_main_query() && is_singular( 'project' ) ) {
+			if ( '' == locate_template( array( 'full-projects.php' ) ) && file_exists( LSX_PROJECTS_PATH . 'templates/full-projects.php' ) ) {
+                $template = LSX_PROJECTS_PATH . 'templates/full-projects.php';
+            }
+		}
 
 		return $template;
 	}
