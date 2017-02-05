@@ -1,12 +1,11 @@
 <?php
 /**
- * Bootstrap Project s Widget
+ * LSX Projects Widget
  */
-class BS_Project_Widget extends WP_Widget {
- 
-    /** constructor -- name this the same as the class above */
-    function bs_project_widget() {
-        parent::WP_Widget(false, $name = 'Bootstrap Projects');  
+class LSX_Project_Widget extends WP_Widget {
+
+    public function __construct() {
+        parent::WP_Widget( false, $name = esc_html__( 'LLSX Projects', 'lsx-projects' ) );
     }
  
     /** @see WP_Widget::widget -- do not rename this */
@@ -44,8 +43,8 @@ class BS_Project_Widget extends WP_Widget {
         if ( $tagline )
             echo "<p class='tagline text-center'>$tagline</p>";
 
-        if ( class_exists( 'BS_Project' ) ) {
-                bs_project( array(
+        if ( class_exists( 'LSX_Project' ) ) {
+                project( array(
                             'columns' => $columns,
                             'orderby' => $orderby,
                             'order' => $order,
@@ -177,6 +176,6 @@ class BS_Project_Widget extends WP_Widget {
         
     }
 
-} // end class bs_project_widget
-add_action('widgets_init', create_function('', 'return register_widget("BS_Project_Widget");'));
+} // end class project_widget
+add_action('widgets_init', create_function('', 'return register_widget("LSX_Project_Widget");'));
 ?>

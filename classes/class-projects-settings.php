@@ -1,6 +1,6 @@
 <?php
 
-class BS_Project_Settings {
+class LSX_Project_Settings {
 
 	public function __construct()
 	{
@@ -12,13 +12,13 @@ class BS_Project_Settings {
 	// Init plugin options to white list our options
 	function options_init()
 	{
-		register_setting( 'bs_project_options', 'bs_project_options', array( $this, 'options_validate' ) );
+		register_setting( 'project_options', 'project_options', array( $this, 'options_validate' ) );
 	}
 
 	// Add menu page
 	function options_add_page() 
 	{
-		add_options_page('Bootstrap Project Options', 'Bootstrap Project', 'manage_options', 'bs_project_options', array( $this, 'options_do_page' ) );
+		add_options_page('Bootstrap Project Options', 'Bootstrap Project', 'manage_options', 'project_options', array( $this, 'options_do_page' ) );
 	}
 
 	// Draw the menu page itself
@@ -28,12 +28,12 @@ class BS_Project_Settings {
 		<div class="wrap">
 			<h2>Bootstrap Project Options</h2>
 			<form method="post" action="options.php">
-				<?php settings_fields('bs_project_options'); ?>
-				<?php $options = get_option('bs_project_options'); ?>
+				<?php settings_fields('project_options'); ?>
+				<?php $options = get_option('project_options'); ?>
 				<table class="form-table">
 					<tr valign="top"><th scope="row">Disable Single Posts</th>
 						<td>
-							<input name="bs_project_options[disable_single]" type="checkbox" value="1" <?php checked('1', $options['disable_single']); ?> />
+							<input name="project_options[disable_single]" type="checkbox" value="1" <?php checked('1', $options['disable_single']); ?> />
 						</td>
 					</tr>					
 					<tr valign="top"><th scope="row">Placeholder Image</th>
@@ -44,7 +44,7 @@ class BS_Project_Settings {
 										$options['placeholder'] = dirname( plugin_dir_url( __FILE__ ) ) . '/img/placeholder.gif';
 									}									
 								?>
-							    <input id="upload_image" type="text" size="36" name="bs_project_options[placeholder]" value="<?php echo $options['placeholder']; ?>" /> 
+							    <input id="upload_image" type="text" size="36" name="project_options[placeholder]" value="<?php echo $options['placeholder']; ?>" />
 							    <input id="upload_image_button" class="button" type="button" value="Upload Image" />
 							    <br />Enter a URL or upload an image
 							</label>
@@ -77,7 +77,7 @@ class BS_Project_Settings {
 	}
 
 	function options_scripts() {
-	    if ( isset( $_GET['page'] ) && $_GET['page'] == 'bs_project_options' ) {
+	    if ( isset( $_GET['page'] ) && $_GET['page'] == 'project_options' ) {
 	        wp_enqueue_media();
 	        wp_register_script('my-admin-js', dirname( plugin_dir_url( __FILE__ ) ) . '/js/add-media.js', array('jquery'));
 	        wp_enqueue_script('my-admin-js');
@@ -86,4 +86,4 @@ class BS_Project_Settings {
 
 }
 
-$bs_project_settings = new BS_Project_Settings();
+$LSX_Project_Settings = new LSX_Project_Settings();

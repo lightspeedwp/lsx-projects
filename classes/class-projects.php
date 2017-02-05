@@ -1,12 +1,12 @@
 <?php
 
-class BS_Project {
+class LSX_Project {
 
     public $options;
 
     public function __construct()
     {
-        $this->options = get_option('bs_project_options');
+        $this->options = get_option('project_options');
 
         // if ( $this->options['disable_single'] ) 
         //     add_action( 'template_redirect', array($this, 'disable_single' ) );
@@ -31,6 +31,7 @@ class BS_Project {
      */
     public function output( $atts ) 
     {
+
         extract( shortcode_atts( array(
             'columns' => 3,
             'orderby' => 'name',
@@ -83,7 +84,11 @@ class BS_Project {
                 $content = $project->post_excerpt;
                 $link_open = "<a href='" . get_permalink( $project->ID ) . "'>";
                 $link_close = "</a>";
-                $title = "<h3>$link_open $project->post_title $link_close</h3>";                            
+
+                $subtitle = get_the_terms($project->ID,'project_group');
+
+                $title = $subtitle[0]->name;
+                $title .= "<h3>$link_open $project->post_title $link_close</h3>";
 
                 // Output
                 if ( $columns >= 1 && $columns <= 4 ) {
@@ -118,7 +123,36 @@ class BS_Project {
         return $output;
         }
     }
-    
+
+    /**
+     * Returns the shortcode output markup
+     */
+    public function groups( )
+    {
+
+        $args = [
+            'taxonomy' => 'project_group',
+            'hide_empty' => false,
+            'orderby' => 'name',
+            'order' => 'asc'
+        ];
+
+        $data = get_terms($args);
+
+        if ( !empty( $data ) ) {
+
+            $output .= "<div class='bs-projects row'>
+                            <ul class='nav nav-tabs'>
+                              <li class='active'><a href=''>All</a></li>";
+            foreach ( $data as $return ) {
+                $output .= "<li><a href=''>$return->name</a></li>";
+            }
+            $output .= "</ul></div>";
+
+        return $output;
+        }
+    }
+
 }
  
-$BS_Project = new BS_Project();
+$LSX_Project = new LSX_Project();

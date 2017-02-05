@@ -1,6 +1,6 @@
 <?php
 
-class BS_Project_Admin {
+class LSX_Project_Admin {
 
 	public function __construct()
 	{
@@ -32,7 +32,7 @@ class BS_Project_Admin {
 		    'search_items'       => __( 'Search Projects', 'bs-project' ),
 		    'not_found'          => __( 'No projects found', 'bs-project' ),
 		    'not_found_in_trash' => __( 'No projects found in Trash', 'bs-project' ),
-		    'parent_item_colon'  => __( '', 'bs_project' ),
+		    'parent_item_colon'  => __( '', 'project' ),
 		    'menu_name'          => _x( 'Projects', 'admin menu', 'bs-project' )
 		);
 
@@ -93,7 +93,7 @@ class BS_Project_Admin {
 	 */
 	public function field_setup( $meta_boxes ) 
 	{
-	    $prefix = 'bs_project_'; // Prefix for all fields	   
+	    $prefix = 'project_'; // Prefix for all fields
 	    
 	    $fields = array(
 	    	array(
@@ -112,15 +112,42 @@ class BS_Project_Admin {
 	            'type' => 'image',
 	            'repeatable' => true
 	        ),
-	        array(
-	            'name' => __( 'Testimonials:', 'bs-project' ),
-	            'id' => $prefix . 'testimonials',
-	            'type' => 'post_select',	            
-	            'query' => array(
-	            		'post_type' => 'testimonial'
-	            	),
-	            'multiple' => true
-	        ),
+            array(
+                'name' => __( 'Testimonials:', 'bs-project' ),
+                'id' => $prefix . 'testimonials',
+                'type' => 'post_select',
+                'query' => array(
+                    'post_type' => 'testimonial'
+                ),
+                'multiple' => true
+            ),
+            array(
+                'name' => __( 'Documentation:', 'bs-project' ),
+                'id' => $prefix . 'documentation',
+                'type' => 'post_select',
+                'query' => array(
+                    'post_type' => 'documentation'
+                ),
+                'multiple' => true
+            ),
+            array(
+                'name' => __( 'Products:', 'bs-project' ),
+                'id' => $prefix . 'product',
+                'type' => 'post_select',
+                'query' => array(
+                    'post_type' => 'product'
+                ),
+                'multiple' => true
+            ),
+            array(
+                'name' => __( 'WooCommerce:', 'bs-project' ),
+                'id' => $prefix . 'woocommerce',
+                'type' => 'post_select',
+                'query' => array(
+                    'post_type' => 'woocommerce'
+                ),
+                'multiple' => true
+            ),
 	        array( 
 	        	'name' => __( 'Featured:', 'bs-project' ),
 				'id' => $prefix . 'featured',  				
@@ -191,4 +218,4 @@ class BS_Project_Admin {
 	}
 }
 
-$BS_Project_Admin = new BS_Project_Admin();
+$LSX_Project_Admin = new LSX_Project_Admin();
