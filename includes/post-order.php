@@ -38,6 +38,19 @@ class LSX_PROJECTS_SCPO_Engine
     function lsx_projects()
     {
         $args = [];
+
+        $r = $_SERVER['REQUEST_URI'];
+        $r = explode('/', $r);
+        $r = array_filter($r);
+        $r = array_merge($r, array());
+        $length = count($r);
+        $code = $r[$length - 1];
+        if($code !== 'projects'){
+            $args = [
+              'post_name' => $code
+            ];
+        }
+
         $bs_project = new LSX_Project;
         $output = $bs_project->output($args);
         echo $output;

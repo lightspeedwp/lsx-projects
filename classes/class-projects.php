@@ -52,22 +52,56 @@ class LSX_Project {
         			'posts_per_page' => $limit,
         			'post__in' => $include,
         			'orderby' => 'post__in',
-        			'order' => $order
+        			'order' => $order,
+                    'post_name' => $atts['post_name']
         	);
         } else {
        		$args = array(
-               'post_type' => 'project',
-               'project_group' => $group,
-               'posts_per_page' => $limit,
-               'orderby' => $orderby,
-               'order' => $order                 
+                'post_type' => 'project',
+                'project_group' => $group,
+                'posts_per_page' => $limit,
+                'orderby' => $orderby,
+                'order' => $order,
+                'post_name' => $atts['post_name']
             );
-        }        
-       
+        }
 
-        $projects = get_posts( $args );
-        
-        if ( !empty( $projects ) ) {            
+        if(is_single()){
+            $project = get_post();
+
+            if ( !empty( $project ) ) {
+
+                if ( has_post_thumbnail( $project->ID ) ) {
+                    $image = get_the_post_thumbnail( $project->ID, array( $size, $size ), 'class=img-responsive' );
+                } else {
+                    $image = "<img src='http://placehold.it/730x250/' alt='placeholder' class='img-responsive' />";
+                }
+                $content = $project->post_excerpt;
+                $link_open = "<a href='" . get_permalink( $project->ID ) . "'>";
+                $link_close = "</a>";
+
+                $subtitle = get_the_terms($project->ID,'project_group');
+
+                $title = $subtitle[0]->name;
+                $title .= "<h3>$link_open $project->post_title $link_close</h3>";
+
+                $output = "
+                    <div class='bs-project row'>
+                        <div class='well'>                         
+                            $link_open $image $link_close                                                        
+                            $title                       
+                            $content                            
+                        </div>
+                    </div>
+                    ";
+
+                return $output;
+            }
+
+        }else{
+            $projects = get_posts( $args );
+
+            if ( !empty( $projects ) ) {
             $count = 0;
             if ( $columns >= 1 && $columns <= 4 )
                 $output .= "<div class='bs-projects row'>";
@@ -120,7 +154,9 @@ class LSX_Project {
             }
             if ( $columns >= 1 && $columns <= 4 )
                 $output .= "</div>";
-        return $output;
+
+            return $output;
+            }
         }
     }
 

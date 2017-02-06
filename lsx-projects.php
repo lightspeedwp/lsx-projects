@@ -38,4 +38,4 @@ include LSX_PROJECTS_PATH . '/classes/class-projects-frontend.php';
 include LSX_PROJECTS_PATH . '/includes/projects-functions.php';
 
 // Post reorder
-require_once( LSX_PROJECTS_PATH . '/includes/post-order.php' );
+include LSX_PROJECTS_PATH . '/includes/post-order.php';
