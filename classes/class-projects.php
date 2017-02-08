@@ -104,10 +104,10 @@ class LSX_Project {
             if ( !empty( $projects ) ) {
             $count = 0;
             if ( $columns >= 1 && $columns <= 4 )
-                $output .= "<div class='bs-projects row'>";
+                $output .= "<div class=\"filter-items-wrapper lsx-portfolio-wrapper\">
+                                <div id=\"portfolio-infinite-scroll-wrapper\" class=\"filter-items-container lsx-portfolio masonry\">";
 
             foreach ( $projects as $project ) {
-                
                 // Vars
                 $count++;
                 if ( has_post_thumbnail( $project->ID ) ) {
@@ -120,9 +120,7 @@ class LSX_Project {
                 $link_close = "</a>";
 
                 $subtitle = get_the_terms($project->ID,'project_group');
-
-                $title = $subtitle[0]->name;
-                $title .= "<h3>$link_open $project->post_title $link_close</h3>";
+                $title = $project->post_title;
 
                 // Output
                 if ( $columns >= 1 && $columns <= 4 ) {
@@ -130,13 +128,17 @@ class LSX_Project {
                     $md_col_width = intval( 12/$columns );
 
                     $output .= "
-                    <div class='col-md-$md_col_width col-xs-12 bs-project'>
-                        <div class='well'>                         
-                            $link_open $image $link_close                                                        
-                            $title                       
-                            $content                            
-                        </div>
-                    </div>
+                    <article id=\"post-24527\" data-column=\"3\" class=\"filter-item column-3 ".str_replace(' ', '',$subtitle[0]->name) ."\">
+                        <div class=\"portfolio-content-wrapper\">
+                            <div class=\"portfolio-thumbnail\">
+                                $link_open<!-- a href=\"https://www.lsdev.biz/portfolio/run-it-off/\" -->
+                                    $image
+                                    <!-- img class=\"attachment-responsive wp-post-image lsx-responsive\" srcset=\"https://www.lsdev.biz/wp-content/uploads/2016/10/pexels-photo-65305-350x230.jpeg\" scale=\"0\">				</a -->
+                                $link_close
+                            </div>
+            
+                            <a class=\"portfolio-title\" href=". get_permalink( $project->ID ) ." rel=\"bookmark\" style=\"margin-top: -14px;\"><span>$title</span></a>	</div>
+                    </article>
                     ";
 
                     if ( $count%$columns == 0 ) $output .= "<div class='clearfix'></div>";
@@ -153,7 +155,9 @@ class LSX_Project {
 
             }
             if ( $columns >= 1 && $columns <= 4 )
-                $output .= "</div>";
+                $output .= "</div>
+                                <br clear=\"all\">
+                            </div>";
 
             return $output;
             }
@@ -168,7 +172,7 @@ class LSX_Project {
 
         $args = [
             'taxonomy' => 'project_group',
-            'hide_empty' => false,
+//            'hide_empty' => false,
             'orderby' => 'name',
             'order' => 'asc'
         ];
@@ -178,10 +182,11 @@ class LSX_Project {
         if ( !empty( $data ) ) {
 
             $output .= "<div class='bs-projects row'>
-                            <ul class='nav nav-tabs'>
-                              <li class='active'><a href=''>All</a></li>";
+                            <ul id=\"filterNav\" class=\"clearfix\"'>
+                              <li class='allBtn'><a href=\"#\" data-filter=\"*\" class=\"selected\">All</a></li>";
             foreach ( $data as $return ) {
-                $output .= "<li><a href=''>$return->name</a></li>";
+//                echo "<pre>";var_dump($return);exit;
+                $output .= "<li><a href=\"#\" data-filter=\".".str_replace(' ', '', $return->name)."\" class=\"\">$return->name</a></li>";
             }
             $output .= "</ul></div>";
 
@@ -190,5 +195,6 @@ class LSX_Project {
     }
 
 }
- 
+
+
 $LSX_Project = new LSX_Project();

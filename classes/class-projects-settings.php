@@ -26,7 +26,7 @@ class LSX_Project_Settings {
 	{
 		?>
 		<div class="wrap">
-			<h2>Bootstrap Project Options</h2>
+			<h2>LSX Projects Options</h2>
 			<form method="post" action="options.php">
 				<?php settings_fields('project_options'); ?>
 				<?php $options = get_option('project_options'); ?>
@@ -35,7 +35,12 @@ class LSX_Project_Settings {
 						<td>
 							<input name="project_options[disable_single]" type="checkbox" value="1" <?php checked('1', $options['disable_single']); ?> />
 						</td>
-					</tr>					
+					</tr>
+					<tr valign="top"><th scope="row">Path Projects</th>
+						<td>
+							<input style="width: 270px;" name="project_options[path_project]" type="text" value="<?php echo $options['path_project']; ?>" />
+						</td>
+					</tr>
 					<tr valign="top"><th scope="row">Placeholder Image</th>
 						<td>
 							<label for="upload_image">
