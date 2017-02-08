@@ -13,7 +13,7 @@ get_header(); ?>
 	
 		<?php lsx_content_before(); ?>
 		
-		<main id="main" class="site-main">
+		<main id="main" class="site-main" style="margin-top:100px">
 
 			<?php lsx_content_top(); ?>
 
@@ -28,5 +28,5 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 	<?php lsx_content_wrap_after(); ?>
-	
+
 <?php get_footer();
