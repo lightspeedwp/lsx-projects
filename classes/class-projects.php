@@ -181,7 +181,7 @@ class LSX_Project {
 
         if ( !empty( $data ) ) {
 
-            $output .= "<div class='bs-projects row'>
+            $output .= "<div class='bs-projects row' style='margin-top:100px'>
                             <ul id=\"filterNav\" class=\"clearfix\"'>
                               <li class='allBtn'><a href=\"#\" data-filter=\"*\" class=\"selected\">All</a></li>";
             foreach ( $data as $return ) {

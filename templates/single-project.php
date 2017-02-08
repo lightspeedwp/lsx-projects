@@ -13,7 +13,7 @@ get_header(); ?>
 	
 		<?php lsx_content_before(); ?>
 		
-		<main id="main" class="site-main" style="margin-top:100px">
+		<main id="main" class="site-main">
 
 			<?php lsx_content_top(); ?>
 
