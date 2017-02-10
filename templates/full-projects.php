@@ -8,8 +8,54 @@
 get_header(); ?>
 
 	<?php lsx_content_wrap_before(); ?>
+	<style>
+		#filterNav{
+			background-color: #f2f2f2;
+			height: 50px;
+			margin-top:0px;
+		}
+		#filterNav li a:hover, #filterNav li a.selected{
+			background-color: #418ad0;
+			color:white;
+		}
+		#filterNav li a:hover, #filterNav li a.selected:hover{
+			background-color: #418ad0;
+			color:white;
+		}
+		#filterNav li{
+			color: #418ad0;
+			padding: 4px;
+			margin-left: 10px;
+			padding-top: 8px;
+		}
+		#filterNav li a{
+			background: initial;
+			border-radius: 0px;
+			color: #418ad0;
+			padding-bottom: 13px;
+			padding-top: 13px;
+			padding-left: 25px;
+			padding-right: 25px;
+			text-decoration: underline !important;
+		}
+		#filterNav li a:hover{
+			background: initial;
+			border-radius: 0px;
+			color: #418ad0;
+		}
+		.altBtn{
+			background: #418ad0;
+			color:white;
+		}
+		.project-image{
+			height: 240px;
+			width: 380px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+		}
+	</style>
 
-	<div id="primary" class="content-area front-page col-sm-12">
+	<div class="content-area front-page col-sm-12">
 	
 		<?php lsx_content_before(); ?>
 		
@@ -30,5 +76,5 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 	<?php lsx_content_wrap_after(); ?>
-	
+
 <?php get_footer();

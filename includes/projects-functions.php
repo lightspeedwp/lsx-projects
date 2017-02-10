@@ -13,3 +13,7 @@ function lsx_child_group_list() {
 function lsx_projects_list() {
     do_action( 'lsx_projects_list' );
 }
+
+function lsx_projects_sidebar() {
+    do_action( 'lsx_projects_sidebar' );
+}

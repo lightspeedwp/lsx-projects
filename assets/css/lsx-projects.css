@@ -1,6 +1,28 @@
 /*
  * lsx-projects.css
  */
-.nav-groups{
-    margin-bottom: 10px !important;
+.lsxp-sidebar-section {
+    background: #f2f2f2;
+    padding: 25px;
+    padding-top: 40px;
+}
+
+.lsxp-sidebar {
+    margin-bottom: 40px;
+    min-height: 80px;
+}
+
+.lsxp-title {
+    font-weight: bold;
+    display: block;
+}
+
+.lsxp-text {
+    display: block;
+}
+
+.lsxp-text-link {
+    color: #418ad0;
+    cursor: pointer;
+    text-decoration: underline;
 }

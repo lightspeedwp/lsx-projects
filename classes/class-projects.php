@@ -1,6 +1,7 @@
 <?php
 
-class LSX_Project {
+class LSX_Project
+{
 
     public $options;
 
@@ -11,28 +12,28 @@ class LSX_Project {
         // if ( $this->options['disable_single'] ) 
         //     add_action( 'template_redirect', array($this, 'disable_single' ) );
 
-        add_shortcode( 'projects', array($this, 'output' ) );        
+        add_shortcode('projects', array($this, 'output'));
     }
 
     /**
      * Removes access to single project  posts
      */
-    public function disable_single() 
+    public function disable_single()
     {
         $queried_post_type = get_query_var('post_type');
-        if ( is_single() && 'project' ==  $queried_post_type ) {
-            wp_redirect( home_url(), 301 );
+        if (is_single() && 'project' == $queried_post_type) {
+            wp_redirect(home_url(), 301);
             exit;
         }
-    }    
+    }
 
     /**
      * Returns the shortcode output markup
      */
-    public function output( $atts ) 
+    public function output($atts)
     {
 
-        extract( shortcode_atts( array(
+        extract(shortcode_atts(array(
             'columns' => 3,
             'orderby' => 'name',
             'order' => 'ASC',
@@ -40,23 +41,23 @@ class LSX_Project {
             'group' => '',
             'include' => '',
             'size' => 320,
-        ), $atts ) );
-        
-        $output = "";   
+        ), $atts));
 
-        if ( $include != '' ) {
-        	$include = explode( ',', $include );
-        	$args = array(
-        			'post_type' => 'project',
-        			'feature-group' => $group,
-        			'posts_per_page' => $limit,
-        			'post__in' => $include,
-        			'orderby' => 'post__in',
-        			'order' => $order,
-                    'post_name' => $atts['post_name']
-        	);
+        $output = "";
+
+        if ($include != '') {
+            $include = explode(',', $include);
+            $args = array(
+                'post_type' => 'project',
+                'feature-group' => $group,
+                'posts_per_page' => $limit,
+                'post__in' => $include,
+                'orderby' => 'post__in',
+                'order' => $order,
+                'post_name' => $atts['post_name']
+            );
         } else {
-       		$args = array(
+            $args = array(
                 'post_type' => 'project',
                 'project_group' => $group,
                 'posts_per_page' => $limit,
@@ -66,100 +67,105 @@ class LSX_Project {
             );
         }
 
-        if(is_single()){
+        if (is_single()) {
             $project = get_post();
 
-            if ( !empty( $project ) ) {
+            if (!empty($project)) {
 
-                if ( has_post_thumbnail( $project->ID ) ) {
-                    $image = get_the_post_thumbnail( $project->ID, array( $size, $size ), 'class=img-responsive' );
-                } else {
-                    $image = "<img src='http://placehold.it/730x250/' alt='placeholder' class='img-responsive' />";
-                }
-                $content = $project->post_excerpt;
-                $link_open = "<a href='" . get_permalink( $project->ID ) . "'>";
-                $link_close = "</a>";
-
-                $subtitle = get_the_terms($project->ID,'project_group');
-
-                $title = $subtitle[0]->name;
-                $title .= "<h3>$link_open $project->post_title $link_close</h3>";
-
-                $output = "
-                    <div class='bs-project row'>
-                        <div class='well'>                         
-                            $link_open $image $link_close                                                        
-                            $title                       
-                            $content                            
-                        </div>
-                    </div>
-                    ";
+                $output = '
+                    <div class="lsxp-context-section">'
+                    . $project->post_content .
+                    '</div>';
 
                 return $output;
             }
 
-        }else{
-            $projects = get_posts( $args );
+        } else {
+            $projects = get_posts($args);
 
-            if ( !empty( $projects ) ) {
-            $count = 0;
-            if ( $columns >= 1 && $columns <= 4 )
-                $output .= "<div class=\"filter-items-wrapper lsx-portfolio-wrapper\">
-                                <div id=\"portfolio-infinite-scroll-wrapper\" class=\"filter-items-container lsx-portfolio masonry\">";
-
-            foreach ( $projects as $project ) {
-                // Vars
-                $count++;
-                if ( has_post_thumbnail( $project->ID ) ) {
-                    $image = get_the_post_thumbnail( $project->ID, array( $size, $size ), 'class=img-responsive' );
-                } else {
-                    $image = "<img src='http://placehold.it/320x213/' alt='placeholder' class='img-responsive' />";
+            if (!empty($projects)) {
+                $count = 0;
+                if ($columns >= 1 && $columns <= 4) {
+                    $output .= "<div class='filter-items-wrapper lsx-portfolio-wrapper'>
+                                <div id='portfolio-infinite-scroll-wrapper' class='filter-items-container lsx-portfolio masonry'>";
                 }
-                $content = $project->post_excerpt;
-                $link_open = "<a href='" . get_permalink( $project->ID ) . "'>";
-                $link_close = "</a>";
 
-                $subtitle = get_the_terms($project->ID,'project_group');
-                $title = $project->post_title;
+                foreach ($projects as $project) {
+                    // Vars
+                    $count++;
+                    if (has_post_thumbnail($project->ID)) {
+                        $image = get_the_post_thumbnail($project->ID, array('480px', '320'),
+                            'class=img-responsive project-image');
+                    } else {
+                        $image = "<img src='http://placehold.it/480x320/' alt='placeholder' class='img-responsive project-image' />";
+                    }
+                    $content = $project->post_excerpt;
+                    $link_open = "<a href='" . get_permalink($project->ID) . "'>";
+                    $link_close = "</a>";
 
-                // Output
-                if ( $columns >= 1 && $columns <= 4 ) {
+                    $subtitle = get_the_terms($project->ID, 'project_group');
+                    $title = $project->post_title;
 
-                    $md_col_width = intval( 12/$columns );
+                    if ($this->options['show_groups'] == 1) {
+                        $title = $subtitle[0]->name . "<br/><bold style='color:#525252;font-weight: bold;'>$title</bold>";
+                    } else {
+                        $title = "<bold style='
+                                        color: #525252;
+                                        font-weight: bold;
+                                        float: left;
+                                        width: 100%;
+                                        margin-top: 20px;
+                                            '>$title</bold>";
+                    }
 
-                    $output .= "
-                    <article id=\"post-24527\" data-column=\"3\" class=\"filter-item column-3 ".str_replace(' ', '',$subtitle[0]->name) ."\">
-                        <div class=\"portfolio-content-wrapper\">
-                            <div class=\"portfolio-thumbnail\">
-                                $link_open<!-- a href=\"https://www.lsdev.biz/portfolio/run-it-off/\" -->
-                                    $image
-                                    <!-- img class=\"attachment-responsive wp-post-image lsx-responsive\" srcset=\"https://www.lsdev.biz/wp-content/uploads/2016/10/pexels-photo-65305-350x230.jpeg\" scale=\"0\">				</a -->
-                                $link_close
-                            </div>
-            
-                            <a class=\"portfolio-title\" href=". get_permalink( $project->ID ) ." rel=\"bookmark\" style=\"margin-top: -14px;\"><span>$title</span></a>	</div>
+                    // Output
+                    if ($columns >= 1 && $columns <= 4) {
+
+                        $md_col_width = intval(12 / $columns);
+                        $class = str_replace(' ', '', $subtitle[0]->name);
+                        $output .= "
+                    <article data-column='3' class='filter-item column-3 $class'>
+                        <div class='projects-thumbnail'>
+                            $image
+                            <span class='projects-thumbnail-text' 
+                               style='
+                                    background: #f2f2f2;
+                                    width: 100%;
+                                    float: left;
+                                    padding: 10px;
+                                    height: 100px;
+                                    text-align: center;
+                                    border-bottom-left-radius: 5px;
+                                    border-bottom-right-radius: 5px;
+                               '>
+                                $title
+                            </span>
+                        </div>
                     </article>
                     ";
 
-                    if ( $count%$columns == 0 ) $output .= "<div class='clearfix'></div>";
+                        if ($count % $columns == 0) {
+                            $output .= "<div class='clearfix'></div>";
+                        }
 
-                } else {
+                    } else {
 
-                    $output .= "
+                        $output .= "
                         <p class='bg-warning' style='padding: 20px;'>
                             Invalid number of columns set. Bootstrap Project s supports 1, 2, 3 or 4 columns.
                         </p>";
-                    return $output;
+                        return $output;
 
-                };
+                    };
 
-            }
-            if ( $columns >= 1 && $columns <= 4 )
-                $output .= "</div>
+                }
+                if ($columns >= 1 && $columns <= 4) {
+                    $output .= "</div>
                                 <br clear=\"all\">
                             </div>";
+                }
 
-            return $output;
+                return $output;
             }
         }
     }
@@ -167,31 +173,88 @@ class LSX_Project {
     /**
      * Returns the shortcode output markup
      */
-    public function groups( )
+    public function groups()
     {
 
-        $args = [
-            'taxonomy' => 'project_group',
+        if ($this->options['show_groups'] == 1) {
+            $args = [
+                'taxonomy' => 'project_group',
 //            'hide_empty' => false,
-            'orderby' => 'name',
-            'order' => 'asc'
-        ];
+                'orderby' => 'name',
+                'order' => 'asc'
+            ];
 
-        $data = get_terms($args);
+            $data = get_terms($args);
 
-        if ( !empty( $data ) ) {
+            if (!empty($data)) {
 
-            $output .= "<div class='bs-projects row' style='margin-top:100px'>
+                $output .= "<div class='bs-projects row'>
                             <ul id=\"filterNav\" class=\"clearfix\"'>
                               <li class='allBtn'><a href=\"#\" data-filter=\"*\" class=\"selected\">All</a></li>";
-            foreach ( $data as $return ) {
-//                echo "<pre>";var_dump($return);exit;
-                $output .= "<li><a href=\"#\" data-filter=\".".str_replace(' ', '', $return->name)."\" class=\"\">$return->name</a></li>";
+                foreach ($data as $return) {
+                    $output .= "<li><a href=\"#\" data-filter=\"." . str_replace(' ', '',
+                            $return->name) . "\" class=\"\">$return->name</a></li>";
+                }
+                $output .= "</ul></div>";
             }
-            $output .= "</ul></div>";
+
+
+            return $output;
+        }
+    }
+
+    public function sidebar()
+    {
+
+        $project = get_post();
+
+        $meta = get_post_meta($project->ID);
+        $client = $meta['project_client'][0];
+        $client_image = $meta['project_gallery'][0];
+
+        $client_image_post = get_post($client_image);
+        $client_image = "<img src='" . $client_image_post->guid . "' />";
+
+        $post_meta = get_post_meta($project->ID, 'project_product', false);
+        $count = count($post_meta);
+        $products = '';
+        foreach ($post_meta as $key => $meta) {
+            if ($count - 1 == $key) {
+                $products .= get_post($meta[0])->post_title;
+            } else {
+                $products .= get_post($meta[0])->post_title . ', ';
+            }
+        }
+        $terms = get_the_terms($project->ID, 'project_group');
+        $industry = $terms[0]->name;
+
+        $output = '
+            <div class="lsxp-sidebar-section">
+                <div class="lsxp-sidebar">
+                    <span class="lsxp-title">Client</span>
+                    <span class="lsxp-text">' . $client . '</span>
+                    <span class="lsxp-img">' . $client_image . '</span>
+                </div>
+        
+                <div class="lsxp-sidebar">
+                    <span class="lsxp-title">Industry</span>
+                    <span class="lsxp-text-link">' . $industry . '</span>
+                </div>
+        
+                <div class="lsxp-sidebar">
+                    <span class="lsxp-title">Services</span>
+                    <span class="lsxp-text-link">Nothing till now</span>
+                </div>
+        
+                <div class="lsxp-sidebar">
+                    <span class="lsxp-title">Products</span>
+                    <span class="lsxp-text-link">' . $products . '</span>
+                </div>
+            </div>
+        ';
 
         return $output;
-        }
+
     }
 
 }
