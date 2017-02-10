@@ -126,7 +126,7 @@ class LSX_Project
                         $output .= "
                     <article data-column='3' class='filter-item column-3 $class'>
                         <div class='projects-thumbnail'>
-                            $image
+                            $link_open $image $link_close
                             <span class='projects-thumbnail-text' 
                                style='
                                     background: #f2f2f2;
