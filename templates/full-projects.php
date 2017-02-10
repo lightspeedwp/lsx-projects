@@ -55,7 +55,7 @@ get_header(); ?>
 		}
 	</style>
 
-	<div class="content-area front-page col-sm-12" style="margin-top: -160px">
+	<div class="content-area front-page col-sm-12" style="margin-top: 160px">
 	
 		<?php lsx_content_before(); ?>
 		
