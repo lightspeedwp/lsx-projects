@@ -97,7 +97,7 @@ class LSX_Project
                         $image = get_the_post_thumbnail($project->ID, array('480px', '320'),
                             'class=img-responsive project-image');
                     } else {
-                        $image = "<img src='https://placeholdit.imgix.net/~text?txtsize=45&txt=480%C3%97320&w=480&h=320' alt='placeholder' class='img-responsive project-image' />";
+                        $image = "<img src='http://placehold.it/480x320/' alt='placeholder' class='img-responsive project-image' />";
                     }
                     $content = $project->post_excerpt;
                     $link_open = "<a href='" . get_permalink($project->ID) . "'>";
