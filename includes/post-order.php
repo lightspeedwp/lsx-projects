@@ -48,7 +48,7 @@ class LSX_PROJECTS_SCPO_Engine
     {
         $args = [];
         $bs_project = new LSX_Project;
-        $output = $bs_project->sidebar();
+        $output = $bs_project->sidebar($args);
         echo $output;
     }
 

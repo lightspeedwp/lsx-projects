@@ -48,13 +48,6 @@ class LSX_Project_Settings
                         </td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row">Path Projects</th>
-                        <td>
-                            <input style="width: 270px;" name="project_options[path_project]" type="text"
-                                   value="<?php echo $options['path_project']; ?>"/>
-                        </td>
-                    </tr>
-                    <tr valign="top">
                         <th scope="row">Placeholder Image</th>
                         <td>
                             <label for="upload_image">

@@ -34,25 +34,17 @@ class LSX_Projects_Frontend
     public function post_type_single_template_include($template)
     {
 
-        $checkProject = str_replace(['/'], [''], $_SERVER['REQUEST_URI']);
-        $options = get_option('project_options');
-        $project = isset($options['path_project']) && $options['path_project'] !== '' ? $options['path_project'] : 'projects';
-        $projectPage = ($checkProject == $project);
-
         if (is_main_query()) {
 
             if (is_singular('project')) {
                 if ('' == locate_template(array('single-project.php')) && file_exists(LSX_PROJECTS_PATH . 'templates/single-project.php')) {
                     $template = LSX_PROJECTS_PATH . 'templates/single-project.php';
                 }
-            } else {
-                if ($projectPage) {
-                    if ('' == locate_template(array('full-projects.php')) && file_exists(LSX_PROJECTS_PATH . 'templates/full-projects.php')) {
-                        $template = LSX_PROJECTS_PATH . 'templates/full-projects.php';
-                    }
+            } elseif(is_post_type_archive('project')) {
+                if ('' == locate_template(array('full-projects.php')) && file_exists(LSX_PROJECTS_PATH . 'templates/full-projects.php')) {
+                    $template = LSX_PROJECTS_PATH . 'templates/full-projects.php';
                 }
             }
-
 
         }
 
