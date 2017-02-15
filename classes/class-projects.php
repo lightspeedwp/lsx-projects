@@ -13,6 +13,16 @@ class LSX_Project
         //     add_action( 'template_redirect', array($this, 'disable_single' ) );
 
         add_shortcode('projects', array($this, 'output'));
+        add_filter( 'lsx_banner_allowed_post_types', array( $this, 'lsx_banner_allow_post_type' ) );
+    }
+
+    /**
+     * Enable project custom post type on LSX Banners
+     */
+    public function lsx_banner_allow_post_type( $post_types )
+    {
+        $post_types[] = 'project';
+        return $post_types;
     }
 
     /**
