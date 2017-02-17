@@ -14,6 +14,9 @@ class LSX_Project
 
         add_shortcode('projects', array($this, 'output'));
         add_filter( 'lsx_banner_allowed_post_types', array( $this, 'lsx_banner_allow_post_type' ) );
+        add_filter( 'lsx_banner_enable_placeholder', array( $this, 'lsx_banner_disable' ) );
+        add_action( 'wp', array( $this, 'lsx_banner_change' ) );
+        add_action( 'lsx_content_wrap_before', array( $this, 'lsx_banner_change' ) );
     }
 
     /**
@@ -23,6 +26,43 @@ class LSX_Project
     {
         $post_types[] = 'project';
         return $post_types;
+    }
+
+    /**
+     * Show button to disable banner
+     */
+    function lsx_banner_disable( $boolean ) {
+        if ( is_post_type_archive( 'project' ) ) {
+            return false;
+        } elseif ( is_admin() ) {
+            //check if is single in admin
+            return true;
+        }
+
+        return $boolean;
+    }
+
+    /**
+     * Remove global header and set lsx banner
+     */
+    function lsx_banner_change() {
+        if ( is_post_type_archive( 'project' ) ) {
+            remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
+        }
+    }
+
+    /**
+     * Edit global header
+     */
+    function lsx_banner_edit() {
+        if ( is_post_type_archive( 'project' ) ) {
+            //set configs to get the featured image
+            ?>
+            <header class="archive-header">
+                <h1 class="archive-title">Portfolio</h1>
+            </header>
+            <?php
+        }
     }
 
     /**

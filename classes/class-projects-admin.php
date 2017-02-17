@@ -12,7 +12,7 @@ class LSX_Project_Admin {
 	    add_filter( 'cmb_meta_boxes', array( $this, 'field_setup' ) );
 	    // add_action( 'admin_init', array( $this, 'shortcode_ui' ) );
 	    // add_action( 'admin_enqueue_scripts', array( $this, 'shortcode_ui_style' ) );
-	    // add_action( 'admin_enqueue_scripts', array( $this, 'add_media_js' ) );    
+	    // add_action( 'admin_enqueue_scripts', array( $this, 'add_media_js' ) );
 	}
 
 	/**
