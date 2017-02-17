@@ -16,7 +16,7 @@ class LSX_Project
         add_filter( 'lsx_banner_allowed_post_types', array( $this, 'lsx_banner_allow_post_type' ) );
         add_filter( 'lsx_banner_enable_placeholder', array( $this, 'lsx_banner_disable' ) );
         add_action( 'wp', array( $this, 'lsx_banner_change' ) );
-        add_action( 'lsx_content_wrap_before', array( $this, 'lsx_banner_change' ) );
+        add_action( 'lsx_content_wrap_before', array( $this, 'lsx_banner_edit' ) );
     }
 
     /**
