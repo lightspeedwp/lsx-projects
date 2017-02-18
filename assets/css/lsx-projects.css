@@ -46,8 +46,16 @@
     background: grey;
     color: white;
 }
+
 .grey:hover, .grey:focus, .grey:active{
     background: #c4c4c4;
     color: white;
     cursor: no-drop;
+}
+
+/*
+Overwriting from lsx-banner
+*/
+.page-banner-image:after{
+    background-color: transparent !important;
 }

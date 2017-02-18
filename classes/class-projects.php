@@ -77,10 +77,35 @@ class LSX_Project
 
             if($count > 0){
             ?>
+                <header class="archive-header"
+                    style="
+                        max-height: 400px;
+                        background-position: center center;
+                        background-image: url('<?=$image?>') !important;
+                        top: -130px; bottom: -130px;"
+                        data-banners="<?=$image?>";
+                >
+                    <div id="lsx-banner">
+                        <div class="page-banner-wrap">
+                            <div class="page-banner rotating" style="min-height: initial;">
+                                <div class="page-banner-image" style="background: transparent !important;"></div>
+                                <div class="container" style="padding-top: 0px;">
+                                    <header class="page-header">
+                                        <p>Featured project:</p>
+                                        <h1 class="page-title"><?=$title?></h1>
+                                        <p><?=$subtitle?></p>
+                                    </header>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+            <!--
             <header class="archive-header" style="height: 400px; background: transparent !important; z-index: 1">
                 <p>Featured project:</p>
-                <h1 class="page-title"><?=$title?></h1>
-                <p><?=$subtitle?></p>
+                <h1 class="page-title"><?php // $title?></h1>
+                <p><?php //$subtitle?></p>
             </header>
             <header class="archive-header" style="
                 height: 405px;
@@ -93,13 +118,14 @@ class LSX_Project
                 -ms-filter: blur(5px);
                 filter: blur(5px);
                 z-index: -1;
-                background-image: url('<?=$image?>')">;
+                background-image: url('<?php // $image?>/*')">;
             </header>
+            -->
             <?php
             }else{
                 ?>
                 <header class="archive-header">
-                    <h1 class="archive-title">Portfolio</h1>
+                    <h1 class="archive-title">LSX Portfolio</h1>
                 </header>
                 <?php
             }
