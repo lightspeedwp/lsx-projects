@@ -185,8 +185,12 @@ class LSX_Project
                     // Vars
                     $count++;
                     if (has_post_thumbnail($project->ID)) {
-                        $image = get_the_post_thumbnail($project->ID, array('480px', '320'),
+                        $image = get_the_post_thumbnail($project->ID, array('480px', '320px'),
                             'class=img-responsive project-image');
+
+                        if(strpos($image, '~text?')){
+                            $image = "<img src='http://placehold.it/480x320/' alt='placeholder' class='img-responsive project-image' />";
+                        }
                     } else {
                         $image = "<img src='http://placehold.it/480x320/' alt='placeholder' class='img-responsive project-image' />";
                     }
