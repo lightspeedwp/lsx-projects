@@ -79,7 +79,7 @@ class LSX_Project
             ?>
                 <header class="archive-header"
                     style="
-                        max-height: 400px;
+                        max-height: 600px;
                         background-position: center center;
                         background-image: url('<?=$image?>') !important;
                         top: -130px; bottom: -130px;"
