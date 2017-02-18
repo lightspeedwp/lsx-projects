@@ -79,7 +79,7 @@ class LSX_Project
             ?>
                 <header class="archive-header"
                     style="
-                        max-height: 600px;
+                        /*max-height: 600px;*/
                         background-position: center center;
                         background-image: url('<?=$image?>') !important;
                         top: -130px; bottom: -130px;"
@@ -87,7 +87,9 @@ class LSX_Project
                 >
                     <div id="lsx-banner">
                         <div class="page-banner-wrap">
-                            <div class="page-banner rotating" style="min-height: initial;">
+                            <div class="page-banner rotating"
+                                 style="/*max-height: initial;*/"
+                            >
                                 <div class="page-banner-image" style="background: transparent !important;"></div>
                                 <div class="container" style="padding-top: 0px;">
                                     <header class="page-header">
