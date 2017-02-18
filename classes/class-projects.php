@@ -71,7 +71,7 @@ class LSX_Project
                     $title = $post->post_title;
                     $sub = get_the_terms($post->ID, 'project_group');
                     $subtitle = $sub[0]->name;
-                    $image = get_the_post_thumbnail_url($post->ID, array('1200px','600px'));
+                    $image = get_the_post_thumbnail_url($post->ID, array('880px','600px'));
                 }
             }
 
@@ -317,7 +317,7 @@ class LSX_Project
         }
 
         $client_image_post = get_post($client_image);
-        $client_image = "<img src='" . $client_image_post->guid . "' />";
+        $client_image = ($client_image_post->post_mime_type !== '' ? "<img src='" . $client_image_post->guid . "' />" : '');
 
         $post_meta = get_post_meta($project->ID, 'project_product', false);
 
@@ -363,7 +363,7 @@ class LSX_Project
         
                 <div class="lsxp-sidebar">
                     <span class="lsxp-title">Products</span>
-                    <span class="lsxp-text-link">' . $products . '</span>
+                    <span class="lsxp-text">' . ($products !== '' ? $products : 'No products related.') . '</span>
                 </div>
         
                 <div class="lsxp-sidebar">
