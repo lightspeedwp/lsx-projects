@@ -77,7 +77,7 @@ class LSX_Project
 
             if($count > 0){
             ?>
-            <header class="archive-header" style="height: 400px; background: transparent; z-index: 1">
+            <header class="archive-header" style="height: 400px; background: transparent !important; z-index: 1">
                 <p>Featured project:</p>
                 <h1 class="page-title"><?=$title?></h1>
                 <p><?=$subtitle?></p>
