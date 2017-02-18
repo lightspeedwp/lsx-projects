@@ -26,3 +26,28 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+.lsxp-button{
+    width: 100%;
+    padding: 15px 5px;
+}
+
+.yellow{
+    background: #f7ae00;
+    box-shadow: 3px 3px 3px #888888;
+    color: white;
+}
+.yellow:hover, .yellow:focus, .yellow:active{
+    background: #f7d342;
+    color: white;
+}
+
+.grey{
+    background: grey;
+    color: white;
+}
+.grey:hover, .grey:focus, .grey:active{
+    background: #c4c4c4;
+    color: white;
+    cursor: no-drop;
+}

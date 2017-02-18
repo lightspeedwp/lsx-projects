@@ -32,7 +32,7 @@ class LSX_Project_Admin {
 		    'search_items'       => __( 'Search Projects', 'bs-project' ),
 		    'not_found'          => __( 'No projects found', 'bs-project' ),
 		    'not_found_in_trash' => __( 'No projects found in Trash', 'bs-project' ),
-		    'parent_item_colon'  => __( '', 'project' ),
+		    'parent_item_colon'  => '',
 		    'menu_name'          => _x( 'Projects', 'admin menu', 'bs-project' )
 		);
 
@@ -41,7 +41,7 @@ class LSX_Project_Admin {
 		    'public'             => true,
 		    'publicly_queryable' => true,
 		    'show_ui'            => true,
-		    'show_in_menu'       => 'portfolio',
+		    'show_in_menu'       => true,
 		    'menu_icon'			=> 'dashicons-portfolio',
 		    'query_var'          => true,
 		    'rewrite'            => array( 'slug' => 'portfolio' ),

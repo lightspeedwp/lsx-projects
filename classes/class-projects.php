@@ -57,11 +57,52 @@ class LSX_Project
     function lsx_banner_edit() {
         if ( is_post_type_archive( 'project' ) ) {
             //set configs to get the featured image
+
+            $posts = get_posts([
+                'post_type' => 'project'
+            ]);
+
+            $count = 0;
+            foreach ($posts as $post){
+                $meta = get_post_meta($post->ID);
+
+                if($meta['project_featured'][0] == 1){
+                    $count = 1;
+                    $title = $post->post_title;
+                    $sub = get_the_terms($post->ID, 'project_group');
+                    $subtitle = $sub[0]->name;
+                    $image = get_the_post_thumbnail_url($post->ID, array('1200px','600px'));
+                }
+            }
+
+            if($count > 0){
             ?>
-            <header class="archive-header">
-                <h1 class="archive-title">Portfolio</h1>
+            <header class="archive-header" style="height: 400px; background: transparent; z-index: 1">
+                <p>Featured project:</p>
+                <h1 class="page-title"><?=$title?></h1>
+                <p><?=$subtitle?></p>
+            </header>
+            <header class="archive-header" style="
+                height: 405px;
+                background-size: contain;
+                position: absolute;
+                top: 0;
+                -webkit-filter: blur(5px);
+                -moz-filter: blur(5px);
+                -o-filter: blur(5px);
+                -ms-filter: blur(5px);
+                filter: blur(5px);
+                z-index: -1;
+                background-image: url('<?=$image?>')">;
             </header>
             <?php
+            }else{
+                ?>
+                <header class="archive-header">
+                    <h1 class="archive-title">Portfolio</h1>
+                </header>
+                <?php
+            }
         }
     }
 
@@ -261,19 +302,31 @@ class LSX_Project
         $meta = get_post_meta($project->ID);
         $client = $meta['project_client'][0];
         $client_image = $meta['project_gallery'][0];
+        $url = $meta['project_url'][0];
+
+        if($url !== '' && $url !== null){
+            $the_url = '<form method="get" action="'.$url.'">
+                            <button class="lsxp-button yellow">See website ></button>
+                        </form>';
+        }else{
+            $the_url = '<button class="lsxp-button grey">Website not available</button>';
+        }
 
         $client_image_post = get_post($client_image);
         $client_image = "<img src='" . $client_image_post->guid . "' />";
 
         $post_meta = get_post_meta($project->ID, 'project_product', false);
-        $count = count($post_meta);
+
         $products = '';
         foreach ($post_meta as $key => $meta) {
-            if ($count - 1 == $key) {
-                $products .= get_post($meta[0])->post_title;
-            } else {
-                $products .= get_post($meta[0])->post_title . ', ';
-            }
+
+            $products .= "
+                <a href='".get_permalink(get_post($meta[0])->ID)."'>
+                    ".get_post($meta[0])->post_title."
+                </a>"
+            ;
+
+
         }
         $terms = get_the_terms($project->ID, 'project_group');
         $industry = $terms[0]->name;
@@ -288,17 +341,31 @@ class LSX_Project
         
                 <div class="lsxp-sidebar">
                     <span class="lsxp-title">Industry</span>
-                    <span class="lsxp-text-link">' . $industry . '</span>
+                    <span class="lsxp-text">Working on..</span>
+                    <!--
+                    <span class="lsxp-text-link" onclick="alert(\'Working on this and services\')">' . $industry . '</span>
+                        list of all "industries/projects" linking to https://projects.invisionapp.com/d/main#/console/9237301/206977939/preview
+                    -->
                 </div>
         
                 <div class="lsxp-sidebar">
                     <span class="lsxp-title">Services</span>
-                    <span class="lsxp-text-link">Nothing till now</span>
+                    <span class="lsxp-text">Working on..</span>
+                    <!--
+                        need to create "project-tag" into projects -> single project 
+                        this new tag will be used to make relationship between projects
+                    -->
                 </div>
         
                 <div class="lsxp-sidebar">
                     <span class="lsxp-title">Products</span>
                     <span class="lsxp-text-link">' . $products . '</span>
+                </div>
+        
+                <div class="lsxp-sidebar">
+                    <span class="lsxp-button">
+                        '. $the_url .'
+                    </span>
                 </div>
             </div>
         ';
