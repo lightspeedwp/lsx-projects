@@ -345,6 +345,7 @@ class LSX_Project
         $count = count($post_meta);
         $new_count = 0;
         foreach ($post_meta as $key => $meta) {
+            $new_count++;
             $products_ids[] = $meta[0];
 
             $products .= "
