@@ -389,7 +389,7 @@ class LSX_Project
         
                 <div class="lsxp-sidebar">
                     <span class="lsxp-title">Industry</span>
-                    <span class="lsxp-text-link" onclick="location.href=\'portfolio/#'.$industry_link.'\'">' . $industry . '</span>
+                    <span class="lsxp-text"><a href=\'portfolio/#'.$industry_link.'\'">' . $industry . '</a></span>
                 </div>
         
                 <div class="lsxp-sidebar">
