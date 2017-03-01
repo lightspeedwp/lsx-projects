@@ -21,19 +21,17 @@ class LSX_Projects_Frontend
 
     public function enqueue_styles()
     {
-        wp_enqueue_style('lsx_projects', LSX_PROJECTS_URL . 'assets/css/lsx-projects.css', array(), LSX_PROJECTS_VER);
+        wp_enqueue_style('lsx-projects', LSX_PROJECTS_URL . 'assets/css/lsx-projects.css', array(), LSX_PROJECTS_VER);
     }
 
     public function enqueue_scripts($plugins)
     {
         wp_enqueue_media();
-        wp_enqueue_script('lsx_projects', LSX_PROJECTS_URL . 'assets/js/lsx-projects.js', array('jquery'),
-            LSX_PROJECTS_VER);
+        wp_enqueue_script('lsx-projects', LSX_PROJECTS_URL . 'assets/js/lsx-projects.js', array('jquery'), LSX_PROJECTS_VER);
     }
 
     public function post_type_single_template_include($template)
     {
-
         if (is_main_query()) {
 
             if (is_singular('project')) {
@@ -41,8 +39,15 @@ class LSX_Projects_Frontend
                     $template = LSX_PROJECTS_PATH . 'templates/single-project.php';
                 }
             } elseif(is_post_type_archive('project')) {
+
                 if ('' == locate_template(array('full-projects.php')) && file_exists(LSX_PROJECTS_PATH . 'templates/full-projects.php')) {
                     $template = LSX_PROJECTS_PATH . 'templates/full-projects.php';
+                }
+            } elseif(get_queried_object()) {
+                $object = get_queried_object();
+
+                if ($object->taxonomy == 'product_tag' && '' == locate_template(array('single-tag.php')) && file_exists(LSX_PROJECTS_PATH . 'templates/single-tag.php')) {
+                    $template = LSX_PROJECTS_PATH . 'templates/single-tag.php';
                 }
             }
 

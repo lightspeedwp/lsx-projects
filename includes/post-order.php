@@ -20,6 +20,7 @@ class LSX_PROJECTS_SCPO_Engine
         add_action('lsx_child_group_list', array($this, 'lsx_groups'));
         add_action('lsx_projects_list', array($this, 'lsx_projects'));
         add_action('lsx_projects_sidebar', array($this, 'lsx_sidebar'));
+        add_action('lsx_projects_single_tag', array($this, 'lsx_projects_tag'));
     }
 
     function lsx_groups()
@@ -49,6 +50,14 @@ class LSX_PROJECTS_SCPO_Engine
         $args = [];
         $bs_project = new LSX_Project;
         $output = $bs_project->sidebar($args);
+        echo $output;
+    }
+
+    function lsx_projects_tag()
+    {
+        $args = [];
+        $bs_project = new LSX_Project;
+        $output = $bs_project->single_tag($args);
         echo $output;
     }
 

@@ -19,6 +19,12 @@ define( 'LSX_PROJECTS_CORE', __FILE__ );
 define( 'LSX_PROJECTS_URL', plugin_dir_url( __FILE__ ) );
 define( 'LSX_PROJECTS_VER', '1.0.0' );
 
+function dd($param){
+    echo "<pre>";
+    var_dump($param);
+    exit;
+}
+
 // Post Type and Custom Fields
 include LSX_PROJECTS_PATH . '/classes/class-projects-admin.php';
 

@@ -102,27 +102,6 @@ class LSX_Project
                         </div>
                     </div>
                 </header>
-
-            <!--
-            <header class="archive-header" style="height: 400px; background: transparent !important; z-index: 1">
-                <p>Featured project:</p>
-                <h1 class="page-title"><?php // $title?></h1>
-                <p><?php //$subtitle?></p>
-            </header>
-            <header class="archive-header" style="
-                height: 405px;
-                background-size: contain;
-                position: absolute;
-                top: 0;
-                -webkit-filter: blur(5px);
-                -moz-filter: blur(5px);
-                -o-filter: blur(5px);
-                -ms-filter: blur(5px);
-                filter: blur(5px);
-                z-index: -1;
-                background-image: url('<?php // $image?>/*')">;
-            </header>
-            -->
             <?php
             }else{
                 ?>
@@ -190,6 +169,18 @@ class LSX_Project
             $project = get_post();
 
             if (!empty($project)) {
+                $group = get_the_terms($project->ID, 'project_group');
+                $group_id = $group[0]->term_taxonomy_id;
+
+                $args = [
+                    'taxonomy' => 'project_group',
+                    'term_taxonomy_id' => $group_id,
+                    'orderby' => 'name',
+                    'order' => 'asc'
+                ];
+
+                //working on..
+                $data = get_terms($args);
 
                 $output = '
                     <div class="lsxp-context-section">'
@@ -245,9 +236,9 @@ class LSX_Project
                     if ($columns >= 1 && $columns <= 4) {
 
                         $md_col_width = intval(12 / $columns);
-                        $class = str_replace(' ', '', $subtitle[0]->name);
+                        $industry_link = str_replace(['&','-','_',' ','amp;'], [''], trim($subtitle[0]->name));
                         $output .= "
-                    <article data-column='3' class='filter-item column-3 $class'>
+                    <article data-column='3' class='filter-item column-3 $industry_link'>
                         <div class='projects-thumbnail'>
                             $link_open $image $link_close
                             <span class='projects-thumbnail-text' 
@@ -313,10 +304,12 @@ class LSX_Project
 
                 $output .= "<div class='bs-projects row'>
                             <ul id=\"filterNav\" class=\"clearfix\"'>
-                              <li class='allBtn'><a href=\"#\" data-filter=\"*\" class=\"selected\">All</a></li>";
+                              <li class='allBtn'><a href=\"#\" id='all' data-filter=\"*\" class=\"selected\">All</a></li>";
                 foreach ($data as $return) {
-                    $output .= "<li><a href=\"#\" data-filter=\"." . str_replace(' ', '',
-                            $return->name) . "\" class=\"\">$return->name</a></li>";
+
+                    $industry_link = str_replace(['&','-','_',' ','amp;'], [''], trim($return->name));
+
+                    $output .= "<li><a href=\"#\" id='{$industry_link}' data-filter=\"." . $industry_link . "\" class=\"\">$return->name</a></li>";
                 }
                 $output .= "</ul></div>";
             }
@@ -348,9 +341,11 @@ class LSX_Project
         $client_image = ($client_image_post->post_mime_type !== '' ? "<img src='" . $client_image_post->guid . "' />" : '');
 
         $post_meta = get_post_meta($project->ID, 'project_product', false);
-
         $products = '';
+        $count = count($post_meta);
+        $new_count = 0;
         foreach ($post_meta as $key => $meta) {
+            $products_ids[] = $meta[0];
 
             $products .= "
                 <a href='".get_permalink(get_post($meta[0])->ID)."'>
@@ -358,10 +353,30 @@ class LSX_Project
                 </a>"
             ;
 
-
+            if($new_count !== $count){
+                $products .= ", ";
+            }
         }
+
         $terms = get_the_terms($project->ID, 'project_group');
         $industry = $terms[0]->name;
+        $industry_link = str_replace(['&','-','_',' ','amp;'], [''], trim($terms[0]->name));
+
+        $services = wp_get_object_terms( $products_ids, 'product_tag' );
+        $services_name = '';
+        $count = count($services);
+        $new_count = 0;
+        foreach ($services as $service){
+            $new_count++;
+            $services_name .= "
+                <a href='/product-tag/$service->slug'>$service->name</a> 
+            ";
+
+            if($new_count !== $count){
+                $services_name .= ", ";
+            }
+        }
+
 
         $output = '
             <div class="lsxp-sidebar-section">
@@ -373,20 +388,12 @@ class LSX_Project
         
                 <div class="lsxp-sidebar">
                     <span class="lsxp-title">Industry</span>
-                    <span class="lsxp-text">Working on..</span>
-                    <!--
-                    <span class="lsxp-text-link" onclick="alert(\'Working on this and services\')">' . $industry . '</span>
-                        list of all "industries/projects" linking to https://projects.invisionapp.com/d/main#/console/9237301/206977939/preview
-                    -->
+                    <span class="lsxp-text-link" onclick="location.href=\'portfolio/#'.$industry_link.'\'">' . $industry . '</span>
                 </div>
         
                 <div class="lsxp-sidebar">
                     <span class="lsxp-title">Services</span>
-                    <span class="lsxp-text">Working on..</span>
-                    <!--
-                        need to create "project-tag" into projects -> single project 
-                        this new tag will be used to make relationship between projects
-                    -->
+                    <span class="lsxp-text">' . ($services_name !== '' ? $services_name : 'No products related.') . '</span>
                 </div>
         
                 <div class="lsxp-sidebar">
@@ -406,6 +413,121 @@ class LSX_Project
 
     }
 
+    public function single_tag(){
+
+        $args = array(
+            'post_type' => 'project',
+            'orderby' => 'name',
+            'order' => 'asc'
+        );
+
+        $projects = get_posts($args);
+
+        foreach ($projects as $project){
+            $check = get_post_meta($project->ID,'project_product');
+            if(!empty($check)){
+                $projects_list[] = $project;
+            }
+        }
+
+        extract(shortcode_atts(array(
+            'columns' => 3,
+            'orderby' => 'name',
+            'order' => 'ASC',
+            'limit' => '-1',
+            'group' => '',
+            'include' => '',
+            'size' => 320,
+        ), $atts));
+
+        $count = 0;
+        if ($columns >= 1 && $columns <= 4) {
+            $output .= "<div class='filter-items-wrapper lsx-portfolio-wrapper'>
+                                <div id='portfolio-infinite-scroll-wrapper' class='filter-items-container lsx-portfolio masonry'>";
+        }
+
+        foreach ($projects_list as $project) {
+            // Vars
+            $count++;
+            if (has_post_thumbnail($project->ID)) {
+                $image = get_the_post_thumbnail($project->ID, array('480px', '320px'),
+                    'class=img-responsive project-image');
+
+                if(strpos($image, '~text?')){
+                    $image = "<img src='http://placehold.it/480x320/' alt='placeholder' class='img-responsive project-image' />";
+                }
+            } else {
+                $image = "<img src='http://placehold.it/480x320/' alt='placeholder' class='img-responsive project-image' />";
+            }
+            $content = $project->post_excerpt;
+            $link_open = "<a href='" . get_permalink($project->ID) . "'>";
+            $link_close = "</a>";
+
+            $subtitle = get_the_terms($project->ID, 'project_group');
+            $title = $project->post_title;
+
+            if ($this->options['show_groups'] == 1) {
+                $title = $subtitle[0]->name . "<br/><bold style='color:#525252;font-weight: bold;'>$title</bold>";
+            } else {
+                $title = "<bold style='
+                                        color: #525252;
+                                        font-weight: bold;
+                                        float: left;
+                                        width: 100%;
+                                        margin-top: 20px;
+                                            '>$title</bold>";
+            }
+
+            // Output
+            if ($columns >= 1 && $columns <= 4) {
+
+                $md_col_width = intval(12 / $columns);
+                $industry_link = str_replace(['&','-','_',' ','amp;'], [''], trim($subtitle[0]->name));
+                $output .= "
+                    <article data-column='3' class='filter-item column-3 $industry_link'>
+                        <div class='projects-thumbnail'>
+                            $link_open $image $link_close
+                            <span class='projects-thumbnail-text' 
+                               style='
+                                    background: #f2f2f2;
+                                    width: 100%;
+                                    float: left;
+                                    padding: 10px;
+                                    height: 100px;
+                                    text-align: center;
+                                    border-bottom-left-radius: 5px;
+                                    border-bottom-right-radius: 5px;
+                               '>
+                                $title
+                            </span>
+                        </div>
+                    </article>
+                    ";
+
+                if ($count % $columns == 0) {
+                    $output .= "<div class='clearfix'></div>";
+                }
+
+            } else {
+
+                $output .= "
+                        <p class='bg-warning' style='padding: 20px;'>
+                            Invalid number of columns set. Bootstrap Project s supports 1, 2, 3 or 4 columns.
+                        </p>";
+                return $output;
+
+            };
+
+        }
+        if ($columns >= 1 && $columns <= 4) {
+            $output .= "</div>
+                                <br clear=\"all\">
+                            </div>";
+        }
+
+        return $output;
+
+    }
 }
 
 

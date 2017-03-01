@@ -17,11 +17,7 @@ get_header(); ?>
 		
 		<main id="main" class="site-main">
 
-			<?php lsx_content_top(); ?>
-
-			<?php lsx_groups_list();?>
-
-			<?php lsx_projects_list(); ?>
+			<?php lsx_projects_single_tag(); ?>
 
 			<?php lsx_content_bottom(); ?>
 		
@@ -32,20 +28,5 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 	<?php lsx_content_wrap_after(); ?>
-
-	<script>
-		$(document).ready(function(){
-			var path = location.valueOf().hash;
-
-			if(path.includes('#')){
-				path = path.replace('#','');
-
-				setTimeout(function () {
-					$('#'+path).click();
-				}, 500)
-			}
-
-		});
-	</script>
 
 <?php get_footer();

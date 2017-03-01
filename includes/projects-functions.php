@@ -17,3 +17,7 @@ function lsx_projects_list() {
 function lsx_projects_sidebar() {
     do_action( 'lsx_projects_sidebar' );
 }
+
+function lsx_projects_single_tag() {
+    do_action( 'lsx_projects_single_tag' );
+}

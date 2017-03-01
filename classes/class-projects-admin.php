@@ -16,7 +16,7 @@ class LSX_Project_Admin {
 	}
 
 	/**
-	 * Register the Project post type
+	 * Register the Project and Product Tag post type
 	 */
 	public function post_type_setup() 
 	{
@@ -42,7 +42,7 @@ class LSX_Project_Admin {
 		    'publicly_queryable' => true,
 		    'show_ui'            => true,
 		    'show_in_menu'       => true,
-		    'menu_icon'			=> 'dashicons-portfolio',
+		    'menu_icon'			 => 'dashicons-portfolio',
 		    'query_var'          => true,
 		    'rewrite'            => array( 'slug' => 'portfolio' ),
 		    'capability_type'    => 'post',
@@ -53,7 +53,25 @@ class LSX_Project_Admin {
 		);
 
 		register_post_type( 'project', $args );
-	}
+
+        $args = array(
+		    'labels'             => [],
+		    'public'             => true,
+		    'publicly_queryable' => true,
+		    'show_ui'            => true,
+		    'show_in_menu'       => false,
+		    'menu_icon'			 => '',
+		    'query_var'          => true,
+		    'rewrite'            => array( 'slug' => 'product-tag' ),
+		    'capability_type'    => 'post',
+		    'has_archive'        => 'product-tag',
+		    'hierarchical'       => false,
+		    'menu_position'      => null,
+		    'supports'           => []
+		);
+
+		register_post_type( 'product-tag', $args );
+    }
 
 	/**
 	 * Register the Role taxonomy
@@ -81,6 +99,7 @@ class LSX_Project_Admin {
 			'show_ui'           => true,			
 			'show_admin_column' => true,
 			'query_var'         => true,
+            'has_archive'       => 'groups',
 			'rewrite'           => array( 'slug' => 'project-group' ),
 		);
 
@@ -148,16 +167,16 @@ class LSX_Project_Admin {
                 ),
                 'multiple' => true
             ),
-	        array( 
+	        array(
 	        	'name' => __( 'Featured:', 'bs-project' ),
-				'id' => $prefix . 'featured',  				
-				'type'    => 'radio', 
-				'options' => array( 
-				    '1' => 'Yes', 
+				'id' => $prefix . 'featured',
+				'type'    => 'radio',
+				'options' => array(
+				    '1' => 'Yes',
 				    '0' => 'No'
 					),
 				'default' => '0'
-				),        
+            ),
 	    );
 	    
 	    $meta_boxes[] = array(
