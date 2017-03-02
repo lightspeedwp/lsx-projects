@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Theme Coding Standards">
+	<exclude-pattern>*/.git/*</exclude-pattern>
+	<exclude-pattern>*/.idea/*</exclude-pattern>
+	<exclude-pattern>*/.sass-cache/*</exclude-pattern>
+	<exclude-pattern>*/bower_components/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<rule ref="WordPress">
+		<exclude name="Generic.Commenting.DocComment.MissingShort" />
+		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+		<exclude name="Squiz.Commenting.LongConditionClosingComment.Missing" />
+		<exclude name="WordPress.VIP.ValidatedSanitizedInput.InputNotValidated" />
+	</rule>
+</ruleset>
