@@ -1,15 +1,19 @@
 <?xml version="1.0"?>
-<ruleset name="WordPress Theme Coding Standards">
-	<exclude-pattern>*/.git/*</exclude-pattern>
-	<exclude-pattern>*/.idea/*</exclude-pattern>
-	<exclude-pattern>*/.sass-cache/*</exclude-pattern>
-	<exclude-pattern>*/bower_components/*</exclude-pattern>
-	<exclude-pattern>*/node_modules/*</exclude-pattern>
+<ruleset name="WordPress-LSX-Theme">
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<rule ref="WordPress">
-		<exclude name="Generic.Commenting.DocComment.MissingShort" />
+		<!-- We will not fix these -->
+		<exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed" />
 		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
-		<exclude name="Squiz.Commenting.LongConditionClosingComment.Missing" />
-		<exclude name="WordPress.VIP.ValidatedSanitizedInput.InputNotValidated" />
+
+		<!-- We will not fix these (WordPress VIP) -->
+		<exclude name="WordPress.VIP" />
+
+		<!-- Fix on next LSX release (PHP Comments) -->
+		<exclude name="Generic.Commenting" />
+		<exclude name="Squiz.Commenting" />
+
+		<!-- Fix on next release -->
+		<exclude name="WordPress.Functions.DontExtract.extract_extract" />
 	</rule>
 </ruleset>
