@@ -318,6 +318,8 @@
 										wc_get_template( 'content-widget-product.php', array(
 											'show_rating' => false,
 										) );
+
+										wp_reset_postdata();
 									}
 
 									// @codingStandardsIgnoreLine
