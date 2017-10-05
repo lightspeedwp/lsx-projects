@@ -248,12 +248,10 @@
 		<div class="col-xs-12 col-sm-5 col-md-4">
 			<div class="entry-fixed-sidebar-wrapper">
 				<div class="entry-fixed-sidebar">
-					<?php if ( ! empty( $client ) ) : ?>
-						<div class="entry-meta-single"><?php echo esc_html( $client ); ?></div>
-					<?php endif; ?>
-
 					<?php if ( ! empty( $client_logo ) ) : ?>
 						<div class="entry-meta-single"><?php echo wp_kses_post( $client_logo ); ?></div>
+					<?php elseif ( ! empty( $client ) ) : ?>
+						<div class="entry-meta-single"><?php echo esc_html( $client ); ?></div>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $groups ) ) : ?>

@@ -376,23 +376,23 @@ msgstr ""
 msgid "Products used to build this project"
 msgstr ""
 
-#: templates/content-single-projects.php:260
+#: templates/content-single-projects.php:258
 msgid "Industry:"
 msgstr ""
 
-#: templates/content-single-projects.php:265
+#: templates/content-single-projects.php:263
 msgid "Services:"
 msgstr ""
 
-#: templates/content-single-projects.php:271
+#: templates/content-single-projects.php:269
 msgid "Products used:"
 msgstr ""
 
-#: templates/content-single-projects.php:277
+#: templates/content-single-projects.php:275
 msgid "Team members involved:"
 msgstr ""
 
-#: templates/content-single-projects.php:282
+#: templates/content-single-projects.php:280
 msgid "See website"
 msgstr ""
 
