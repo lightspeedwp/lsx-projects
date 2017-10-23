@@ -447,3 +447,7 @@ msgstr ""
 #: includes/settings/display.php:39
 msgid "Sharing"
 msgstr ""
+
+#: includes/settings/display.php:44
+msgid "Videos"
+msgstr ""

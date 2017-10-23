@@ -26,7 +26,7 @@ class LSX_Projects_Frontend {
 		add_filter( 'template_include', array( $this, 'single_template_include' ), 99 );
 		add_filter( 'template_include', array( $this, 'archive_template_include' ), 99 );
 
-		if ( isset( $this->options['display'] ) && $this->options['display']['projects_disable_single'] ) {
+		if ( ! empty( $this->options['display'] ) && ! empty( $this->options['display']['projects_disable_single'] ) ) {
 			add_action( 'template_redirect', array( $this, 'disable_single' ) );
 		}
 
@@ -168,7 +168,7 @@ class LSX_Projects_Frontend {
 		global $post;
 
 		if ( 'project' === $post->post_type ) {
-			if ( isset( $this->options['display'] ) && $this->options['display']['projects_disable_single'] ) {
+			if ( ! empty( $this->options['display'] ) && ! empty( $this->options['display']['projects_disable_single'] ) ) {
 				$excerpt_more = '';
 			}
 		}
