@@ -46,7 +46,11 @@
 	}
 
 	.lsx-projects-avatar {
-		& > img { width: 100%; }
+		& > img {
+			width: 100%;
+
+			&.lazyload, &.lazyloading { width: auto; }
+		}
 	}
 
 	.lsx-projects-title {

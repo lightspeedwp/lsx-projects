@@ -18,6 +18,8 @@
 
 .lsx-projects-slot .lsx-projects-avatar > img { width: 100%; }
 
+.lsx-projects-slot .lsx-projects-avatar > img.lazyload, .lsx-projects-slot .lsx-projects-avatar > img.lazyloading { width: auto; }
+
 .lsx-projects-slot .lsx-projects-title { margin: 2.4rem 0 1rem; padding: 0 2rem; }
 
 .lsx-projects-slot .lsx-projects-groups { font-size: 13px; padding: 0 2rem; }
