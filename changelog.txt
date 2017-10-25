@@ -2,6 +2,7 @@
 
 ### 1.1.1
 * Dev - Added compatibility with LSX Videos
+* Dev - Added compatibility with LSX Search
 * Dev - Fixed PHP warning issues
 * Dev - Fixed "lazy load images" on loading size (width)
 

@@ -451,3 +451,7 @@ msgstr ""
 #: includes/settings/display.php:44
 msgid "Videos"
 msgstr ""
+
+#: includes/settings/display.php:49
+msgid "Search"
+msgstr ""
