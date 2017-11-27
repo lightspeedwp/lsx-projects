@@ -352,7 +352,7 @@ msgstr ""
 msgid "Featured posts"
 msgstr ""
 
-#: classes/class-lsx-projects.php:177, classes/class-lsx-projects.php:188, templates/content-archive-projects.php:49
+#: classes/class-lsx-projects.php:177, classes/class-lsx-projects.php:188, templates/content-archive-projects.php:51
 msgid "View more"
 msgstr ""
 

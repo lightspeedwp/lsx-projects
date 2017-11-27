@@ -5,6 +5,7 @@
 * Dev - Added compatibility with LSX Search
 * Dev - Fixed PHP warning issues
 * Dev - Fixed "lazy load images" on loading size (width)
+* Dev - Fixed list item when there is not image
 
 ### 1.1.0
 * Added compatibility with LSX 2.0
