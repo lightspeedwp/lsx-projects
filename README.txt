@@ -1,6 +1,6 @@
 === LSX Projects ===
 Contributors: feedmymedia
-Tags: custom header, featured image, header images, header, banner, caption
+Tags: portfolio, projects, project, project portfolio, project grid
 Donate link: https://www.lsdev.biz/product/lsx-projects/
 Requires at least: 4.3
 Tested up to: 4.9.4
@@ -24,43 +24,38 @@ Users will also find that LSX Projects works with Woocommerce, allowing you to c
 We offer premium support for this plugin. Premium support that can be purchased via [lsdev.biz](https://www.lsdev.biz/).
 
 = Works with the LSX Theme =
-This plugin requires the fantastic free [theme](https://www.lsdev.biz/product/lsx-wordpress-theme/) .
+LSX Projects is an [LSX Theme](https://www.lsdev.biz/product/lsx-wordpress-theme/) powered plugin. It integrates seamlessly with the core LSX functionality to provide you will powerful options for creating your online Projects.
 
 
-= It's Free, and always ill be =
+= It's Free, and always will be =
 We’re firm believers in open source – that’s why we’re releasing the LSX Projects plugin for free, forever. 
 
 = Support =
 We offer premium support for this plugin. Premium support that can be purchased via [lsdev.biz](https://www.lsdev.biz/).
 
 = Actively Developed =
-The LSX Projects plugin is actively developed with new features and exciting enhancements all the time. Keep track on the LSX Projects GitHub repository.
-Report any bugs via github issues.
+The LSX Projects plugin is actively developed with new features and exciting enhancements all the time. Keep track on the LSX Projects GitHub repository. Report any bugs via github issues.
 
 == Installation ==
-1. Upload the plugin files to the '/wp-content/plugins/lsx-projects' directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the ‘Plugins’ screen in WordPress
-3. Use the Settings->Banners screen to configure the plugin
+1. Log in to your WordPress website (www.yourwebsiteurl.com/wp-admin).
+2. Navigate to “Plugins”, and select “Add New”.
+3. Upload the .zip file you downloaded and click install now.
+4. When the installation is complete, Activate your plugin.
+5. After installation a new Projects menu appears.
 
 == Frequently Asked Questions ==
-= Installation Instructions =
-Upload the plugin files to the /wp-content/plugins/lsx-banners directory, or install the plugin through the WordPress plugins screen directly.
-Activate the plugin through the ‘Plugins’ screen in WordPress
-Use the Settings->Projects screen to configure the plugin
 = What does this plugin do? =
 LSX Projects adds a “Projects” post type, allowing you to categorize and display your Projects on your LSX website.
 = How do I add a new project? =
 - Log in to the back-end of your website
-- Select either the “PProjects” menu item from the WordPress Dashboard
+- Select either the “Projects” menu item from the WordPress Dashboard
 - Either select “add new” or select a previously uploaded project
 - Add the projects information and featured image
 - Update
 = Where can I find LSX Projects plugin documentation and user guides? =
-For help setting up and configuring the LSX Banners plugin please refer to our [user guide](https://www.lsdev.biz/documentation/lsx/projects/). For extra support, please subscribe to our support plan.
+For help setting up and configuring the LSX Projects plugin please refer to our [user guide](https://www.lsdev.biz/documentation/lsx/projects/). For extra support, please subscribe to our support plan.
 = Where can I get support? =
 For help with add-ons from LightSpeed, use our support package plan. Premium support that can be purchased via [lsdev.biz](https://www.lsdev.biz/).
-= Your plugin doesn’t work =
-The problem is likely with your theme. This plugin only works with the [LSX Theme](https://www.lsdev.biz/product/lsx-wordpress-theme/).
 = Will the LSX Projects plugin work with my theme? =
 No; the LSX Projects plugin requires some styling and functionality only available for the [LSX Theme](https://www.lsdev.biz/product/lsx-wordpress-theme/). You need to install the [LSX Theme](https://www.lsdev.biz/product/lsx-wordpress-theme/) for this extension to work properly.
 = Where can I report bugs or contribute to the project? =
@@ -73,11 +68,9 @@ Your WordPress website needs to be running PHP version 7.0 or higher in order to
 Yes. Just send us a message via [contact form](https://www.lsdev.biz/contact/) with precise information about what you require.
 
 == Screenshots ==
-1. The LSX Theme setting has a LSX Projects tab
-2. LSX Projects pannel pt1
-3. LSX Projects pannel pt2
-4. LSX Projects pannel pt3
-5. LSX Projects working on a page
+1. All projects
+2. Single Project
+3. Project settings
 
 == Changelog ==
 Change Log
