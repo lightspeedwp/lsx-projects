@@ -367,18 +367,6 @@ class LSX_Projects_Admin {
 
 				$default = false;
 			}
-
-			if ( ! array_key_exists( 'api', $tabs ) ) {
-				$tabs['api'] = array(
-					'page_title'        => '',
-					'page_description'  => '',
-					'menu_title'        => esc_html__( 'API', 'lsx-projects' ),
-					'template'          => LSX_PROJECTS_PATH . 'includes/settings/api.php',
-					'default'           => $default,
-				);
-
-				$default = false;
-			}
 		}
 
 		return $tabs;
