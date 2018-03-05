@@ -1,6 +1,6 @@
 === LSX Projects ===
 Contributors: feedmymedia
-Tags: portfolio, projects, project, project portfolio, project grid
+Tags: LSX Theme, portfolio, projects, project portfolio, project grid
 Donate link: https://www.lsdev.biz/product/lsx-projects/
 Requires at least: 4.3
 Tested up to: 4.9.4
