@@ -236,6 +236,10 @@ class LSX_Projects_Frontend {
 		if ( empty( $lsx_projects->options['display']['projects_modal_cta_label'] ) || empty( $lsx_projects->options['display']['projects_modal_form_id'] ) ) {
 			return '';
 		}
+
+		if ( ! is_single( 'project' ) ) {
+			return '';
+		}
 		?>
 		<div class="lsx-modal modal fade" id="lsx-project-contact" role="dialog">
 			<div class="modal-dialog">
