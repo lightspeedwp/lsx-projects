@@ -28,7 +28,7 @@
 <div class="col-xs-12 col-sm-6 col-md-4 lsx-projects-column <?php echo esc_attr( $groups_class ); ?>">
 	<article class="lsx-projects-slot">
 		<?php if ( ! empty( lsx_get_thumbnail( 'lsx-thumbnail-single' ) ) ) : ?>
-			<?php if ( ! isset( $lsx_projects_frontend->options['display'] ) || ! $lsx_projects_frontend->options['display']['team_disable_single'] ) : ?>
+			<?php if ( ! isset( $lsx_projects_frontend->options['display'] ) || ! isset($lsx_projects_frontend->options['display']['team_disable_single'] ) ) : ?>
 				<a href="<?php the_permalink(); ?>"><figure class="lsx-projects-avatar"><?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?></figure></a>
 			<?php else : ?>
 				<figure class="lsx-projects-avatar"><?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?></figure>
@@ -36,7 +36,7 @@
 		<?php endif; ?>
 
 		<h5 class="lsx-projects-title">
-			<?php if ( ! isset( $lsx_projects_frontend->options['display'] ) || ! $lsx_projects_frontend->options['display']['team_disable_single'] ) : ?>
+			<?php if ( ! isset( $lsx_projects_frontend->options['display'] ) || ! isset($lsx_projects_frontend->options['display']['team_disable_single'] ) ) : ?>
 				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 			<?php else : ?>
 				<?php the_title(); ?>
