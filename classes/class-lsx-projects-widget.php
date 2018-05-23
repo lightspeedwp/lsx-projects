@@ -293,4 +293,7 @@ class LSX_Projects_Widget extends WP_Widget {
 
 }
 
-add_action( 'widgets_init', create_function( '', 'return register_widget( "LSX_Projects_Widget" );' ) );
+function lsx_projects_register_widget() {
+	return register_widget( 'LSX_Projects_Widget' );
+}
+add_action( 'widgets_init', 'lsx_projects_register_widget' );
