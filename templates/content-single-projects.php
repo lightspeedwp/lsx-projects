@@ -178,7 +178,7 @@
 
 	if ( ! empty( $connection_testimonial['posts'] ) ) {
 		$post_ids = join( ',', $connection_testimonial['posts'] );
-		$connection_testimonial['shortcode'] = '[lsx_testimonials columns="1" include="' . $post_ids . '" orderby="date" order="DESC"]';
+		$connection_testimonial['shortcode'] = '[lsx_testimonials columns="1" title="What They Said..." include="' . $post_ids . '" orderby="date" order="DESC"]';
 		$connections[] = $connection_testimonial;
 	}
 
