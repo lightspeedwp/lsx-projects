@@ -220,7 +220,10 @@
 .archive.post-type-archive-project,
 .archive.tax-project-group {
 	.lsx-projects-container { margin-top: -4rem; }
-
+	.row-flex.lsx-projects-row {
+		display: flex;
+		flex-wrap: wrap;
+	}
 	.site-main {
 		margin: 0;
 		width: auto;

@@ -21,7 +21,7 @@
   },
   "homepage": "https://bitbucket.org/feedmycode/lsx-projects#readme",
   "devDependencies": {
-    "gulp": "^4.0.0",
+    "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-concat": "^2.6.1",
     "gulp-gettext": "^0.3.0",
@@ -30,7 +30,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-rtlcss": "^1.0.0",
-    "gulp-sass": "^3.1.0",
+    "gulp-sass": "^3.2.1",
     "gulp-sort": "^2.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^2.0.1",
@@ -40,15 +40,12 @@
     "map-stream": "^0.0.7"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "lodash": "^4.17.11"
-=======
     "cryptiles": "^4.1.2",
     "debug": "^2.6.9",
     "hoek": "^4.2.1",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.11",
+    "node-sass": "^4.11.0",
     "sshpk": "^1.13.2",
     "tough-cookie": "^2.3.3"
->>>>>>> 8f12326794ae995e2f7f5adc8d7d11f4acb63237
   }
 }

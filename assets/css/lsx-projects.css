@@ -73,6 +73,8 @@
 
 .archive.post-type-archive-project .lsx-projects-container, .archive.tax-project-group .lsx-projects-container { margin-top: -4rem; }
 
+.archive.post-type-archive-project .row-flex.lsx-projects-row, .archive.tax-project-group .row-flex.lsx-projects-row { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; }
+
 .archive.post-type-archive-project .site-main, .archive.tax-project-group .site-main { margin: 0; width: auto; }
 
 @media (min-width: 768px) { .single.single-project .site-main > .project > .row, .single.single-project .site-main > .project > .row > [col*="col-"]:last-child { display: -webkit-box; display: -ms-flexbox; display: flex; } }
