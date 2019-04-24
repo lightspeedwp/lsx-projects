@@ -234,6 +234,7 @@
 	.site-main {
 		& > .project {
 			& > .row {
+				margin-bottom: 4.5rem;
 				&,
 				& > [col*="col-"]:last-child {
 					@include media('>=phone') { display: flex; }

@@ -163,14 +163,14 @@ class LSX_Projects_Admin {
 		// 	'cols' => 12,
 		// );
 
-		if ( class_exists( 'LSX_Services' ) ) {
+		//if ( class_exists( 'LSX_Services' ) ) {
 			$fields[] = array(
 				'name' => esc_html__( 'Services related to this project:', 'lsx-projects' ),
-				'id' => 'service_to_project',
+				'id' => 'page_to_project',
 				'type' => 'post_select',
 				'use_ajax' => false,
 				'query' => array(
-					'post_type' => 'service',
+					'post_type' => 'page',
 					'nopagin' => true,
 					'posts_per_page' => '50',
 					'orderby' => 'title',
@@ -180,7 +180,7 @@ class LSX_Projects_Admin {
 				'allow_none' => true,
 				'cols' => 12,
 			);
-		}
+		//}
 
 		if ( class_exists( 'LSX_Testimonials' ) ) {
 			$fields[] = array(
@@ -254,6 +254,9 @@ class LSX_Projects_Admin {
 	public function post_relations( $post_id, $field, $value ) {
 		$connections = array(
 			// 'project_to_project',
+
+			'page_to_project',
+			'project_to_page',
 
 			'project_to_service',
 			'service_to_project',

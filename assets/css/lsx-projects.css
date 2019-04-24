@@ -77,6 +77,8 @@
 
 .archive.post-type-archive-project .site-main, .archive.tax-project-group .site-main { margin: 0; width: auto; }
 
+.single.single-project .site-main > .project > .row { margin-bottom: 4.5rem; }
+
 @media (min-width: 768px) { .single.single-project .site-main > .project > .row, .single.single-project .site-main > .project > .row > [col*="col-"]:last-child { display: -webkit-box; display: -ms-flexbox; display: flex; } }
 
 .single.single-project .entry-fixed-sidebar-wrapper { width: 100%; }

@@ -134,18 +134,18 @@
 
 	// Connection Services
 
-	$connection_service['post_type'] = 'service';
+	$connection_service['post_type'] = 'page';
 	// $connection_service['title'] = esc_html__( 'Services', 'lsx-projects' );
-	$connection_service['posts'] = get_post_meta( get_the_ID(), 'service_to_project', false );
+	$connection_service['pages'] = get_post_meta( get_the_ID(), 'page_to_project', false );
 
-	if ( ! empty( $connection_service['posts'] ) ) {
-		$post_ids = join( ',', $connection_service['posts'] );
-		$connection_service['shortcode'] = '[lsx_services columns="3" include="' . $post_ids . '"]';
+	if ( ! empty( $connection_service['pages'] ) ) {
+		$post_ids = join( ',', $connection_service['pages'] );
+		//$connection_service['shortcode'] = '[lsx_services columns="3" include="' . $post_ids . '"]';
 		$connection_service['small_list_html'] = '';
 
 		$args = array(
-			'post_type'              => 'service',
-			'post__in'               => $connection_service['posts'],
+			'post_type'              => 'page',
+			'post__in'               => $connection_service['pages'],
 			'orderby'                => 'post__in',
 			'no_found_rows'          => true,
 			'ignore_sticky_posts'    => 1,
@@ -178,7 +178,7 @@
 
 	if ( ! empty( $connection_testimonial['posts'] ) ) {
 		$post_ids = join( ',', $connection_testimonial['posts'] );
-		$connection_testimonial['shortcode'] = '[lsx_testimonials columns="1" title="What They Said..." include="' . $post_ids . '" orderby="date" order="DESC"]';
+		$connection_testimonial['shortcode'] = '[lsx_testimonials columns="1" include="' . $post_ids . '" orderby="date" order="DESC"]';
 		$connections[] = $connection_testimonial;
 	}
 
@@ -298,38 +298,41 @@
 					continue;
 				}
 			?>
+			<?php if ( 'page' !== $connection['post_type'] ) { ?>
+				<div class="lsx-projects-section lsx-full-width">
+					<div class="row">
+						<div class="col-xs-12">
+							<h3 class="lsx-title"><?php echo wp_kses_post( $connection['title'] ); ?></h3>
 
-			<div class="lsx-projects-section lsx-full-width">
-				<div class="row">
-					<div class="col-xs-12">
-						<h3 class="lsx-title"><?php echo wp_kses_post( $connection['title'] ); ?></h3>
+							<?php
+								if ( 'product' === $connection['post_type'] ) {
+									if ( $connection_product['posts_obj']->have_posts() ) {
+										// @codingStandardsIgnoreLine
+										echo apply_filters( 'woocommerce_before_widget_product_list', '<ul class="product_list_widget">' );
 
-						<?php
-							if ( 'product' === $connection['post_type'] ) {
-								if ( $connection_product['posts_obj']->have_posts() ) {
-									// @codingStandardsIgnoreLine
-									echo apply_filters( 'woocommerce_before_widget_product_list', '<ul class="product_list_widget">' );
+										while ( $connection_product['posts_obj']->have_posts() ) {
+											$connection_product['posts_obj']->the_post();
 
-									while ( $connection_product['posts_obj']->have_posts() ) {
-										$connection_product['posts_obj']->the_post();
+											wc_get_template( 'content-widget-product.php', array(
+												'show_rating' => false,
+											) );
 
-										wc_get_template( 'content-widget-product.php', array(
-											'show_rating' => false,
-										) );
+											wp_reset_postdata();
+										}
 
-										wp_reset_postdata();
+										// @codingStandardsIgnoreLine
+										echo apply_filters( 'woocommerce_after_widget_product_list', '</ul>' );
 									}
-
-									// @codingStandardsIgnoreLine
-									echo apply_filters( 'woocommerce_after_widget_product_list', '</ul>' );
+								} else {
+									echo do_shortcode( $connection['shortcode'] );
 								}
-							} else {
-								echo do_shortcode( $connection['shortcode'] );
-							}
-						?>
+							?>
+						</div>
 					</div>
 				</div>
-			</div>
+			<?php
+			}
+		?>
 		<?php endforeach; ?>
 	<?php endif; ?>
 
