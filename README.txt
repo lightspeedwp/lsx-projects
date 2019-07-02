@@ -1,6 +1,6 @@
 === LSX Projects ===
 Contributors: feedmymedia
-Tags: LSX Theme, portfolio, projects, Gutenberg, project grid
+Tags: lsx, portfolio, projects, Gutenberg, project grid
 Donate link: https://www.donate.lsdev.biz
 Requires at least: 4.3
 Tested up to: 5.1.1
