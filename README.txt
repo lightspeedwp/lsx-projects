@@ -1,7 +1,7 @@
 === LSX Projects ===
 Contributors: feedmymedia
 Tags: lsx, portfolio, projects, Gutenberg, project grid
-Donate link: https://www.donate.lsdev.biz
+Donate link: https://donate.lsdev.biz/
 Requires at least: 4.3
 Tested up to: 5.1.1
 Requires PHP: 7.0
