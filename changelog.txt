@@ -2,6 +2,7 @@
 
 ### 1.1.2
 * Dev - Stopped the Project Contact form from displaying on all pages.
+* Dev - Adding the .gitattributes file to remove unnecessary files from the WordPress version.
 
 ### 1.1.1
 * Dev - Added compatibility with LSX Videos
