@@ -46,6 +46,7 @@
     "hoek": "^4.2.1",
     "lodash": "^4.17.13",
     "node-sass": "^4.11.0",
+    "set-value": "^2.0.1",
     "shelljs": "^0.8.3",
     "sshpk": "^1.13.2",
     "tough-cookie": "^2.3.3"
