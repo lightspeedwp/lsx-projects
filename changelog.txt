@@ -1,5 +1,8 @@
 ## Changelog
 
+### 1.1.3 - In development
+* Fix - Fixed issue `PHP Deprecated: dbx_post_advanced is deprecated since version 3.7.0! Use add_meta_boxes instead`.
+
 ### 1.1.2
 * Dev - Stopped the Project Contact form from displaying on all pages.
 * Dev - Adding the .gitattributes file to remove unnecessary files from the WordPress version.
