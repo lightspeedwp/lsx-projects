@@ -3,9 +3,9 @@ Contributors: feedmymedia
 Tags: lsx, portfolio, projects, Gutenberg, project grid
 Donate link: https://donate.lsdev.biz/
 Requires at least: 4.9
-Tested up to: 5.2.2
+Tested up to: 5.4
 Requires PHP: 7.0
-Stable tag: 1.1.1
+Stable tag: 1.1.3
 License: GPLv3
 
 Show off your finest work with the [LSX Projects Extension!](https://lsx.lsdev.biz/extensions/projects). It adds a “Projects” post type, allowing you to categorize and display your Projects on your LSX website.
@@ -17,9 +17,9 @@ The LSX Projects Extension adds the “Projects” post type which allows you to
 
 The plugin features customized project options. This feature makes adding information and images to your projects super simple, also you can add links to external websites to show extra info. It also allows to create a contact form modal on each project page.
 
-The customization area allows you to set a client title and logo, and set a custom url for that client. The extension interconnects with othe LSX Theme extention like Services, Testimonials and Teams. You can create project groups for better categorization and make fetured projects. 
+The customization area allows you to set a client title and logo, and set a custom url for that client. The extension interconnects with other LSX Theme extention like Services, Testimonials and Teams. You can create project groups for better categorization and make featured projects. 
 
-Users will also find that LSX Projects works with Woocommerce, allowing you to conect products with projects, with the help of the [the LSX Theme](http://lsx.lsdev.biz)
+Users will also find that LSX Projects works with Woocommerce, allowing you to connect products with projects, with the help of the [the LSX Theme](http://lsx.lsdev.biz)
 
 We offer premium support for this plugin. Premium support that can be purchased via [lsdev.biz](https://www.lsdev.biz/services/support/).
 
@@ -27,7 +27,7 @@ We offer premium support for this plugin. Premium support that can be purchased 
 LSX Projects is an [LSX Theme](http://lsx.lsdev.biz) powered plugin. It integrates seamlessly with the core LSX functionality to provide you will powerful options for creating your online Projects.
 
 = Gutenberg Compatible =
-Have you updated to the new WordPress Gutenberg editor? We've got you covered! [The LSX Theme](https://lsx.lsdev.biz/) and all of its extensions have been optimised to work perfectly with the new Gutenberg update. 
+Have you updated to the new WordPress Gutenberg editor? We've got you covered! [The LSX Theme](https://lsx.lsdev.biz/) and all of its extensions have been optimized to work perfectly with the new Gutenberg update. 
 
 = It's Free, and always will be =
 We’re firm believers in open source – that’s why we’re releasing the LSX Projects plugin for free, forever. 
@@ -75,13 +75,3 @@ Yes. Just send us a message via [contact form](https://www.lsdev.biz/contact/) w
 1. All projects
 2. Single Project
 3. Project settings
-
-== Changelog ==
-
-### 1.1.1
-* Dev -  Repackaging the css into scss 
-
-== Upgrade Notice ==
-
-= 1.1.1 =
-Repackaging the css into scss 
