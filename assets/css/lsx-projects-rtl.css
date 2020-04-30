@@ -109,6 +109,14 @@
 
 .single.single-project .lsx-projects-section h3.lsx-title:after { display: block; }
 
+.gutenberg-compatible-template.using-gutenberg.single.single-project .wrap.container { padding-left: 15px; padding-right: 15px; }
+
+@media (min-width: 768px) { .gutenberg-compatible-template.using-gutenberg.single.single-project .wrap.container { width: 750px; } }
+
+@media (min-width: 992px) { .gutenberg-compatible-template.using-gutenberg.single.single-project .wrap.container { width: 970px; } }
+
+@media (min-width: 1200px) { .gutenberg-compatible-template.using-gutenberg.single.single-project .wrap.container { width: 1170px; } }
+
 .single.single-project .entry-tabs, .archive.post-type-archive-project .entry-tabs, .archive.tax-project-group .entry-tabs { margin-top: 4.25rem; }
 
 @media (min-width: 768px) { .single.single-project .entry-tabs, .archive.post-type-archive-project .entry-tabs, .archive.tax-project-group .entry-tabs { margin-top: 0; } }
