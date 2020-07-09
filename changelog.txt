@@ -1,5 +1,12 @@
 # Change log
 
+## [[1.1.4]] - In development
+
+### Added
+- Adding support for blocks on the single portfolio pages.
+
+### Fixed
+- Fixed color links for the archive page.
 
 ## [[1.1.3]](https://github.com/lightspeeddevelopment/lsx-projects/releases/tag/1.1.3) - 2020-03-30
 

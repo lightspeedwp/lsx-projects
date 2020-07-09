@@ -109,6 +109,14 @@
 
 .single.single-project .lsx-projects-section h3.lsx-title:after { display: block; }
 
+.gutenberg-compatible-template.using-gutenberg.single.single-project .wrap.container { padding-right: 15px; padding-left: 15px; }
+
+@media (min-width: 768px) { .gutenberg-compatible-template.using-gutenberg.single.single-project .wrap.container { width: 750px; } }
+
+@media (min-width: 992px) { .gutenberg-compatible-template.using-gutenberg.single.single-project .wrap.container { width: 970px; } }
+
+@media (min-width: 1200px) { .gutenberg-compatible-template.using-gutenberg.single.single-project .wrap.container { width: 1170px; } }
+
 .single.single-project .entry-tabs, .archive.post-type-archive-project .entry-tabs, .archive.tax-project-group .entry-tabs { margin-top: 4.25rem; }
 
 @media (min-width: 768px) { .single.single-project .entry-tabs, .archive.post-type-archive-project .entry-tabs, .archive.tax-project-group .entry-tabs { margin-top: 0; } }
@@ -149,13 +157,17 @@
 
 .lsx-projects-slot .lsx-projects-title > a:not(.btn):hover, .lsx-projects-slot .lsx-projects-title > a:not(.btn):hover:active, .lsx-projects-slot .lsx-projects-title > a:not(.btn):focus { color: #F7AE00; }
 
-.lsx-projects-slot .lsx-projects-content a.moretag { background-color: #418AD0; color: #FFF; }
+.lsx-projects-slot .lsx-projects-content a.moretag { background-color: #418AD0; color: #fff; }
 
-.lsx-projects-slot .lsx-projects-content a.moretag:hover { background-color: #F7AE00; color: #FFF; }
+.lsx-projects-slot .lsx-projects-content a.moretag:hover { background-color: #F7AE00; color: #fff; }
 
-.lsx-projects-section .lsx-projects-slot .lsx-projects-content a.moretag { color: #FFF !important; }
+#primary.content-area .lsx-projects-slot .lsx-projects-content a.moretag { color: #fff; }
 
-.lsx-projects-section .lsx-projects-slot .lsx-projects-content a.moretag:hover { color: #FFF !important; }
+#primary.content-area .lsx-projects-slot .lsx-projects-content a.moretag:hover { color: #fff; }
+
+.lsx-projects-section .lsx-projects-slot .lsx-projects-content a.moretag { color: #fff !important; }
+
+.lsx-projects-section .lsx-projects-slot .lsx-projects-content a.moretag:hover { color: #fff !important; }
 
 #lsx-projects-slider .slick-dots > li > button { border-color: #4A4A4A; }
 
@@ -167,15 +179,15 @@
 
 #lsx-projects-slider .slick-arrow.slick-disabled { border-color: #DADDDF; color: #DADDDF; }
 
-.single.single-project .entry-fixed-sidebar { background-color: #FFF; }
+.single.single-project .entry-fixed-sidebar { background-color: #fff; }
 
-.single.single-project .tab-pane { background-color: #FFF; }
+.single.single-project .tab-pane { background-color: #fff; }
 
-.single.single-project .nav-tabs > li > a, .archive.post-type-archive-project .nav-tabs > li > a, .archive.tax-project-group .nav-tabs > li > a { background-color: #FFF; }
+.single.single-project .nav-tabs > li > a, .archive.post-type-archive-project .nav-tabs > li > a, .archive.tax-project-group .nav-tabs > li > a { background-color: #fff; }
 
-.single.single-project .nav-tabs > li > a:hover, .archive.post-type-archive-project .nav-tabs > li > a:hover, .archive.tax-project-group .nav-tabs > li > a:hover { background-color: #FFF; }
+.single.single-project .nav-tabs > li > a:hover, .archive.post-type-archive-project .nav-tabs > li > a:hover, .archive.tax-project-group .nav-tabs > li > a:hover { background-color: #fff; }
 
-.single.single-project .nav-tabs > li.active > a, .archive.post-type-archive-project .nav-tabs > li.active > a, .archive.tax-project-group .nav-tabs > li.active > a { background-color: #418AD0; color: #FFF; }
+.single.single-project .nav-tabs > li.active > a, .archive.post-type-archive-project .nav-tabs > li.active > a, .archive.tax-project-group .nav-tabs > li.active > a { background-color: #418AD0; color: #fff; }
 
 .single.single-project .nav-tabs > li.active > a:after, .archive.post-type-archive-project .nav-tabs > li.active > a:after, .archive.tax-project-group .nav-tabs > li.active > a:after { border-color: transparent transparent #F6F6F6 transparent; }
 
