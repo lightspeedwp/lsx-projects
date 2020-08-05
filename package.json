@@ -48,7 +48,7 @@
     "minimist": "^1.2.3",
     "node-sass": "^4.11.0",
     "set-value": "^2.0.1",
-    "shelljs": "^0.8.3",
+    "shelljs": "^0.8.4",
     "sshpk": "^1.13.2",
     "tough-cookie": "^2.3.3"
   }
