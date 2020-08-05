@@ -42,7 +42,7 @@
   "dependencies": {
     "clean-css": "^4.1.11",
     "cryptiles": "^4.1.2",
-    "debug": "^2.6.9",
+    "debug": "^4.1.1",
     "hoek": "^4.2.1",
     "lodash": "^4.17.19",
     "minimist": "^1.2.3",
