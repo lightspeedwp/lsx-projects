@@ -50,6 +50,6 @@
     "set-value": "^3.0.2",
     "shelljs": "^0.8.4",
     "sshpk": "^1.13.2",
-    "tough-cookie": "^2.3.3"
+    "tough-cookie": "^4.0.0"
   }
 }
