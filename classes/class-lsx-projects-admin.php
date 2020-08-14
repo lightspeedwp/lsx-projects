@@ -11,19 +11,7 @@
 class LSX_Projects_Admin {
 
 	public function __construct() {
-		if ( ! class_exists( 'CMB_Meta_Box' ) ) {
-			require_once( LSX_PROJECTS_PATH . '/vendor/Custom-Meta-Boxes/custom-meta-boxes.php' );
-		}
-
-		if ( function_exists( 'tour_operator' ) ) {
-			$this->options = get_option( '_lsx-to_settings', false );
-		} else {
-			$this->options = get_option( '_lsx_settings', false );
-
-			if ( false === $this->options ) {
-				$this->options = get_option( '_lsx_lsx-settings', false );
-			}
-		}
+		$this->load_classes();
 
 		add_action( 'init', array( $this, 'post_type_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_setup' ) );
@@ -36,6 +24,17 @@ class LSX_Projects_Admin {
 
 		add_filter( 'type_url_form_media', array( $this, 'change_attachment_field_button' ), 20, 1 );
 		add_filter( 'enter_title_here', array( $this, 'change_title_text' ) );
+	}
+
+	/**
+	 * Loads the admin subclasses
+	 */
+	private function load_classes() {
+		require_once LSX_PROJECTS_PATH . 'classes/admin/class-settings.php';
+		$this->settings = \lsx\projects\classes\admin\Settings::get_instance();
+
+		require_once LSX_PROJECTS_PATH . 'classes/admin/class-settings-theme.php';
+		$this->settings_theme = \lsx\projects\classes\admin\Settings_Theme::get_instance();
 	}
 
 	/**

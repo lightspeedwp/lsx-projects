@@ -24,8 +24,14 @@ define( 'LSX_PROJECTS_VER', '1.1.3' );
 
 /* ======================= Below is the Plugin Class init ========================= */
 
+// Template Tag and functions.
+require_once LSX_PROJECTS_PATH . '/includes/functions.php';
+
 // Post Type and Custom Fields.
 require_once LSX_PROJECTS_PATH . '/classes/class-lsx-projects-admin.php';
+
+// Project Core.
+require_once LSX_PROJECTS_PATH . '/classes/class-lsx-projects-core.php';
 
 // Frontend scripts and styles.
 require_once LSX_PROJECTS_PATH . '/classes/class-lsx-projects-frontend.php';
@@ -35,9 +41,6 @@ require_once LSX_PROJECTS_PATH . '/classes/class-lsx-projects.php';
 
 // Widget.
 require_once LSX_PROJECTS_PATH . '/classes/class-lsx-projects-widget.php';
-
-// Template Tag and functions.
-require_once LSX_PROJECTS_PATH . '/includes/functions.php';
 
 // Post reorder.
 require_once LSX_PROJECTS_PATH . '/includes/class-lsx-projects-scpo-engine.php';
