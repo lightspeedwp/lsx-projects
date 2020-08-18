@@ -96,7 +96,7 @@ class Settings {
 			array(
 				'name'    => 'Placeholder',
 				'desc'    => __( 'Choose Image.', 'lsx-projects' ),
-				'id'      => 'projects_placeholder_id',
+				'id'      => 'projects_placeholder',
 				'type'    => 'file',
 				'options' => array(
 					'url' => false, // Hide the text input for the url.

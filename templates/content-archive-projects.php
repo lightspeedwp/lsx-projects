@@ -35,6 +35,14 @@
 			<?php endif; ?>
 		<?php endif; ?>
 
+		<?php
+		if ( empty( lsx_get_thumbnail( 'lsx-thumbnail-single' ) ) ) {
+			if ( ! empty( projects_get_option( 'projects_placeholder' ) ) ) {
+				echo wp_kses_post( '<img src="' . projects_get_option( 'projects_placeholder' ) . '" width="auto" alt="placeholder" />' );
+			}
+		}
+		?>
+
 		<h5 class="lsx-projects-title">
 			<?php if ( ! isset( $lsx_projects_frontend->options['display'] ) || ! isset( $lsx_projects_frontend->options['display']['team_disable_single'] ) ) : ?>
 				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>

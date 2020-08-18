@@ -11,22 +11,14 @@
 class LSX_Projects_Frontend {
 
 	public function __construct() {
-		if ( function_exists( 'tour_operator' ) ) {
-			$this->options = get_option( '_lsx-to_settings', false );
-		} else {
-			$this->options = get_option( '_lsx_settings', false );
-
-			if ( false === $this->options ) {
-				$this->options = get_option( '_lsx_lsx-settings', false );
-			}
-		}
+		$this->options = projects_get_options();
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 5 );
 		add_filter( 'wp_kses_allowed_html', array( $this, 'wp_kses_allowed_html' ), 10, 2 );
 		add_filter( 'template_include', array( $this, 'single_template_include' ), 99 );
 		add_filter( 'template_include', array( $this, 'archive_template_include' ), 99 );
 
-		if ( ! empty( $this->options['display'] ) && ! empty( $this->options['display']['projects_disable_single'] ) ) {
+		if ( ! empty( $this->options['display']['projects_disable_single'] ) ) {
 			add_action( 'template_redirect', array( $this, 'disable_single' ) );
 		}
 
@@ -168,7 +160,7 @@ class LSX_Projects_Frontend {
 		global $post;
 
 		if ( 'project' === $post->post_type ) {
-			if ( ! empty( $this->options['display'] ) && ! empty( $this->options['display']['projects_disable_single'] ) ) {
+			if ( ! empty( $this->options['display']['projects_disable_single'] ) ) {
 				$excerpt_more = '';
 			}
 		}
@@ -229,7 +221,7 @@ class LSX_Projects_Frontend {
 	public function add_form_modal() {
 		global $lsx_projects;
 
-		if ( empty( $lsx_projects->options['display'] ) || empty( $lsx_projects->options['display']['projects_modal_enable'] ) ) {
+		if ( empty( $lsx_projects->options['display']['projects_modal_enable'] ) ) {
 			return '';
 		}
 
