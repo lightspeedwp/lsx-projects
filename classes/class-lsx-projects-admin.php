@@ -11,31 +11,31 @@
 class LSX_Projects_Admin {
 
 	public function __construct() {
-		if ( ! class_exists( 'CMB_Meta_Box' ) ) {
-			require_once( LSX_PROJECTS_PATH . '/vendor/Custom-Meta-Boxes/custom-meta-boxes.php' );
-		}
-
-		if ( function_exists( 'tour_operator' ) ) {
-			$this->options = get_option( '_lsx-to_settings', false );
-		} else {
-			$this->options = get_option( '_lsx_settings', false );
-
-			if ( false === $this->options ) {
-				$this->options = get_option( '_lsx_lsx-settings', false );
-			}
-		}
+		$this->load_classes();
 
 		add_action( 'init', array( $this, 'post_type_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_setup' ) );
-		add_filter( 'cmb_meta_boxes', array( $this, 'field_setup' ) );
+		add_filter( 'cmb2_admin_init', array( $this, 'field_setup' ) );
+		add_filter( 'cmb2_admin_init', array( $this, 'projects_services_metaboxes' ) );
+		add_filter( 'cmb2_admin_init', array( $this, 'projects_testimonials_metaboxes' ) );
+		add_filter( 'cmb2_admin_init', array( $this, 'projects_team_metaboxes' ) );
+		add_filter( 'cmb2_admin_init', array( $this, 'projects_woocommerce_metaboxes' ) );
 		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3, 20 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
 
-		add_action( 'init', array( $this, 'create_settings_page' ), 100 );
-		add_filter( 'lsx_framework_settings_tabs', array( $this, 'register_tabs' ), 100, 1 );
-
 		add_filter( 'type_url_form_media', array( $this, 'change_attachment_field_button' ), 20, 1 );
 		add_filter( 'enter_title_here', array( $this, 'change_title_text' ) );
+	}
+
+	/**
+	 * Loads the admin subclasses
+	 */
+	private function load_classes() {
+		require_once LSX_PROJECTS_PATH . 'classes/admin/class-settings.php';
+		$this->settings = \lsx\projects\classes\admin\Settings::get_instance();
+
+		require_once LSX_PROJECTS_PATH . 'classes/admin/class-settings-theme.php';
+		$this->settings_theme = \lsx\projects\classes\admin\Settings_Theme::get_instance();
 	}
 
 	/**
@@ -121,133 +121,215 @@ class LSX_Projects_Admin {
 	/**
 	 * Add metabox with custom fields to the Project post type
 	 */
-	public function field_setup( $meta_boxes ) {
+	public function field_setup() {
 		$prefix = 'lsx_project_';
 
-		$fields = array(
+		$cmb = new_cmb2_box(
 			array(
-				'name' => esc_html__( 'Featured:', 'lsx-projects' ),
-				'id'   => $prefix . 'featured',
-				'type' => 'checkbox',
-			),
-			array(
-				'name' => esc_html__( 'Client:', 'lsx-projects' ),
-				'id'   => $prefix . 'client',
-				'type' => 'text',
-			),
-			array(
-				'name' => esc_html__( 'Client logo:', 'lsx-projects' ),
-				'id'   => $prefix . 'client_logo',
-				'type' => 'image',
-				'desc' => esc_html__( 'Recommended image size: 320 x 50~60', 'lsx-projects' ),
-			),
-			array(
-				'name' => esc_html__( 'URL for the finished project:', 'lsx-projects' ),
-				'id'   => $prefix . 'url',
-				'type' => 'text',
-			),
+				'id'           => $prefix . '_project',
+				'title'        => __( 'General', 'lsx-projects' ),
+				'object_types' => 'project',
+				'context'      => 'normal',
+				'priority'     => 'low',
+				'show_names'   => true,
+			)
 		);
 
-		// $fields[] = array(
-		// 	'name' => esc_html__( 'Projects:', 'lsx-projects' ),
-		// 	'id' => 'project_to_project',
-		// 	'type' => 'post_select',
-		// 	'use_ajax' => false,
-		// 	'query' => array(
-		// 		'post_type' => 'project',
-		// 		'nopagin' => true,
-		// 		'posts_per_page' => '50',
-		// 		'orderby' => 'title',
-		// 		'order' => 'ASC',
-		// 	),
-		// 	'repeatable' => true,
-		// 	'allow_none' => true,
-		// 	'cols' => 12,
-		// );
+		$cmb->add_field(
+			array(
+				'name'         => esc_html__( 'Featured:', 'lsx-projects' ),
+				'id'           => $prefix . 'featured',
+				'type'         => 'checkbox',
+				'value'        => 1,
+				'default'      => 0,
+				'show_in_rest' => true,
+			)
+		);
 
-		//if ( class_exists( 'LSX_Services' ) ) {
-			$fields[] = array(
-				'name' => esc_html__( 'Services related to this project:', 'lsx-projects' ),
-				'id' => 'page_to_project',
-				'type' => 'post_select',
-				'use_ajax' => false,
-				'query' => array(
-					'post_type' => 'page',
-					'nopagin' => true,
-					'posts_per_page' => '50',
-					'orderby' => 'title',
-					'order' => 'ASC',
+		$cmb->add_field(
+			array(
+				'name'         => esc_html__( 'Client:', 'lsx-projects' ),
+				'id'           => $prefix . 'client',
+				'type'         => 'text',
+				'show_in_rest' => true,
+			)
+		);
+
+		$cmb->add_field(
+			array(
+				'name'         => esc_html__( 'Client logo:', 'lsx-projects' ),
+				'id'           => $prefix . 'client_logo',
+				'type'         => 'image',
+				'desc'         => esc_html__( 'Recommended image size: 320 x 50~60', 'lsx-projects' ),
+				'options'      => array(
+					'url' => false, // Hide the text input for the url.
 				),
-				'repeatable' => true,
-				'allow_none' => true,
-				'cols' => 12,
-			);
-		//}
+				'text'         => array(
+					'add_upload_file_text' => 'Choose Image',
+				),
+				'show_in_rest' => true,
+			)
+		);
+
+		$cmb->add_field(
+			array(
+				'name'         => esc_html__( 'URL for the finished project:', 'lsx-projects' ),
+				'id'           => $prefix . 'url',
+				'type'         => 'text',
+				'show_in_rest' => true,
+			)
+		);
+
+	}
+
+	/**
+	 * Project Services Metaboxes.
+	 */
+	public function projects_services_metaboxes() {
+		$prefix = 'lsx_project_';
+
+		$cmb = new_cmb2_box(
+			array(
+				'id'           => $prefix . '_project',
+				'object_types' => 'projects',
+				'context'      => 'normal',
+				'priority'     => 'low',
+				'show_names'   => true,
+			)
+		);
+
+		$cmb->add_field(
+			array(
+				'name'         => esc_html__( 'Services related to this project:', 'lsx-projects' ),
+				'id'           => 'page_to_project',
+				'type'         => 'post_search_ajax',
+				'show_in_rest' => true,
+				'limit'        => 15,
+				'sortable'     => true,
+				'query_args'   => array(
+					'post_type'      => array( 'page' ),
+					'post_status'    => array( 'publish' ),
+					'nopagin'        => true,
+					'posts_per_page' => '50',
+					'orderby'        => 'title',
+					'order'          => 'ASC',
+				),
+			)
+		);
+	}
+
+	/**
+	 * Project Testimonials Metaboxes.
+	 */
+	public function projects_testimonials_metaboxes() {
+		$prefix = 'lsx_project_';
+
+		$cmb = new_cmb2_box(
+			array(
+				'id'           => $prefix . '_project',
+				'object_types' => 'projects',
+				'context'      => 'normal',
+				'priority'     => 'low',
+				'show_names'   => true,
+			)
+		);
 
 		if ( class_exists( 'LSX_Testimonials' ) ) {
-			$fields[] = array(
-				'name' => esc_html__( 'Testimonials related to this project:', 'lsx-projects' ),
-				'id' => 'testimonial_to_project',
-				'type' => 'post_select',
-				'use_ajax' => false,
-				'query' => array(
-					'post_type' => 'testimonial',
-					'nopagin' => true,
-					'posts_per_page' => '50',
-					'orderby' => 'title',
-					'order' => 'ASC',
-				),
-				'repeatable' => true,
-				'allow_none' => true,
-				'cols' => 12,
+			$cmb->add_field(
+				array(
+					'name'         => esc_html__( 'Testimonials related to this project:', 'lsx-projects' ),
+					'id'           => 'testimonial_to_project',
+					'type'         => 'post_search_ajax',
+					'show_in_rest' => true,
+					'limit'        => 15,
+					'sortable'     => true,
+					'query_args'   => array(
+						'post_type'      => array( 'testimonials' ),
+						'post_status'    => array( 'publish' ),
+						'nopagin'        => true,
+						'posts_per_page' => '50',
+						'orderby'        => 'title',
+						'order'          => 'ASC',
+					),
+				)
 			);
 		}
+	}
 
-		if ( class_exists( 'LSX_Team' ) ) {
-			$fields[] = array(
-				'name' => esc_html__( 'Team members involved with this project:', 'lsx-projects' ),
-				'id' => 'team_to_project',
-				'type' => 'post_select',
-				'use_ajax' => false,
-				'query' => array(
-					'post_type' => 'team',
-					'nopagin' => true,
-					'posts_per_page' => '50',
-					'orderby' => 'title',
-					'order' => 'ASC',
-				),
-				'repeatable' => true,
-				'allow_none' => true,
-				'cols' => 12,
-			);
-		}
+	/**
+	 * Project Team Metaboxes.
+	 */
+	public function projects_team_metaboxes() {
+		$prefix = 'lsx_project_';
 
-		if ( class_exists( 'woocommerce' ) ) {
-			$fields[] = array(
-				'name' => esc_html__( 'Products used for this project:', 'lsx-projects' ),
-				'id' => 'product_to_project',
-				'type' => 'post_select',
-				'use_ajax' => false,
-				'query' => array(
-					'post_type' => 'product',
-					'nopagin' => true,
-					'posts_per_page' => '50',
-					'orderby' => 'title',
-					'order' => 'ASC',
-				),
-				'repeatable' => true,
-				'allow_none' => true,
-				'cols' => 12,
-			);
-		}
-
-		$meta_boxes[] = array(
-			'title'  => esc_html__( 'Project Details', 'lsx-projects' ),
-			'pages'  => 'project',
-			'fields' => $fields,
+		$cmb = new_cmb2_box(
+			array(
+				'id'           => $prefix . '_project',
+				'object_types' => 'project',
+				'context'      => 'normal',
+				'priority'     => 'low',
+				'show_names'   => true,
+			)
 		);
 
-		return $meta_boxes;
+		if ( class_exists( 'LSX_Team' ) ) {
+			$cmb->add_field(
+				array(
+					'name'         => esc_html__( 'Team members involved with this project:', 'lsx-projects' ),
+					'id'           => 'team_to_project',
+					'type'         => 'post_search_ajax',
+					'show_in_rest' => true,
+					'limit'        => 15,
+					'sortable'     => true,
+					'query_args'   => array(
+						'post_type'      => array( 'team' ),
+						'post_status'    => array( 'publish' ),
+						'nopagin'        => true,
+						'posts_per_page' => '50',
+						'orderby'        => 'title',
+						'order'          => 'ASC',
+					),
+				)
+			);
+		}
+	}
+
+	/**
+	 * Project Woocommerce Metaboxes.
+	 */
+	public function projects_woocommerce_metaboxes() {
+		$prefix = 'lsx_project_';
+
+		$cmb = new_cmb2_box(
+			array(
+				'id'           => $prefix . '_project',
+				'object_types' => 'projects',
+				'context'      => 'normal',
+				'priority'     => 'low',
+				'show_names'   => true,
+			)
+		);
+
+		if ( class_exists( 'woocommerce' ) ) {
+			$cmb->add_field(
+				array(
+					'name'         => esc_html__( 'Products used for this project:', 'lsx-projects' ),
+					'id'           => 'product_to_project',
+					'type'         => 'post_search_ajax',
+					'show_in_rest' => true,
+					'limit'        => 15,
+					'sortable'     => true,
+					'query_args'   => array(
+						'post_type'      => array( 'product' ),
+						'post_status'    => array( 'publish' ),
+						'nopagin'        => true,
+						'posts_per_page' => '50',
+						'orderby'        => 'title',
+						'order'          => 'ASC',
+					),
+				)
+			);
+		}
 	}
 
 	/**
@@ -309,163 +391,6 @@ class LSX_Projects_Admin {
 
 		wp_enqueue_script( 'lsx-projects-admin', LSX_PROJECTS_URL . 'assets/js/lsx-projects-admin.min.js', array( 'jquery' ), LSX_PROJECTS_VER, true );
 		wp_enqueue_style( 'lsx-projects-admin', LSX_PROJECTS_URL . 'assets/css/lsx-projects-admin.css', array(), LSX_PROJECTS_VER );
-	}
-
-	/**
-	 * Returns the array of settings to the UIX Class
-	 */
-	public function create_settings_page() {
-		if ( is_admin() ) {
-			if ( ! class_exists( '\lsx\ui\uix' ) && ! function_exists( 'tour_operator' ) ) {
-				include_once LSX_PROJECTS_PATH . 'vendor/uix/uix.php';
-				$pages = $this->settings_page_array();
-				$uix = \lsx\ui\uix::get_instance( 'lsx' );
-				$uix->register_pages( $pages );
-			}
-
-			if ( function_exists( 'tour_operator' ) ) {
-				add_action( 'lsx_to_framework_display_tab_content', array( $this, 'display_settings' ), 11 );
-			} else {
-				add_action( 'lsx_framework_display_tab_content', array( $this, 'display_settings' ), 11 );
-			}
-		}
-	}
-
-	/**
-	 * Returns the array of settings to the UIX Class
-	 */
-	public function settings_page_array() {
-		$tabs = apply_filters( 'lsx_framework_settings_tabs', array() );
-
-		return array(
-			'settings'  => array(
-				'page_title'  => esc_html__( 'Theme Options', 'lsx-projects' ),
-				'menu_title'  => esc_html__( 'Theme Options', 'lsx-projects' ),
-				'capability'  => 'manage_options',
-				'icon'        => 'dashicons-book-alt',
-				'parent'      => 'themes.php',
-				'save_button' => esc_html__( 'Save Changes', 'lsx-projects' ),
-				'tabs'        => $tabs,
-			),
-		);
-	}
-
-	/**
-	 * Register tabs
-	 */
-	public function register_tabs( $tabs ) {
-		$default = true;
-
-		if ( false !== $tabs && is_array( $tabs ) && count( $tabs ) > 0 ) {
-			$default = false;
-		}
-
-		if ( ! function_exists( 'tour_operator' ) ) {
-			if ( ! array_key_exists( 'display', $tabs ) ) {
-				$tabs['display'] = array(
-					'page_title'        => '',
-					'page_description'  => '',
-					'menu_title'        => esc_html__( 'Display', 'lsx-projects' ),
-					'template'          => LSX_PROJECTS_PATH . 'includes/settings/display.php',
-					'default'           => $default,
-				);
-
-				$default = false;
-			}
-		}
-
-		return $tabs;
-	}
-
-	/**
-	 * Outputs the display tabs settings
-	 *
-	 * @param $tab string
-	 * @return null
-	 */
-	public function display_settings( $tab = 'general' ) {
-		if ( 'projects' === $tab ) {
-			$this->disable_single_post_field();
-			$this->placeholder_field();
-			$this->contact_modal_fields();
-		}
-	}
-
-	/**
-	 * Outputs the Display flags checkbox
-	 */
-	public function disable_single_post_field() {
-		?>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="projects_disable_single"><?php esc_html_e( 'Disable Single Posts', 'lsx-projects' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if projects_disable_single}} checked="checked" {{/if}} name="projects_disable_single" />
-				<small><?php esc_html_e( 'Disable Single Posts.', 'lsx-projects' ); ?></small>
-			</td>
-		</tr>
-		<?php
-	}
-
-	/**
-	 * Outputs the flag position field
-	 */
-	public function placeholder_field() {
-		?>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="banner"> <?php esc_html_e( 'Placeholder', 'lsx-projects' ); ?></label>
-			</th>
-			<td>
-				<input class="input_image_id" type="hidden" {{#if projects_placeholder_id}} value="{{projects_placeholder_id}}" {{/if}} name="projects_placeholder_id" />
-				<input class="input_image" type="hidden" {{#if projects_placeholder}} value="{{projects_placeholder}}" {{/if}} name="projects_placeholder" />
-				<div class="thumbnail-preview">
-					{{#if projects_placeholder}}<img src="{{projects_placeholder}}" width="150" />{{/if}}
-				</div>
-				<a {{#if projects_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add" data-slug="projects_placeholder"><?php esc_html_e( 'Choose Image', 'lsx-projects' ); ?></a>
-				<a {{#unless projects_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete" data-slug="projects_placeholder"><?php esc_html_e( 'Delete', 'lsx-projects' ); ?></a>
-			</td>
-		</tr>
-		<?php
-	}
-
-	/**
-	 * Outputs the contact modal fields.
-	 */
-	public function contact_modal_fields() {
-		?>
-		<tr class="form-field">
-			<th scope="row" colspan="2">
-				<h2><?php esc_html_e( 'Contact modal', 'lsx-projects' ); ?></h2>
-			</th>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="projects_modal_enable"><?php esc_html_e( 'Enable contact modal', 'lsx-projects' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if projects_modal_enable}} checked="checked" {{/if}} name="projects_modal_enable" />
-				<small><?php esc_html_e( 'Displays contact modal on project single.', 'lsx-projects' ); ?></small>
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="projects_modal_cta_label"><?php esc_html_e( 'Button label', 'lsx-projects' ); ?></label>
-			</th>
-			<td>
-				<input type="text" {{#if projects_modal_cta_label}} value="{{projects_modal_cta_label}}" {{/if}} name="projects_modal_cta_label" />
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="projects_modal_form_id"><?php esc_html_e( 'Caldera Form ID', 'lsx-projects' ); ?></label>
-			</th>
-			<td>
-				<input type="text" {{#if projects_modal_form_id}} value="{{projects_modal_form_id}}" {{/if}} name="projects_modal_form_id" />
-			</td>
-		</tr>
-		<?php
 	}
 
 	/**

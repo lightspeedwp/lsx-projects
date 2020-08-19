@@ -14,10 +14,10 @@
 	$button_label = '';
 	$button_cf_id = '';
 
-	if ( ! empty( $lsx_projects->options['display'] ) && ! empty( $lsx_projects->options['display']['projects_modal_enable'] ) ) {
-		if ( ! empty( $lsx_projects->options['display']['projects_modal_cta_label'] ) && ! empty( $lsx_projects->options['display']['projects_modal_form_id'] ) ) {
-			$button_label = $lsx_projects->options['display']['projects_modal_cta_label'];
-			$button_cf_id = $lsx_projects->options['display']['projects_modal_form_id'];
+	if ( ! empty( projects_get_option( 'projects_modal_enable' ) ) ) {
+		if ( ! empty( projects_get_option( 'projects_modal_cta_label' ) ) && ! empty( projects_get_option( 'projects_modal_form_id' ) ) ) {
+			$button_label = projects_get_option( 'projects_modal_cta_label' );
+			$button_cf_id = projects_get_option( 'projects_modal_form_id' );
 		}
 	}
 

@@ -13,14 +13,7 @@ class LSX_Projects {
 	public $columns, $responsive, $options;
 
 	public function __construct() {
-		if ( function_exists( 'tour_operator' ) ) {
-			$this->options = get_option( '_lsx-to_settings', false );
-		} else {
-			$this->options = get_option( '_lsx_settings', false );
-			if ( false === $this->options ) {
-				$this->options = get_option( '_lsx_lsx-settings', false );
-			}
-		}
+		$this->options = projects_get_options();
 
 		add_filter( 'lsx_banner_allowed_post_types', array( $this, 'lsx_banner_allowed_post_types' ) );
 		add_filter( 'lsx_banner_allowed_taxonomies', array( $this, 'lsx_banner_allowed_taxonomies' ) );
@@ -142,7 +135,7 @@ class LSX_Projects {
 					}
 
 					if ( empty( $image ) ) {
-						if ( $this->options['display'] && ! empty( $this->options['display']['projects_placeholder'] ) ) {
+						if ( ! empty( $this->options['display']['projects_placeholder'] ) ) {
 							$image = '<img class="' . $responsive . '" src="' . $this->options['display']['projects_placeholder'] . '" width="' . $size . '" alt="placeholder" />';
 						} else {
 							$image = '';
