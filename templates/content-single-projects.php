@@ -22,11 +22,7 @@
 	}
 
 	if ( ! empty( $client_logo ) ) {
-		$client_logo = wp_get_attachment_image_src( $client_logo, 'full' );
-
-		if ( is_array( $client_logo ) ) {
-			$client_logo = '<img src="' . $client_logo[0] . '">';
-		}
+		$client_logo = '<img src="' . $client_logo . '">';
 	}
 
 	$groups = '';
