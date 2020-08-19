@@ -30,7 +30,7 @@
 
 .lsx-projects-slot .lsx-projects-content p + p { margin-top: 2.4rem; }
 
-.lsx-projects-slot .lsx-projects-content .moretag { display: block; margin: 0 -2rem; padding: 1rem 0; text-align: center; transition: background 300ms ease; }
+.lsx-projects-slot .lsx-projects-content .moretag { display: block; margin: 0 -2rem; padding: 1rem 0; text-align: center; -webkit-transition: background 300ms ease; transition: background 300ms ease; }
 
 .lsx-projects-slot .lsx-projects-content .moretag:after { color: inherit; content: '\f178'; display: inline-block; font-family: 'FontAwesome'; font-size: inherit; margin-left: 5px; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
@@ -53,13 +53,13 @@
 
 @media (min-width: 992px) { #lsx-projects-slider .slick-dots > li, #lsx-products-slider .slick-dots > li { padding: 0 7.5px; } }
 
-#lsx-projects-slider .slick-dots > li > button, #lsx-products-slider .slick-dots > li > button { background: transparent; border-style: solid; border-width: 1px; font: 0/0 a; height: 12px; transition: all 300ms ease-in-out; width: 4rem; }
+#lsx-projects-slider .slick-dots > li > button, #lsx-products-slider .slick-dots > li > button { background: transparent; border-style: solid; border-width: 1px; font: 0/0 a; height: 12px; -webkit-transition: all 300ms ease-in-out; transition: all 300ms ease-in-out; width: 4rem; }
 
 @media (min-width: 992px) { #lsx-projects-slider .slick-dots > li > button, #lsx-products-slider .slick-dots > li > button { height: 6px; } }
 
-#lsx-projects-slider .slick-arrow, #lsx-products-slider .slick-arrow { background: transparent; border-radius: 50%; border-style: solid; border-width: 2px; font: 0/0 a; height: 4rem; margin-top: calc((2rem - 17px) / 2); opacity: 1; padding: 0; position: absolute; text-shadow: none; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); transition: border 300ms ease; width: 4rem; z-index: 3; }
+#lsx-projects-slider .slick-arrow, #lsx-products-slider .slick-arrow { background: transparent; border-radius: 50%; border-style: solid; border-width: 2px; font: 0/0 a; height: 4rem; margin-top: calc((2rem - 17px) / 2); opacity: 1; padding: 0; position: absolute; text-shadow: none; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); -webkit-transition: border 300ms ease; transition: border 300ms ease; width: 4rem; z-index: 3; }
 
-#lsx-projects-slider .slick-arrow:before, #lsx-products-slider .slick-arrow:before { display: block; font-family: 'FontAwesome'; font-size: 3rem; line-height: 1; position: absolute; text-rendering: auto; top: 47%; -webkit-transform: translateY(-50%); transform: translateY(-50%); transition: color 300ms ease; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+#lsx-projects-slider .slick-arrow:before, #lsx-products-slider .slick-arrow:before { display: block; font-family: 'FontAwesome'; font-size: 3rem; line-height: 1; position: absolute; text-rendering: auto; top: 47%; -webkit-transform: translateY(-50%); transform: translateY(-50%); -webkit-transition: color 300ms ease; transition: color 300ms ease; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 #lsx-projects-slider .slick-arrow.slick-disabled, #lsx-products-slider .slick-arrow.slick-disabled { cursor: not-allowed; }
 
@@ -133,7 +133,7 @@
 
 @media (min-width: 768px) { .single.single-project .nav-tabs > li + li, .archive.post-type-archive-project .nav-tabs > li + li, .archive.tax-project-group .nav-tabs > li + li { margin-left: 5px; } }
 
-.single.single-project .nav-tabs > li > a, .archive.post-type-archive-project .nav-tabs > li > a, .archive.tax-project-group .nav-tabs > li > a { border: 0 none; border-radius: 0; font-size: 16px; margin: 0; padding: 1rem 0; text-align: center; transition: all 300ms ease; }
+.single.single-project .nav-tabs > li > a, .archive.post-type-archive-project .nav-tabs > li > a, .archive.tax-project-group .nav-tabs > li > a { border: 0 none; border-radius: 0; font-size: 16px; margin: 0; padding: 1rem 0; text-align: center; -webkit-transition: all 300ms ease; transition: all 300ms ease; }
 
 @media (min-width: 768px) { .single.single-project .nav-tabs > li > a, .archive.post-type-archive-project .nav-tabs > li > a, .archive.tax-project-group .nav-tabs > li > a { -webkit-box-align: center; -ms-flex-align: center; align-items: center; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; } }
 
