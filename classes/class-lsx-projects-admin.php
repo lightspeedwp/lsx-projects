@@ -22,6 +22,7 @@ class LSX_Projects_Admin {
 		add_filter( 'cmb2_admin_init', array( $this, 'projects_testimonials_metaboxes' ) );
 		add_filter( 'cmb2_admin_init', array( $this, 'projects_team_metaboxes' ) );
 		add_filter( 'cmb2_admin_init', array( $this, 'projects_woocommerce_metaboxes' ) );
+		add_filter( 'cmb2_admin_init', array( $this, 'project_field_setup_product' ) );
 		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3, 20 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
 
@@ -395,41 +396,75 @@ class LSX_Projects_Admin {
 				)
 			);
 		}
-		if ( ! class_exists( 'woocommerce' ) ) {
-			$cmb->add_field(
-				array(
-					'name'         => esc_html__( 'Alt Product Name:', 'lsx-projects' ),
-					'id'           => $prefix . 'alt_product_title',
-					'type'         => 'text',
-					'show_in_rest' => true,
-				)
-			);
+	}
 
-			$cmb->add_field(
-				array(
-					'name'         => esc_html__( 'Alt Product Link:', 'lsx-projects' ),
-					'id'           => $prefix . 'alt_product_link',
-					'type'         => 'text',
-					'show_in_rest' => true,
-				)
-			);
+	/**
+	 * Add Alt Product metabox with custom fields to the Project post type
+	 */
+	public function project_field_setup_product() {
+		$prefix = 'lsx_project_';
 
-			$cmb->add_field(
-				array(
-					'name'         => esc_html__( 'Alt Product Image:', 'lsx-projects' ),
-					'id'           => $prefix . 'alt_product_image',
-					'type'         => 'file',
-					'desc'         => esc_html__( 'Recommended image size: 320 x 50~60', 'lsx-projects' ),
-					'options'      => array(
-						'url' => false, // Hide the text input for the url.
-					),
-					'text'         => array(
-						'add_upload_file_text' => 'Choose Image',
-					),
-					'show_in_rest' => true,
-				)
-			);
-		}
+		$cmb = new_cmb2_box(
+			array(
+				'id'           => $prefix . '_project',
+				'title'        => __( 'General', 'lsx-projects' ),
+				'object_types' => 'project',
+				'context'      => 'normal',
+				'priority'     => 'low',
+				'show_names'   => true,
+			)
+		);
+
+		$tip_group = $cmb->add_field(
+			array(
+				'id'      => $prefix . '_alt_products',
+				'type'    => 'group',
+				'options' => array(
+					'group_title'   => __( 'Alternative Products', 'lsx-projects' ),
+					'add_button'    => __( 'Add Product', 'lsx-projects' ),
+					'remove_button' => __( 'Remove Product', 'lsx-projects' ),
+					'sortable'      => true,
+				),
+				'classes' => 'lsx-admin-row',
+			)
+		);
+
+		$cmb->add_group_field(
+			$tip_group,
+			array(
+				'name'         => esc_html__( 'Alt Product Name:', 'lsx-projects' ),
+				'id'           => $prefix . 'alt_product_title',
+				'type'         => 'text',
+				'show_in_rest' => true,
+			)
+		);
+
+		$cmb->add_group_field(
+			$tip_group,
+			array(
+				'name'         => esc_html__( 'Alt Product Link:', 'lsx-projects' ),
+				'id'           => $prefix . 'alt_product_link',
+				'type'         => 'text',
+				'show_in_rest' => true,
+			)
+		);
+
+		$cmb->add_group_field(
+			$tip_group,
+			array(
+				'name'         => esc_html__( 'Alt Product Image:', 'lsx-projects' ),
+				'id'           => $prefix . 'alt_product_image',
+				'type'         => 'file',
+				'desc'         => esc_html__( 'Recommended image size: 320 x 50~60', 'lsx-projects' ),
+				'options'      => array(
+					'url' => false, // Hide the text input for the url.
+				),
+				'text'         => array(
+					'add_upload_file_text' => 'Choose Image',
+				),
+				'show_in_rest' => true,
+			)
+		);
 	}
 
 	/**

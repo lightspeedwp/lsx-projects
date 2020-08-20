@@ -101,7 +101,7 @@
 
 			$args = array(
 				'post_type'              => 'product',
-				'post__in'               => $connection_product['posts'],
+				'post__in'               => $connection_product['posts'][0],
 				'orderby'                => 'post__in',
 				'no_found_rows'          => true,
 				'ignore_sticky_posts'    => 1,
@@ -173,7 +173,7 @@
 	$connection_testimonial['posts'] = get_post_meta( get_the_ID(), 'testimonial_to_project', false );
 
 	if ( ! empty( $connection_testimonial['posts'] ) ) {
-		$post_ids = join( ',', $connection_testimonial['posts'] );
+		$post_ids = join( ',', $connection_testimonial['posts'][0] );
 		$connection_testimonial['shortcode'] = '[lsx_testimonials columns="1" include="' . $post_ids . '" orderby="date" order="DESC"]';
 		$connections[] = $connection_testimonial;
 	}
@@ -185,13 +185,13 @@
 	$connection_team['posts'] = get_post_meta( get_the_ID(), 'team_to_project', false );
 
 	if ( ! empty( $connection_team['posts'] ) ) {
-		$post_ids = join( ',', $connection_team['posts'] );
+		$post_ids = join( ',', $connection_team['posts'][0] );
 		$connection_team['shortcode'] = '[lsx_team columns="4" include="' . $post_ids . '" show_social="false" show_desc="false" show_link="true"]';
 		$connection_team['small_list_html'] = '';
 
 		$args = array(
 			'post_type'              => 'team',
-			'post__in'               => $connection_team['posts'],
+			'post__in'               => $connection_team['posts'][0],
 			'orderby'                => 'post__in',
 			'no_found_rows'          => true,
 			'ignore_sticky_posts'    => 1,
@@ -302,13 +302,13 @@
 
 							<?php
 								if ( 'product' === $connection['post_type'] ) {
+
 									if ( $connection_product['posts_obj']->have_posts() ) {
 										// @codingStandardsIgnoreLine
 										echo apply_filters( 'woocommerce_before_widget_product_list', '<ul class="product_list_widget">' );
 
 										while ( $connection_product['posts_obj']->have_posts() ) {
 											$connection_product['posts_obj']->the_post();
-
 											wc_get_template( 'content-widget-product.php', array(
 												'show_rating' => false,
 											) );
@@ -331,6 +331,49 @@
 		?>
 		<?php endforeach; ?>
 	<?php endif; ?>
+
+	<?php
+	// Connection Alt Produtcs
+
+	$connection_alt_product['posts'] = get_post_meta( get_the_ID(), 'lsx_project__alt_products', false );
+
+	if ( ! empty( $connection_alt_product['posts'] ) ) {
+		?>
+		<div class="lsx-projects-section lsx-full-width">
+			<div class="row">
+				<div class="col-xs-12">
+					<h3 class="lsx-title"><?php esc_html__( 'Related Products', 'lsx-projects' ); ?></h3>
+					<div class="lsx-alt-products lsx-projects-shortcode">
+					<?php
+					foreach ( $connection_alt_product['posts'][0] as $alt_post ) {
+						$alt_post_name    = $alt_post['lsx_project_alt_product_title'];
+						$alt_post_link    = $alt_post['lsx_project_alt_product_link'];
+						$alt_post_img_id  = $alt_post['lsx_project_alt_product_image_id'];
+						$alt_post_img_url = $alt_post['lsx_project_alt_product_image'];
+
+						?>
+						<div class="lsx-projects-slot">
+							<a href="<?php echo $alt_post_link; ?>">
+								<figure class="lsx-projects-avatar">
+									<img src="<?php echo esc_url( $alt_post_img_url ); ?>" alt="<?php echo esc_html( $alt_post_name ); ?>">
+								</figure>
+							</a>
+							<h5 class="lsx-projects-title">
+								<a href="<?php echo esc_url( $alt_post_link ); ?>">
+									<?php echo esc_html( $alt_post_name ); ?>
+								</a>
+							</h5>
+						</div>
+						<?php
+					}
+					?>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<?php } ?>
+
 
 	<?php lsx_entry_bottom(); ?>
 
