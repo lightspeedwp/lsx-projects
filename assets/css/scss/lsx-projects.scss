@@ -97,7 +97,8 @@
 }
 
 #lsx-projects-slider,
-#lsx-products-slider {
+#lsx-products-slider,
+#lsx-alt-products-slider {
 	@include media('>=tablet') {
 		margin-left: auto;
 		margin-right: auto;
