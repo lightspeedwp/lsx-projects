@@ -8,7 +8,7 @@
 	'use strict';
 
 	var initSlider = function () {
-		var $projectSlider = $('#lsx-projects-slider, #lsx-products-slider');
+		var $projectSlider = $('#lsx-projects-slider, #lsx-products-slider, #lsx-alt-products-slider');
 
 		$projectSlider.on('init', function (event, slick) {
 			if (slick.options.arrows && slick.slideCount > slick.options.slidesToShow)
@@ -50,7 +50,7 @@
 		});
 
 		$('.single-project a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-			$('#lsx-services-slider, #lsx-projects-slider, #lsx-products-slider, #lsx-testimonials-slider, #lsx-team-slider, .lsx-blog-customizer-posts-slider, .lsx-blog-customizer-terms-slider').slick('setPosition');
+			$('#lsx-services-slider, #lsx-projects-slider, #lsx-products-slider, #lsx-alt-products-slider, #lsx-testimonials-slider, #lsx-team-slider, .lsx-blog-customizer-posts-slider, .lsx-blog-customizer-terms-slider').slick('setPosition');
 		});
 	},
 
