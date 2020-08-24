@@ -42,6 +42,10 @@
 			@include customizer-projects-link-colour($color, $hover);
 		}
 
+		h5.lsx-projects-title > a:not(.btn) {
+			@include customizer-projects-link-colour($color, $hover);
+		}
+
 		.lsx-projects-content {
 			a.moretag {
 				background-color: $link;
@@ -82,7 +86,8 @@
 		}
 	}
 
-	#lsx-projects-slider, #lsx-alt-products-slider {
+	#lsx-projects-slider,
+	#lsx-alt-products-slider {
 		.slick-dots {
 			& > li {
 				& > button {

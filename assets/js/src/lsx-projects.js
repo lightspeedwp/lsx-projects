@@ -34,6 +34,8 @@
 				swipe: false,
 				cssEase: "ease-out",
 				dots: true,
+				slidesToShow: 3,
+				slidesToScroll: 3,
 				responsive: [
 					{
 						breakpoint: 992,
