@@ -148,6 +148,7 @@ class LSX_Projects_Admin {
 			'rewrite'           => array(
 				'slug' => 'project-type',
 			),
+			'show_in_rest'      => true,
 		);
 
 		register_taxonomy( 'project-type', array( 'project' ), $args );
@@ -180,6 +181,7 @@ class LSX_Projects_Admin {
 			'rewrite'           => array(
 				'slug' => 'project-tag',
 			),
+			'show_in_rest'      => true,
 		);
 
 		register_taxonomy( 'project-tag', array( 'project' ), $args );
