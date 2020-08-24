@@ -343,7 +343,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<h3 class="lsx-title"><?php echo esc_html__( 'Related Products', 'lsx-projects' ); ?></h3>
-					<div id="#lsx-alt-products-slider" class="lsx-alt-products lsx-projects-shortcode slick-slider" data-slick="{'slidesToShow': 3, 'slidesToScroll': 3 }">
+					<div id="lsx-alt-products-slider" class="lsx-alt-products lsx-projects-shortcode slick-slider" data-slick="{'slidesToShow': 3, 'slidesToScroll': 3 }">
 					<?php
 					foreach ( $connection_alt_product['posts'][0] as $alt_post ) {
 						$alt_post_name    = $alt_post['lsx_project_alt_product_title'];
