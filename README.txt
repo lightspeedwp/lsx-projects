@@ -1,11 +1,11 @@
 === LSX Projects ===
-Contributors: feedmymedia
+Contributors: feedmymedia, lightspeedwp, eleshar, krugazul, virginialsdev, deon80, jaab1985, jacquesvdh, ignusvermaak, garthlsdev
 Tags: lsx, portfolio, projects, Gutenberg, project grid
 Donate link: https://donate.lsdev.biz/
 Requires at least: 5.3
 Tested up to: 5.5
 Requires PHP: 7.2
-Stable tag: 1.1.3
+Stable tag: 1.2.0
 License: GPLv3
 
 Show off your finest work with the [LSX Projects Extension!](https://lsx.lsdev.biz/extensions/projects). It adds a “Projects” post type, allowing you to categorize and display your Projects on your LSX website.
