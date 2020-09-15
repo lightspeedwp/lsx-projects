@@ -26,7 +26,7 @@
 	}
 
 	$groups = '';
-	$terms = get_the_terms( get_the_ID(), 'project-group' );
+	$terms  = get_the_terms( get_the_ID(), 'project-group' );
 
 	if ( $terms && ! is_wp_error( $terms ) ) {
 		$groups = array();
@@ -37,6 +37,19 @@
 
 		$groups = join( ', ', $groups );
 	}
+
+	$product_groups = '';
+	$product_terms = get_post_meta( get_the_ID(), 'lsx_project__alt_products', false );
+
+	if ( $product_terms && ! is_wp_error( $product_terms ) ) {
+		$product_groups = array();
+		foreach ( $product_terms[0] as $product_term ) {
+			$product_groups[] = '<a href="' . $product_term['lsx_project_alt_product_link'] . '">' . $product_term['lsx_project_alt_product_title'] . '</a>';
+		}
+
+		$product_groups = join( ', ', $product_groups );
+	}
+
 
 	// Connections
 
@@ -255,6 +268,11 @@
 						<div class="entry-meta-value"><?php echo wp_kses_post( $groups ); ?></div>
 					<?php endif; ?>
 
+					<?php if ( ! empty( $product_groups ) ) : ?>
+						<div class="entry-meta-key"><?php esc_html_e( 'Products:', 'lsx-projects' ); ?></div>
+						<div class="entry-meta-value"><?php echo wp_kses_post( $product_groups ); ?></div>
+					<?php endif; ?>
+
 					<?php if ( ! empty( $connection_service['small_list_html'] ) ) : ?>
 						<div class="entry-meta-key"><?php esc_html_e( 'Services:', 'lsx-projects' ); ?></div>
 						<div class="entry-meta-value"><?php echo wp_kses_post( $connection_service['small_list_html'] ); ?></div>
@@ -331,53 +349,6 @@
 		?>
 		<?php endforeach; ?>
 	<?php endif; ?>
-
-	<?php
-	// Connection Alt Produtcs
-
-	$connection_alt_product['posts'] = get_post_meta( get_the_ID(), 'lsx_project__alt_products', false );
-
-	if ( ! empty( $connection_alt_product['posts'] ) ) {
-		?>
-		<div class="lsx-projects-section lsx-full-width">
-			<div class="row">
-				<div class="col-xs-12">
-					<h3 class="lsx-title"><?php echo esc_html__( 'Related Products', 'lsx-projects' ); ?></h3>
-					<div id="lsx-alt-products-slider" class="lsx-alt-products lsx-projects-shortcode slick-slider" data-slick="{'slidesToShow': 3, 'slidesToScroll': 3 }">
-					<?php
-					foreach ( $connection_alt_product['posts'][0] as $alt_post ) {
-						$alt_post_name    = $alt_post['lsx_project_alt_product_title'];
-						$alt_post_link    = $alt_post['lsx_project_alt_product_link'];
-						$alt_post_img_id  = $alt_post['lsx_project_alt_product_image_id'];
-						$alt_post_img_url = $alt_post['lsx_project_alt_product_image'];
-
-						?>
-						<div class="lsx-projects-slot">
-							<a href="<?php echo $alt_post_link; ?>">
-								<figure class="lsx-projects-avatar">
-									<img src="<?php echo esc_url( $alt_post_img_url ); ?>" alt="<?php echo esc_html( $alt_post_name ); ?>">
-								</figure>
-							</a>
-							<h5 class="lsx-projects-title">
-								<a href="<?php echo esc_url( $alt_post_link ); ?>">
-									<?php echo esc_html( $alt_post_name ); ?>
-								</a>
-							</h5>
-							<div class="lsx-projects-content">
-								<a class="moretag" href="<?php echo esc_url( $alt_post_link ); ?>">
-									<?php echo esc_html__( 'View more', 'lsx-projects' ); ?>
-								</a>
-							</div>
-						</div>
-						<?php
-					}
-					?>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	<?php } ?>
 
 
 	<?php lsx_entry_bottom(); ?>

@@ -451,22 +451,6 @@ class LSX_Projects_Admin {
 			)
 		);
 
-		$cmb->add_group_field(
-			$tip_group,
-			array(
-				'name'         => esc_html__( 'Alt Product Image:', 'lsx-projects' ),
-				'id'           => $prefix . 'alt_product_image',
-				'type'         => 'file',
-				'desc'         => esc_html__( 'Recommended image size: 320 x 50~60', 'lsx-projects' ),
-				'options'      => array(
-					'url' => false, // Hide the text input for the url.
-				),
-				'text'         => array(
-					'add_upload_file_text' => 'Choose Image',
-				),
-				'show_in_rest' => true,
-			)
-		);
 	}
 
 	/**
