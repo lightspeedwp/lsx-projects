@@ -5,20 +5,23 @@
 ### Added
 
 - Adding support for blocks on the single portfolio pages.
-
-### Fixed
-
-- Fixed color links for the archive page.
+- Added related products options to projects sidebar on single page.
+- Added compatibility for LSX Search for archive pages.
+- Added project type taxonomy.
 
 ### Changed
 
 - Changed UIX library for CMB2.
 
+### Fixed
+
+- Fixed color links for the archive page.
+
 ### Security
 
 - Updating dependencies to prevent vulnerabilities.
 - Updating PHPCS options for better code.
-- General testing to ensure compatibility with latest WordPress version (5.5).
+- General testing to ensure compatibility with latest WordPress version (5.5.1).
 - General testing to ensure compatibility with latest LSX Theme version (2.9).
 
 ## [[1.1.3]](https://github.com/lightspeeddevelopment/lsx-projects/releases/tag/1.1.3) - 2020-03-30

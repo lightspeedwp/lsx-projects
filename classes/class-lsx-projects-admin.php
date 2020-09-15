@@ -15,11 +15,14 @@ class LSX_Projects_Admin {
 
 		add_action( 'init', array( $this, 'post_type_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_setup' ) );
+		add_action( 'init', array( $this, 'taxonomy_project_type_setup' ) );
+		add_action( 'init', array( $this, 'taxonomy_project_tag_setup' ) );
 		add_filter( 'cmb2_admin_init', array( $this, 'field_setup' ) );
 		add_filter( 'cmb2_admin_init', array( $this, 'projects_services_metaboxes' ) );
 		add_filter( 'cmb2_admin_init', array( $this, 'projects_testimonials_metaboxes' ) );
 		add_filter( 'cmb2_admin_init', array( $this, 'projects_team_metaboxes' ) );
 		add_filter( 'cmb2_admin_init', array( $this, 'projects_woocommerce_metaboxes' ) );
+		add_filter( 'cmb2_admin_init', array( $this, 'project_field_setup_product' ) );
 		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3, 20 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
 
@@ -119,6 +122,72 @@ class LSX_Projects_Admin {
 	}
 
 	/**
+	 * Register the Type taxonomy
+	 */
+	public function taxonomy_project_type_setup() {
+		$labels = array(
+			'name'              => esc_html_x( 'Project Types', 'taxonomy general name', 'lsx-projects' ),
+			'singular_name'     => esc_html_x( 'Type', 'taxonomy singular name', 'lsx-projects' ),
+			'search_items'      => esc_html__( 'Search Types', 'lsx-projects' ),
+			'all_items'         => esc_html__( 'All Types', 'lsx-projects' ),
+			'parent_item'       => esc_html__( 'Parent Type', 'lsx-projects' ),
+			'parent_item_colon' => esc_html__( 'Parent Type:', 'lsx-projects' ),
+			'edit_item'         => esc_html__( 'Edit Type', 'lsx-projects' ),
+			'update_item'       => esc_html__( 'Update Type', 'lsx-projects' ),
+			'add_new_item'      => esc_html__( 'Add New Type', 'lsx-projects' ),
+			'new_item_name'     => esc_html__( 'New Type Name', 'lsx-projects' ),
+			'menu_name'         => esc_html__( 'Types', 'lsx-projects' ),
+		);
+
+		$args = array(
+			'hierarchical'      => true,
+			'labels'            => $labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'query_var'         => true,
+			'rewrite'           => array(
+				'slug' => 'project-type',
+			),
+			'show_in_rest'      => true,
+		);
+
+		register_taxonomy( 'project-type', array( 'project' ), $args );
+	}
+
+	/**
+	 * Register the Tag taxonomy
+	 */
+	public function taxonomy_project_tag_setup() {
+		$labels = array(
+			'name'              => esc_html_x( 'Project Tags', 'taxonomy general name', 'lsx-projects' ),
+			'singular_name'     => esc_html_x( 'Tag', 'taxonomy singular name', 'lsx-projects' ),
+			'search_items'      => esc_html__( 'Search Tags', 'lsx-projects' ),
+			'all_items'         => esc_html__( 'All Tags', 'lsx-projects' ),
+			'parent_item'       => esc_html__( 'Parent Tag', 'lsx-projects' ),
+			'parent_item_colon' => esc_html__( 'Parent Tag:', 'lsx-projects' ),
+			'edit_item'         => esc_html__( 'Edit Tag', 'lsx-projects' ),
+			'update_item'       => esc_html__( 'Update Tag', 'lsx-projects' ),
+			'add_new_item'      => esc_html__( 'Add New Tag', 'lsx-projects' ),
+			'new_item_name'     => esc_html__( 'New Tag Name', 'lsx-projects' ),
+			'menu_name'         => esc_html__( 'Tags', 'lsx-projects' ),
+		);
+
+		$args = array(
+			'hierarchical'      => true,
+			'labels'            => $labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'query_var'         => true,
+			'rewrite'           => array(
+				'slug' => 'project-tag',
+			),
+			'show_in_rest'      => true,
+		);
+
+		register_taxonomy( 'project-tag', array( 'project' ), $args );
+	}
+
+	/**
 	 * Add metabox with custom fields to the Project post type
 	 */
 	public function field_setup() {
@@ -159,7 +228,7 @@ class LSX_Projects_Admin {
 			array(
 				'name'         => esc_html__( 'Client logo:', 'lsx-projects' ),
 				'id'           => $prefix . 'client_logo',
-				'type'         => 'image',
+				'type'         => 'file',
 				'desc'         => esc_html__( 'Recommended image size: 320 x 50~60', 'lsx-projects' ),
 				'options'      => array(
 					'url' => false, // Hide the text input for the url.
@@ -179,7 +248,6 @@ class LSX_Projects_Admin {
 				'show_in_rest' => true,
 			)
 		);
-
 	}
 
 	/**
@@ -207,7 +275,7 @@ class LSX_Projects_Admin {
 				'limit'        => 15,
 				'sortable'     => true,
 				'query_args'   => array(
-					'post_type'      => array( 'page' ),
+					'post_type'      => array( 'project' ),
 					'post_status'    => array( 'publish' ),
 					'nopagin'        => true,
 					'posts_per_page' => '50',
@@ -244,7 +312,7 @@ class LSX_Projects_Admin {
 					'limit'        => 15,
 					'sortable'     => true,
 					'query_args'   => array(
-						'post_type'      => array( 'testimonials' ),
+						'post_type'      => array( 'testimonial' ),
 						'post_status'    => array( 'publish' ),
 						'nopagin'        => true,
 						'posts_per_page' => '50',
@@ -330,6 +398,59 @@ class LSX_Projects_Admin {
 				)
 			);
 		}
+	}
+
+	/**
+	 * Add Alt Product metabox with custom fields to the Project post type
+	 */
+	public function project_field_setup_product() {
+		$prefix = 'lsx_project_';
+
+		$cmb = new_cmb2_box(
+			array(
+				'id'           => $prefix . '_project',
+				'title'        => __( 'General', 'lsx-projects' ),
+				'object_types' => 'project',
+				'context'      => 'normal',
+				'priority'     => 'low',
+				'show_names'   => true,
+			)
+		);
+
+		$tip_group = $cmb->add_field(
+			array(
+				'id'      => $prefix . '_alt_products',
+				'type'    => 'group',
+				'options' => array(
+					'group_title'   => __( 'Alternative Products', 'lsx-projects' ),
+					'add_button'    => __( 'Add Product', 'lsx-projects' ),
+					'remove_button' => __( 'Remove Product', 'lsx-projects' ),
+					'sortable'      => true,
+				),
+				'classes' => 'lsx-admin-row',
+			)
+		);
+
+		$cmb->add_group_field(
+			$tip_group,
+			array(
+				'name'         => esc_html__( 'Alt Product Name:', 'lsx-projects' ),
+				'id'           => $prefix . 'alt_product_title',
+				'type'         => 'text',
+				'show_in_rest' => true,
+			)
+		);
+
+		$cmb->add_group_field(
+			$tip_group,
+			array(
+				'name'         => esc_html__( 'Alt Product Link:', 'lsx-projects' ),
+				'id'           => $prefix . 'alt_product_link',
+				'type'         => 'text',
+				'show_in_rest' => true,
+			)
+		);
+
 	}
 
 	/**

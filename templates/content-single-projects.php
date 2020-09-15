@@ -22,15 +22,11 @@
 	}
 
 	if ( ! empty( $client_logo ) ) {
-		$client_logo = wp_get_attachment_image_src( $client_logo, 'full' );
-
-		if ( is_array( $client_logo ) ) {
-			$client_logo = '<img src="' . $client_logo[0] . '">';
-		}
+		$client_logo = '<img src="' . $client_logo . '">';
 	}
 
 	$groups = '';
-	$terms = get_the_terms( get_the_ID(), 'project-group' );
+	$terms  = get_the_terms( get_the_ID(), 'project-group' );
 
 	if ( $terms && ! is_wp_error( $terms ) ) {
 		$groups = array();
@@ -41,6 +37,19 @@
 
 		$groups = join( ', ', $groups );
 	}
+
+	$product_groups = '';
+	$product_terms = get_post_meta( get_the_ID(), 'lsx_project__alt_products', false );
+
+	if ( $product_terms && ! is_wp_error( $product_terms ) ) {
+		$product_groups = array();
+		foreach ( $product_terms[0] as $product_term ) {
+			$product_groups[] = '<a href="' . $product_term['lsx_project_alt_product_link'] . '">' . $product_term['lsx_project_alt_product_title'] . '</a>';
+		}
+
+		$product_groups = join( ', ', $product_groups );
+	}
+
 
 	// Connections
 
@@ -105,7 +114,7 @@
 
 			$args = array(
 				'post_type'              => 'product',
-				'post__in'               => $connection_product['posts'],
+				'post__in'               => $connection_product['posts'][0],
 				'orderby'                => 'post__in',
 				'no_found_rows'          => true,
 				'ignore_sticky_posts'    => 1,
@@ -177,7 +186,7 @@
 	$connection_testimonial['posts'] = get_post_meta( get_the_ID(), 'testimonial_to_project', false );
 
 	if ( ! empty( $connection_testimonial['posts'] ) ) {
-		$post_ids = join( ',', $connection_testimonial['posts'] );
+		$post_ids = join( ',', $connection_testimonial['posts'][0] );
 		$connection_testimonial['shortcode'] = '[lsx_testimonials columns="1" include="' . $post_ids . '" orderby="date" order="DESC"]';
 		$connections[] = $connection_testimonial;
 	}
@@ -189,13 +198,13 @@
 	$connection_team['posts'] = get_post_meta( get_the_ID(), 'team_to_project', false );
 
 	if ( ! empty( $connection_team['posts'] ) ) {
-		$post_ids = join( ',', $connection_team['posts'] );
+		$post_ids = join( ',', $connection_team['posts'][0] );
 		$connection_team['shortcode'] = '[lsx_team columns="4" include="' . $post_ids . '" show_social="false" show_desc="false" show_link="true"]';
 		$connection_team['small_list_html'] = '';
 
 		$args = array(
 			'post_type'              => 'team',
-			'post__in'               => $connection_team['posts'],
+			'post__in'               => $connection_team['posts'][0],
 			'orderby'                => 'post__in',
 			'no_found_rows'          => true,
 			'ignore_sticky_posts'    => 1,
@@ -259,6 +268,11 @@
 						<div class="entry-meta-value"><?php echo wp_kses_post( $groups ); ?></div>
 					<?php endif; ?>
 
+					<?php if ( ! empty( $product_groups ) ) : ?>
+						<div class="entry-meta-key"><?php esc_html_e( 'Products:', 'lsx-projects' ); ?></div>
+						<div class="entry-meta-value"><?php echo wp_kses_post( $product_groups ); ?></div>
+					<?php endif; ?>
+
 					<?php if ( ! empty( $connection_service['small_list_html'] ) ) : ?>
 						<div class="entry-meta-key"><?php esc_html_e( 'Services:', 'lsx-projects' ); ?></div>
 						<div class="entry-meta-value"><?php echo wp_kses_post( $connection_service['small_list_html'] ); ?></div>
@@ -306,13 +320,13 @@
 
 							<?php
 								if ( 'product' === $connection['post_type'] ) {
+
 									if ( $connection_product['posts_obj']->have_posts() ) {
 										// @codingStandardsIgnoreLine
 										echo apply_filters( 'woocommerce_before_widget_product_list', '<ul class="product_list_widget">' );
 
 										while ( $connection_product['posts_obj']->have_posts() ) {
 											$connection_product['posts_obj']->the_post();
-
 											wc_get_template( 'content-widget-product.php', array(
 												'show_rating' => false,
 											) );
@@ -335,6 +349,7 @@
 		?>
 		<?php endforeach; ?>
 	<?php endif; ?>
+
 
 	<?php lsx_entry_bottom(); ?>
 
