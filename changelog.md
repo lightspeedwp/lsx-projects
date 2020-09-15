@@ -1,6 +1,6 @@
 # Change log
 
-## [[1.1.4]] - In development
+## [[1.2.0]] - In development
 
 ### Added
 
@@ -11,7 +11,7 @@
 
 ### Changed
 
-- Changed UIX to CMB2.
+- Changed UIX library for CMB2.
 
 ### Fixed
 
