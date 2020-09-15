@@ -219,17 +219,16 @@ class LSX_Projects_Frontend {
 	 * Add form modal
 	 */
 	public function add_form_modal() {
-		global $lsx_projects;
 
-		if ( empty( $lsx_projects->options['display']['projects_modal_enable'] ) ) {
+		if ( empty( $this->options['display']['projects_modal_enable'] ) ) {
 			return '';
 		}
 
-		if ( empty( $lsx_projects->options['display']['projects_modal_cta_label'] ) || empty( $lsx_projects->options['display']['projects_modal_form_id'] ) ) {
+		if ( empty( $this->options['display']['projects_modal_cta_label'] ) || empty( $this->options['display']['projects_modal_form_id'] ) || empty( $this->options['display']['projects_wpform_modal_form_id'] ) ) {
 			return '';
 		}
 
-		if ( ! is_single( 'project' ) ) {
+		if ( ! is_singular( 'project' ) ) {
 			return '';
 		}
 		?>
@@ -239,11 +238,16 @@ class LSX_Projects_Frontend {
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 					<div class="modal-header">
-						<h4 class="modal-title"><?php echo esc_html( $lsx_projects->options['display']['projects_modal_cta_label'] ); ?></h4>
+						<h4 class="modal-title"><?php echo esc_html( $this->options['display']['projects_modal_cta_label'] ); ?></h4>
 					</div>
 
 					<div class="modal-body">
-						<?php echo do_shortcode( '[caldera_form id="' . $lsx_projects->options['display']['projects_modal_form_id'] . '"]' ); ?>
+						<?php
+						if ( ! empty( $this->options['display']['projects_modal_form_id'] ) ) {
+							echo do_shortcode( '[caldera_form id="' . $this->options['display']['projects_modal_form_id'] . '"]' );
+						} elseif ( ! empty( $this->options['display']['projects_wpform_modal_form_id'] ) ) {
+							echo do_shortcode( '[wpforms id="' . $this->options['display']['projects_wpform_modal_form_id'] . '"]' );
+						} ?>
 					</div>
 				</div>
 			</div>

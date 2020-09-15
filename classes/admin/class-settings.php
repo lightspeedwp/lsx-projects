@@ -127,6 +127,7 @@ class Settings {
 				'id'   => 'settings_contact_modal_title',
 				'type' => 'title',
 				'name' => __( 'Contact modal', 'lsx-projects' ),
+				'description' => __( 'Displays contact modal on project single if there is a linked Caldera or WPform.', 'lsx-projects' ),
 			)
 		);
 		$cmb->add_field(
@@ -150,8 +151,16 @@ class Settings {
 
 		$cmb->add_field(
 			array(
-				'name' => __( 'Caldera Form ID', 'lsx-projects' ),
+				'name' => __( 'Caldera Form ID (if enabled)', 'lsx-projects' ),
 				'id'   => 'projects_modal_form_id',
+				'type' => 'text',
+			)
+		);
+
+		$cmb->add_field(
+			array(
+				'name' => __( 'WPForm ID (if enabled)', 'lsx-projects' ),
+				'id'   => 'projects_wpform_modal_form_id',
 				'type' => 'text',
 			)
 		);
