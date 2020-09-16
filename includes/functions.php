@@ -115,3 +115,19 @@ function projects_get_option( $key = '', $default = false ) {
 	}
 	return $value;
 }
+
+
+/**
+ * Remove "Archives:"  from the projects archive title
+ *
+ * @param [type] $title
+ * @return void
+ */
+function portfolio_modify_archive_title( $title ) {
+	if ( ! is_post_type_archive( 'project' ) ) {
+		return $title;
+	}
+	$title = __( 'Portfolio', 'lsx' );
+	return $title;
+}
+add_filter( 'get_the_archive_title', 'portfolio_modify_archive_title', 10, 1 );
