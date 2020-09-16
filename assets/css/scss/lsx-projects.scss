@@ -246,6 +246,14 @@
 
 .archive.post-type-archive-project,
 .archive.tax-project-group {
+	.facetwp-template {
+		.lsx-projects-filter {
+			display: none;
+		}
+		.lsx-projects-slot {
+			margin: 2.4rem auto 0;
+		}
+	}
 	.lsx-projects-container {
 		margin-top: -4rem;
 	}

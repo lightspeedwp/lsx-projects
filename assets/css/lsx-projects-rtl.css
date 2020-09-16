@@ -71,6 +71,10 @@
 
 #lsx-projects-slider .slick-arrow.slick-next:before, #lsx-products-slider .slick-arrow.slick-next:before, #lsx-alt-products-slider .slick-arrow.slick-next:before { content: "\f105"; right: 1.5rem; }
 
+.archive.post-type-archive-project .facetwp-template .lsx-projects-filter, .archive.tax-project-group .facetwp-template .lsx-projects-filter { display: none; }
+
+.archive.post-type-archive-project .facetwp-template .lsx-projects-slot, .archive.tax-project-group .facetwp-template .lsx-projects-slot { margin: 2.4rem auto 0; }
+
 .archive.post-type-archive-project .lsx-projects-container, .archive.tax-project-group .lsx-projects-container { margin-top: -4rem; }
 
 .archive.post-type-archive-project .row-flex.lsx-projects-row, .archive.tax-project-group .row-flex.lsx-projects-row { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; }
