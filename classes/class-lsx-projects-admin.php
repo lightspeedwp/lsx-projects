@@ -81,6 +81,7 @@ class LSX_Projects_Admin {
 				'editor',
 				'thumbnail',
 				'excerpt',
+				'custom-fields',
 			),
 			'show_in_rest'       => true,
 			'supports'           => array( 'editor', 'title', 'excerpt', 'thumbnail' ),
