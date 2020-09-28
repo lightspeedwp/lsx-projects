@@ -113,6 +113,8 @@
 
 .single.single-project .lsx-projects-section h3.lsx-title:after { display: block; }
 
+.single.single-project .lsx-projects-section .wp-embed-responsive .wp-block-embed__wrapper:before { padding-top: 0%; }
+
 .gutenberg-compatible-template.using-gutenberg.single.single-project .wrap.container { padding-right: 15px; padding-left: 15px; }
 
 @media (min-width: 768px) { .gutenberg-compatible-template.using-gutenberg.single.single-project .wrap.container { width: 750px; } }

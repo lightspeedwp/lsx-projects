@@ -351,6 +351,9 @@
 			}
 		}
 	}
+	.wp-embed-responsive .wp-block-embed__wrapper:before {
+		padding-top: 0%;
+	}
 }
 
 .gutenberg-compatible-template.using-gutenberg {
