@@ -84,7 +84,6 @@ class LSX_Projects_Admin {
 				'custom-fields',
 			),
 			'show_in_rest'       => true,
-			'supports'           => array( 'editor', 'title', 'excerpt', 'thumbnail' ),
 		);
 
 		register_post_type( 'project', $args );
