@@ -12,6 +12,8 @@
 
 .lsx-projects-shortcode { margin-top: -4rem; }
 
+.gutenberg-compatible-template.using-gutenberg .entry-content .lsx-projects-shortcode > .row { margin-right: auto; margin-left: auto; }
+
 .lsx-projects-slot { background-color: #fff; margin: 4rem auto 0; overflow: hidden; text-align: center; }
 
 .entry-tabs .lsx-projects-slot { border-style: solid; border-width: 1px; }
@@ -112,6 +114,8 @@
 .single.single-project .lsx-projects-section:nth-child(odd) { background-color: transparent; }
 
 .single.single-project .lsx-projects-section h3.lsx-title:after { display: block; }
+
+.single.single-project .wp-block-embed .wp-block-embed__wrapper:before { padding-top: 0%; }
 
 .gutenberg-compatible-template.using-gutenberg.single.single-project .wrap.container { padding-left: 15px; padding-right: 15px; }
 

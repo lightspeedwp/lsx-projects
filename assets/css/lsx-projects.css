@@ -12,6 +12,8 @@
 
 .lsx-projects-shortcode { margin-top: -4rem; }
 
+.gutenberg-compatible-template.using-gutenberg .entry-content .lsx-projects-shortcode > .row { margin-left: auto; margin-right: auto; }
+
 .lsx-projects-slot { background-color: #fff; margin: 4rem auto 0; overflow: hidden; text-align: center; }
 
 .entry-tabs .lsx-projects-slot { border-style: solid; border-width: 1px; }

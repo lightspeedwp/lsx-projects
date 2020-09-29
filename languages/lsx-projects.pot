@@ -364,39 +364,39 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: templates/content-single-projects.php:69
+#: templates/content-single-projects.php:66
 msgid "Related Projects"
 msgstr ""
 
-#: templates/content-single-projects.php:109
+#: templates/content-single-projects.php:104
 msgid "Related Products"
 msgstr ""
 
-#: templates/content-single-projects.php:109
+#: templates/content-single-projects.php:104
 msgid "Products used to build this project"
 msgstr ""
 
-#: templates/content-single-projects.php:267
+#: templates/content-single-projects.php:253
 msgid "Industry:"
 msgstr ""
 
-#: templates/content-single-projects.php:272
+#: templates/content-single-projects.php:258
 msgid "Products:"
 msgstr ""
 
-#: templates/content-single-projects.php:277
+#: templates/content-single-projects.php:263
 msgid "Services:"
 msgstr ""
 
-#: templates/content-single-projects.php:283
+#: templates/content-single-projects.php:269
 msgid "Products used:"
 msgstr ""
 
-#: templates/content-single-projects.php:289
+#: templates/content-single-projects.php:275
 msgid "Team members involved:"
 msgstr ""
 
-#: templates/content-single-projects.php:294
+#: templates/content-single-projects.php:280
 msgid "See website"
 msgstr ""
 
