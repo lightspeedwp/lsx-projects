@@ -60,14 +60,14 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 
 			<div class="lsx-projects-container">
-				<div class="row row-flex lsx-projects-row"">
+				<div class="row row-flex lsx-projects-row">
 
 					<?php
 						$count = 0;
 
 						while ( have_posts() ) {
 							the_post();
-							include( LSX_PROJECTS_PATH . '/templates/content-archive-projects.php' );
+							include LSX_PROJECTS_PATH . '/templates/content-archive-projects.php';
 						}
 					?>
 

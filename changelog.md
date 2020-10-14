@@ -12,6 +12,7 @@
 ### Changed
 
 - Changed UIX library for CMB2.
+- Changed the archive template to display 2 projects instead of 3.
 
 ### Fixed
 

@@ -25,7 +25,7 @@
 	}
 ?>
 
-<div class="col-xs-12 col-sm-6 col-md-4 lsx-projects-column <?php echo esc_attr( $groups_class ); ?>">
+<div class="col-xs-12 col-sm-6 col-md-6 lsx-projects-column <?php echo esc_attr( $groups_class ); ?>">
 	<article class="lsx-projects-slot">
 		<?php if ( ! empty( lsx_get_thumbnail( 'lsx-thumbnail-single' ) ) ) : ?>
 			<?php if ( ! isset( $lsx_projects_frontend->options['display'] ) || ! isset( $lsx_projects_frontend->options['display']['team_disable_single'] ) ) : ?>
