@@ -42,6 +42,10 @@
 @media (min-width: 1280px) { #lsx-projects-slider, #lsx-products-slider, #lsx-alt-products-slider { margin-right: -15px; margin-left: -15px; width: calc(100% + 30px); }
   #lsx-projects-slider.slick-has-arrows, #lsx-products-slider.slick-has-arrows, #lsx-alt-products-slider.slick-has-arrows { width: calc(100% + 30px); } }
 
+.gutenberg-compatible-template.using-gutenberg .entry-content div.alignwide #lsx-projects-slider, .gutenberg-compatible-template.using-gutenberg .entry-content div.alignwide #lsx-products-slider, .gutenberg-compatible-template.using-gutenberg .entry-content div.alignwide #lsx-alt-products-slider { width: 100%; max-width: 110rem; }
+
+.gutenberg-compatible-template.using-gutenberg .entry-content div.alignfull #lsx-projects-slider, .gutenberg-compatible-template.using-gutenberg .entry-content div.alignfull #lsx-products-slider, .gutenberg-compatible-template.using-gutenberg .entry-content div.alignfull #lsx-alt-products-slider { width: calc(100% - 13rem); }
+
 .tab-pane #lsx-projects-slider, .tab-pane #lsx-products-slider, .tab-pane #lsx-alt-products-slider { margin-right: -15px; margin-left: -15px; }
 
 @media (min-width: 768px) { .tab-pane #lsx-projects-slider, .tab-pane #lsx-products-slider, .tab-pane #lsx-alt-products-slider { margin-right: auto; margin-left: auto; width: 100%; }

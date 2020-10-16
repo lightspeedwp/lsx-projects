@@ -143,6 +143,15 @@
 		}
 	}
 
+	.gutenberg-compatible-template.using-gutenberg .entry-content div.alignwide & {
+		width: 100%;
+    	max-width: 110rem;
+	}
+
+	.gutenberg-compatible-template.using-gutenberg .entry-content div.alignfull & {
+		width: calc(100% - 13rem);
+	}
+
 	.tab-pane & {
 		margin-left: -15px;
 		margin-right: -15px;
