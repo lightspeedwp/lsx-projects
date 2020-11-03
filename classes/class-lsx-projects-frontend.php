@@ -208,7 +208,11 @@ class LSX_Projects_Frontend {
 	public function posts_per_page( $query ) {
 		if ( ! is_admin() && $query->is_main_query() ) {
 			if ( $query->is_post_type_archive( 'project' ) || $query->is_tax( 'project-group' ) ) {
-				$query->set( 'posts_per_page', -1 );
+				if ( ! function_exists( 'lsx_search' ) ) {
+					$query->set( 'posts_per_page', -1 );
+				} else {
+					$query->set( 'posts_per_page', 12 );
+				}
 			}
 		}
 
