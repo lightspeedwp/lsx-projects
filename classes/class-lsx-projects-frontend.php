@@ -211,7 +211,7 @@ class LSX_Projects_Frontend {
 				if ( ! function_exists( 'lsx_search' ) ) {
 					$query->set( 'posts_per_page', -1 );
 				} else {
-					$query->set( 'posts_per_page', 12 );
+					$query->set( 'posts_per_page', '12' );
 				}
 			}
 		}
