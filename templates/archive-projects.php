@@ -18,6 +18,7 @@ get_header(); ?>
 		<?php lsx_content_top(); ?>
 
 		<?php
+		if ( ! function_exists( 'lsx_search' ) ) {
 			$args = array(
 				'taxonomy'   => 'project-group',
 				'hide_empty' => false,
@@ -26,7 +27,7 @@ get_header(); ?>
 			$groups = get_terms( $args );
 			$group_selected = get_query_var( 'project-group' );
 
-			if ( count( $groups ) > 0 ) :
+			if ( count( $groups ) > 0 ) {
 			?>
 
 			<ul class="nav nav-tabs lsx-projects-filter">
@@ -54,7 +55,8 @@ get_header(); ?>
 			</ul>
 
 			<?php
-			endif;
+			}
+		}
 		?>
 
 		<?php if ( have_posts() ) : ?>
