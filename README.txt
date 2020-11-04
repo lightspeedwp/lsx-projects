@@ -3,7 +3,7 @@ Contributors: feedmymedia, lightspeedwp, eleshar, krugazul, jacquesvdh, ignusver
 Donate link: https://lsdev.biz/lsx/donate/
 Tags: lsx, portfolio, projects, shortcodes, project grid
 Requires at least: 5.0
-Tested up to: 5.5.1
+Tested up to: 5.5.3
 Requires PHP: 7.0
 Stable tag: 1.2.0
 License: GPLv3 or later
@@ -13,7 +13,7 @@ This plugin lets you showcase your work to visitors using the LSX theme.
 
 == Description ==
 
-The [LSX Projects Extension](https://www.lsdev.biz/lsx/extensions/projects) is here to help you add advanced “Projects” section options to your Wordpress site running LSX Theme. It adds a “Projects” post type, allowing you to categorize and display your Projects on your LSX website.
+The [LSX Projects Extension](https://lsdev.biz/lsx/extensions/projects) is here to help you add advanced “Projects” section options to your Wordpress site running LSX Theme. It adds a “Projects” post type, allowing you to categorize and display your Projects on your LSX website.
 
 The LSX Projects Extension adds the “Projects” post type which allows you to categorize and display your finest work. The extension is interconnected with the Reviews Extension, The Services Extension and the Team Extension. This means that on the Projects post you can display who on your team worked on the project, what services were provided in the project, as well as any connected reviews for the particular project.
 
@@ -21,22 +21,46 @@ The plugin features customized project options. This feature makes adding inform
 
 The customization area allows you to set a client title and logo, and set a custom url for that client. The extension interconnects with other LSX Theme extention like Services, Testimonials and Teams. You can create project groups for better categorization and make featured projects. 
 
-Users will also find that LSX Projects works with Woocommerce, allowing you to connect products with projects, with the help of the [the LSX Theme](https://www.lsdev.biz/lsx/)
+Users will also find that LSX Projects works with Woocommerce, allowing you to connect products with projects, with the help of the [the LSX Theme](https://lsdev.biz/lsx/)
 
-We offer premium support for this plugin. Premium support that can be purchased via [lsdev.biz](https://www.lsdev.biz/services/support/).
+We offer premium support for this plugin. Premium support that can be purchased via [lsdev.biz](https://lsdev.biz/services/support/).
 
-= Works with the LSX Theme =
-LSX Projects is an [LSX Theme](http://lsx.lsdev.biz) powered plugin. It integrates seamlessly with the core LSX functionality to provide you will powerful options for creating your online Projects.
+= Free Companion Theme = 
 
-= Gutenberg Compatible =
-Have you updated to the new WordPress Gutenberg editor? We've got you covered! [The LSX Theme](https://lsx.lsdev.biz/) and all of its extensions have been optimized to work perfectly with the new Gutenberg update. 
+LSX Team is built to show off the best of the WordPress block editor, but it requires the free LSX theme in the WordPress theme repository as the perfect companion for LSX Blocks - https://wordpress.org/themes/lsx/
 
-= It's Free, and always will be =
-We’re firm believers in open source – that’s why we’re releasing the LSX Projects plugin for free, forever. 
+= Block Editor Support = 
+
+The LSX theme is full compatible with the WordPress block editor. This means you can now make use of the drag-and-drop page builder when creating new pages and posts. 
+
+[LSX Blocks](https://lsdev.biz/lsx/extensions/blocks) is an extension with blocks designed to display perfectly with the LSX theme. The blocks plugin extends various WordPress core blocks to be more flexible with the WordPress theme. 
+
+The combination of LSX Theme & LSX Blocks gives you a true page builder experience using the WordPress Gutenberg block editor.
 
 = Support =
 
+Contact the [LightSpeed](https://lsdev.biz/) for assistance via the [LSX support form](https://lsdev.biz/lsx/support/).
+
+
+= Demo Pages = 
+
+* [Portfolio landing page](https://lsx-demo.lsdev.biz/portfolio/)
+* [Single portfolio post](https://lsx-demo.lsdev.biz/portfolio/sarie-bruid/)
+
+= Documentation =
+We have extensive documentation on all our plugins and theme functionality. This allows you to take control of your website setup and design to your needs: 
+
+* [LSX Projects Documentation](https://www.lsdev.biz/lsx/documentation/lsx-extensions/lsx-projects/).
+* [LSX Theme](https://lsdev.biz/lsx/documentation/lsx-theme/)
+* [LSX Blocks](https://lsdev.biz/lsx/documentation/lsx-blocks/)
+
+= Support =
 Contact the [LightSpeed](https://lsdev.biz/) for assistance via the [LSX support form](https://www.lsdev.biz/lsx/support/).
+
+If you are experiencing issues with the LSX Projects plugin, please log any bug issues you are having on the [LSX Team Issues](https://github.com/lightspeeddevelopment/lsx-team/issues) page.
+
+= Contributing =
+Extensible, adaptable, and open source — LSX Projects is created with theme and plugin developers in mind. If you’re interested to jump in the project, there are opportunities for developers at all levels to get involved. 
 
 = Actively Developed =
 
@@ -68,15 +92,15 @@ LSX Projects adds a “Projects” post type, allowing you to categorize and dis
 
 = Where can I find LSX Projects plugin documentation and user guides? =
 
-For help setting up and configuring the LSX Projects plugin please refer to our [user guide](https://www.lsdev.biz/lsx/documentation/lsx-extrensions/lsx-projects/). For extra support, please subscribe to our support plan.
+For help setting up and configuring the LSX Projects plugin please refer to our [user guide](https://lsdev.biz/lsx/documentation/lsx-extrensions/lsx-projects/). For extra support, please subscribe to our support plan.
 
 = Where can I get support? =
 
-For help with add-ons from LightSpeed, use our support package plan. Premium support that can be purchased via [lsdev.biz](https://www.lsdev.biz/).
+For help with add-ons from LightSpeed, use our support package plan. Premium support that can be purchased via [lsdev.biz](https://lsdev.biz/).
 
 = Will the LSX Projects plugin work with my theme? =
 
-No; the LSX Projects plugin requires some styling and functionality only available for the [The LSX Theme](http://lsx.lsdev.biz). You need to install the [The LSX Theme](http://lsx.lsdev.biz) for this extension to work properly.
+No; the LSX Projects plugin requires some styling and functionality only available for the [The LSX Theme](http://lsx.lsdev.biz). You need to install the [The LSX Theme](http://lsdev.biz/lsx/) for this extension to work properly.
 
 = Where can I report bugs or contribute to the project? =
 
@@ -92,27 +116,16 @@ Your WordPress website needs to be running PHP version 7.0 or higher in order to
 
 = I need custom functionality for this plugin. Can you build it? =
 
-Yes. Just send us a message via [contact form](https://www.lsdev.biz/contact/) with precise information about what you require, and we will be in touch with a quote.
+Yes. Just send us a message via [contact form](https://lsdev.biz/contact/) with precise information about what you require, and we will be in touch with a quote.
 
 == Screenshots ==
 
 1. All projects
 2. Single Project
-3. Project settings
-
-
-== Screenshots ==
-
-1. Back-end Gutenberg block selection
-2. Block Settings Screenshot - Recommend LSX Container
-3. Block Usage Screenshot 1
-4. Block Usage Screenshot 2
-5. Block Usage Screenshot 3
-
+3. Custom fields for portfolio post 
+4. Project settings
 
 == Changelog == 
 
 [Lastest changelogs can be found on GitHub](https://github.com/lightspeeddevelopment/lsx-blocks/blob/master/changelog.md).
-
-== Upgrade Notice == 
 
