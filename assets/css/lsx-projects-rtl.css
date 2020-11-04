@@ -46,6 +46,8 @@
 
 .gutenberg-compatible-template.using-gutenberg .entry-content div.alignfull #lsx-projects-slider, .gutenberg-compatible-template.using-gutenberg .entry-content div.alignfull #lsx-products-slider, .gutenberg-compatible-template.using-gutenberg .entry-content div.alignfull #lsx-alt-products-slider { width: calc(100% - 13rem); }
 
+@media (min-width: 1200px) { .gutenberg-compatible-template.using-gutenberg .entry-content div.alignfull #lsx-projects-slider, .gutenberg-compatible-template.using-gutenberg .entry-content div.alignfull #lsx-products-slider, .gutenberg-compatible-template.using-gutenberg .entry-content div.alignfull #lsx-alt-products-slider { max-width: 100rem; } }
+
 .tab-pane #lsx-projects-slider, .tab-pane #lsx-products-slider, .tab-pane #lsx-alt-products-slider { margin-right: -15px; margin-left: -15px; }
 
 @media (min-width: 768px) { .tab-pane #lsx-projects-slider, .tab-pane #lsx-products-slider, .tab-pane #lsx-alt-products-slider { margin-right: auto; margin-left: auto; width: 100%; }

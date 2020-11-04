@@ -150,6 +150,9 @@
 
 	.gutenberg-compatible-template.using-gutenberg .entry-content div.alignfull & {
 		width: calc(100% - 13rem);
+		@media (min-width: 1200px) {
+			max-width: 100rem;
+		}
 	}
 
 	.tab-pane & {
