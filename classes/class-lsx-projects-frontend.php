@@ -34,6 +34,8 @@ class LSX_Projects_Frontend {
 
 		add_filter( 'pre_get_posts', array( $this, 'posts_per_page' ) );
 		add_action( 'wp_footer', array( $this, 'add_form_modal' ) );
+
+		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title' ), 100 );
 	}
 
 	public function enqueue_scripts() {
@@ -257,6 +259,25 @@ class LSX_Projects_Frontend {
 			</div>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Remove the "Archives:" from the post type archives.
+	 *
+	 * @param    $title
+	 *
+	 * @return    $title
+	 */
+	public function get_the_archive_title( $title ) {
+		if ( is_post_type_archive( 'project' ) ) {
+			$title = __( 'Portfolio', 'lsx-projects' );
+		}
+
+		if ( is_tax( array( 'project-group', 'project-type', 'project-tag' ) ) ) {
+			$title = single_term_title( '', false );
+		}
+
+		return $title;
 	}
 
 }
