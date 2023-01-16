@@ -29,7 +29,6 @@ class LSX_Projects_Core {
 	 * Contructor
 	 */
 	public function __construct() {
-		add_action( 'init', array( $this, 'cmb2_post_search_ajax' ) );
 		$this->load_vendors();
 	}
 
@@ -75,18 +74,6 @@ class LSX_Projects_Core {
 			}
 		}
 		return $post_types;
-	}
-
-	/**
-	 * Includes the Post Search Ajax if it is there.
-	 *
-	 * @return void
-	 */
-	public function cmb2_post_search_ajax() {
-		require_once LSX_PROJECTS_PATH . 'vendor/lsx-field-post-search-ajax/cmb-field-post-search-ajax.php';
-		if ( method_exists( 'MAG_CMB2_Field_Post_Search_Ajax', 'get_instance' ) ) {
-			$this->cmb2_post_search_ajax = \MAG_CMB2_Field_Post_Search_Ajax::get_instance();
-		}
 	}
 }
 
