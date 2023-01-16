@@ -3,7 +3,7 @@
  * Plugin Name: LSX Projects
  * Plugin URI:  https://www.lsdev.biz/product/lsx-projects/
  * Description: The LSX Projects extension adds the "Projects" post type.
- * Version:     1.2.0
+ * Version:     2.0.0
  * Author:      LightSpeed
  * Author URI:  https://www.lsdev.biz/
  * License:     GPL3
@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'LSX_PROJECTS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'LSX_PROJECTS_CORE', __FILE__ );
 define( 'LSX_PROJECTS_URL', plugin_dir_url( __FILE__ ) );
-define( 'LSX_PROJECTS_VER', '1.2.0' );
+define( 'LSX_PROJECTS_VER', '2.0.0' );
 
 /* ======================= Below is the Plugin Class init ========================= */
 

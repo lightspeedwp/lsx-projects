@@ -1,6 +1,11 @@
 # Change log
 
-## [[1.2.0]] - In development
+## [[2.0.0]] - In development
+
+### Removed
+
+
+## [[1.2.0]] - 2023-01-16 (not released)
 
 ### Added
 
@@ -15,7 +20,6 @@
 - Changed the archive template to display 2 projects instead of 3.
 
 ### Fixed
-
 - Fixed color links for the archive page.
 
 ### Security
