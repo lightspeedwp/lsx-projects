@@ -3,7 +3,7 @@
 ## [[2.0.0]] - In development
 
 ### Removed
-
+- Removed the post relation custom fields (services, team, testimonials and woocommerce)
 
 ## [[1.2.0]] - 2023-01-16 (not released)
 
