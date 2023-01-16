@@ -211,40 +211,6 @@ class LSX_Projects_Admin {
 				'show_in_rest' => true,
 			)
 		);
-
-		$cmb->add_field(
-			array(
-				'name'         => esc_html__( 'Client:', 'lsx-projects' ),
-				'id'           => $prefix . 'client',
-				'type'         => 'text',
-				'show_in_rest' => true,
-			)
-		);
-
-		$cmb->add_field(
-			array(
-				'name'         => esc_html__( 'Client logo:', 'lsx-projects' ),
-				'id'           => $prefix . 'client_logo',
-				'type'         => 'file',
-				'desc'         => esc_html__( 'Recommended image size: 320 x 50~60', 'lsx-projects' ),
-				'options'      => array(
-					'url' => false, // Hide the text input for the url.
-				),
-				'text'         => array(
-					'add_upload_file_text' => 'Choose Image',
-				),
-				'show_in_rest' => true,
-			)
-		);
-
-		$cmb->add_field(
-			array(
-				'name'         => esc_html__( 'URL for the finished project:', 'lsx-projects' ),
-				'id'           => $prefix . 'url',
-				'type'         => 'text',
-				'show_in_rest' => true,
-			)
-		);
 	}
 
 	/**

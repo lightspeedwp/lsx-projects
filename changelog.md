@@ -4,6 +4,7 @@
 
 ### Removed
 - Removed the post relation custom fields (services, team, testimonials and woocommerce)
+- Removed the project detail fields (client, client logo, finished url, alt products)
 
 ## [[1.2.0]] - 2023-01-16 (not released)
 
