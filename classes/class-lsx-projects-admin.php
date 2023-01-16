@@ -18,9 +18,6 @@ class LSX_Projects_Admin {
 		add_action( 'init', array( $this, 'taxonomy_project_type_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_project_tag_setup' ) );
 		add_filter( 'cmb2_admin_init', array( $this, 'field_setup' ) );
-
-		add_filter( 'cmb2_admin_init', array( $this, 'project_field_setup_product' ) );
-		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3, 20 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
 
 		add_filter( 'type_url_form_media', array( $this, 'change_attachment_field_button' ), 20, 1 );
@@ -211,59 +208,6 @@ class LSX_Projects_Admin {
 				'show_in_rest' => true,
 			)
 		);
-	}
-
-	/**
-	 * Add Alt Product metabox with custom fields to the Project post type
-	 */
-	public function project_field_setup_product() {
-		$prefix = 'lsx_project_';
-
-		$cmb = new_cmb2_box(
-			array(
-				'id'           => $prefix . '_project',
-				'title'        => __( 'General', 'lsx-projects' ),
-				'object_types' => 'project',
-				'context'      => 'normal',
-				'priority'     => 'low',
-				'show_names'   => true,
-			)
-		);
-
-		$tip_group = $cmb->add_field(
-			array(
-				'id'      => $prefix . '_alt_products',
-				'type'    => 'group',
-				'options' => array(
-					'group_title'   => __( 'Alternative Products', 'lsx-projects' ),
-					'add_button'    => __( 'Add Product', 'lsx-projects' ),
-					'remove_button' => __( 'Remove Product', 'lsx-projects' ),
-					'sortable'      => true,
-				),
-				'classes' => 'lsx-admin-row',
-			)
-		);
-
-		$cmb->add_group_field(
-			$tip_group,
-			array(
-				'name'         => esc_html__( 'Alt Product Name:', 'lsx-projects' ),
-				'id'           => $prefix . 'alt_product_title',
-				'type'         => 'text',
-				'show_in_rest' => true,
-			)
-		);
-
-		$cmb->add_group_field(
-			$tip_group,
-			array(
-				'name'         => esc_html__( 'Alt Product Link:', 'lsx-projects' ),
-				'id'           => $prefix . 'alt_product_link',
-				'type'         => 'text',
-				'show_in_rest' => true,
-			)
-		);
-
 	}
 
 	public function assets() {
