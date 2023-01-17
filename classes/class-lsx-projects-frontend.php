@@ -83,6 +83,11 @@ class LSX_Projects_Frontend {
 	 */
 	public function single_template_include( $template ) {
 		if ( is_main_query() && is_singular( 'project' ) ) {
+
+			if ( function_exists( 'has_blocks' ) && has_blocks() ) {
+				return $template;
+			}
+
 			if ( empty( locate_template( array( 'single-projects.php' ) ) ) && file_exists( LSX_PROJECTS_PATH . 'templates/single-projects.php' ) ) {
 				$template = LSX_PROJECTS_PATH . 'templates/single-projects.php';
 			}
