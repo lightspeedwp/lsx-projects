@@ -101,6 +101,11 @@ class LSX_Projects_Frontend {
 	 */
 	public function archive_template_include( $template ) {
 		if ( is_main_query() && ( is_post_type_archive( 'project' ) || is_tax( 'project-group' ) ) ) {
+
+			if ( function_exists( 'has_blocks' ) && has_blocks() ) {
+				return $template;
+			}
+
 			if ( empty( locate_template( array( 'archive-projects.php' ) ) ) && file_exists( LSX_PROJECTS_PATH . 'templates/archive-projects.php' ) ) {
 				$template = LSX_PROJECTS_PATH . 'templates/archive-projects.php';
 			}
