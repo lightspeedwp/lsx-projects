@@ -17,15 +17,6 @@ class LSX_Projects_Core {
 	protected static $instance = null;
 
 	/**
-	 * Holds class instance
-	 *
-	 * @since 1.0.0
-	 *
-	 * @var      object \MAG_CMB2_Field_Post_Search_Ajax()
-	 */
-	public $cmb2_post_search_ajax = false;
-
-	/**
 	 * Contructor
 	 */
 	public function __construct() {
