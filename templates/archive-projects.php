@@ -7,15 +7,15 @@
 
 get_header(); ?>
 
-<?php lsx_content_wrap_before(); ?>
+<?php do_action( 'lsx_content_wrap_before' ); ?>
 
 <div id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
 
-	<?php lsx_content_before(); ?>
+	<?php do_action( 'lsx_content_before' ); ?>
 
 	<main id="main" class="site-main">
 
-		<?php lsx_content_top(); ?>
+		<?php do_action( 'lsx_content_top' ); ?>
 
 		<?php
 		if ( ! function_exists( 'lsx_search' ) ) {
@@ -76,23 +76,21 @@ get_header(); ?>
 				</div>
 			</div>
 
-			<?php lsx_paging_nav(); ?>
-
 		<?php else : ?>
 
 			<?php get_template_part( 'partials/content', 'none' ); ?>
 
 		<?php endif; ?>
 
-		<?php lsx_content_bottom(); ?>
+		<?php do_action( 'lsx_content_bottom' ); ?>
 
 	</main><!-- #main -->
 
-	<?php lsx_content_after(); ?>
+	<?php do_action( 'lsx_content_after' ); ?>
 
 </div><!-- #primary -->
 
-<?php lsx_content_wrap_after(); ?>
+<?php do_action( 'lsx_content_wrap_after' ); ?>
 
 <?php get_sidebar(); ?>
 

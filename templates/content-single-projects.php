@@ -54,6 +54,9 @@ if ( $product_terms && ! is_wp_error( $product_terms ) ) {
 $connections = array();
 // Connection Projects.
 
+/**
+ * TODO Move this related code to somewhere else.
+ */
 if ( post_type_exists( 'project' ) && $terms && ! is_wp_error( $terms ) ) {
 	$groups_ = array();
 
@@ -217,11 +220,11 @@ if ( post_type_exists( 'team' ) ) {
 }
 ?>
 
-<?php lsx_entry_before(); ?>
+<?php do_action( 'lsx_entry_before'); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<?php lsx_entry_top(); ?>
+	<?php do_action( 'lsx_entry_top'); ?>
 
 	<div class="row">
 		<div class="col-xs-12 col-sm-7 col-md-8">
@@ -336,8 +339,8 @@ if ( post_type_exists( 'team' ) ) {
 		<?php endforeach; ?>
 	<?php endif; ?>
 
-	<?php lsx_entry_bottom(); ?>
+	<?php do_action( 'lsx_entry_bottom' ); ?>
 </article><!-- #post-## -->
 
 <?php
-lsx_entry_after();
+do_action( 'lsx_entry_after' );
