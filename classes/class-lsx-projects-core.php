@@ -20,6 +20,7 @@ class LSX_Projects_Core {
 	 * Contructor
 	 */
 	public function __construct() {
+		$this->load_classes();
 		$this->load_vendors();
 	}
 
@@ -49,6 +50,14 @@ class LSX_Projects_Core {
 		if ( ! class_exists( 'CMB2' ) ) {
 			require_once LSX_PROJECTS_PATH . 'vendor/CMB2/init.php';
 		}
+	}
+
+	/**
+	 * Loads the classes
+	 */
+	private function load_classes() {
+		require_once LSX_PROJECTS_PATH . '/classes/class-block-patterns.php';
+		\lsx\projects\classes\Block_Patterns::get_instance();
 	}
 
 	/**
