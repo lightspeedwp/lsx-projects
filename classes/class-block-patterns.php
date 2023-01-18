@@ -100,9 +100,9 @@ class Block_Patterns {
 			'description' => _x( '', 'Block pattern description', 'lsx-projects' ),
 			'categories'  => array( $this->pattern_category ),
 			'content'     => '<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","left":"var:preset|spacing|x-small","right":"var:preset|spacing|x-small"}}},"layout":{"type":"constrained"}} -->
-			<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--x-small);padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--x-small)"><!-- wp:heading {"level":1,"align":"wide","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|x-large"}}},"className":"wp-block-heading","fontSize":"max-72"} -->
-			<h1 class="alignwide wp-block-heading has-max-72-font-size" id="h-savvy-navigator" style="padding-bottom:var(--wp--preset--spacing--x-large)">Savvy Navigator</h1>
-			<!-- /wp:heading -->
+			<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--x-small);padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--x-small)">
+			
+			<!-- wp:post-title {"level":1,"align":"wide","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|x-large"}}},"className":"wp-block-heading","fontSize":"max-72"} /-->
 			
 			<!-- wp:columns {"verticalAlignment":"top","align":"wide"} -->
 			<div class="wp-block-columns alignwide are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top","width":"66.66%","style":{"spacing":{"padding":{"top":"0","right":"0","bottom":"var:preset|spacing|small","left":"0"}}}} -->
@@ -179,7 +179,7 @@ class Block_Patterns {
 			'categories'  => array( $this->pattern_category ),
 			'content'     => '<!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0px"},"padding":{"top":"var:preset|spacing|x-large","bottom":"var:preset|spacing|x-large","right":"var:preset|spacing|x-small","left":"var:preset|spacing|x-small"}}},"backgroundColor":"custom-primary-white","layout":{"inherit":true,"type":"constrained"}} -->
 			<div class="wp-block-group alignfull has-custom-primary-white-background-color has-background" style="margin-top:0px;padding-top:var(--wp--preset--spacing--x-large);padding-right:var(--wp--preset--spacing--x-small);padding-bottom:var(--wp--preset--spacing--x-large);padding-left:var(--wp--preset--spacing--x-small)">
-			
+
 			<!-- wp:spacer {"height":"40px"} -->
 			<div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div>
 			<!-- /wp:spacer -->
