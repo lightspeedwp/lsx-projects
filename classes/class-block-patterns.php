@@ -249,7 +249,7 @@ class Block_Patterns {
 							<h3 class="wp-block-heading alignwide has-max-48-font-size" style="padding-bottom:var(--wp--preset--spacing--x-small);font-style:normal;font-weight:700"><strong>' . __( 'Related Projects', 'lsx-projects' ) . '</strong></h3>
 						<!-- /wp:heading -->
 						
-						<!-- wp:query {"queryId":5,"query":{"perPage":2,"pages":0,"offset":0,"postType":"project","order":"asc","orderBy":"title","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]},"displayLayout":{"type":"flex","columns":2},"align":"full","layout":{"type":"constrained"}} -->
+						<!-- wp:query {"queryId":5,"query":{"related":1,"perPage":2,"pages":0,"offset":0,"postType":"project","order":"asc","orderBy":"title","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]},"displayLayout":{"type":"flex","columns":2},"align":"full","layout":{"type":"constrained"}} -->
 							<div class="wp-block-query alignfull">
 								<!-- wp:post-template -->
 									<!-- wp:post-title /-->
@@ -280,7 +280,7 @@ class Block_Patterns {
 	 * @return array
 	 */
 	public function replace_related_vars( $query, $block, $page ) {
-		if ( ! is_admin() && is_singular( 'project' ) && 'project' === $query['post_type'] ) {
+		if ( ! is_admin() && is_singular( 'project' ) && 'project' === $query['post_type'] && isset( $block->context['query']['related'] ) ) {
 			$group     = array();
 			$terms     = get_the_terms( get_the_ID(), 'project-type' );
 
@@ -296,6 +296,7 @@ class Block_Patterns {
 					'terms'     => $group,
 				)
 			);
+			$query['orderby']      = 'rand';
 			$query['post__not_in'] = array( get_the_ID() );
 		}
 		return $query;
