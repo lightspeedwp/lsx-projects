@@ -40,7 +40,10 @@ class Block_Patterns {
 		add_action( 'init', array( $this, 'register_block_category' ) );
 
 		// Register our block patterns
-		add_action( 'init', array( $this, 'register_block_patterns' ) );
+		add_action( 'init', array( $this, 'register_block_patterns' ), 10 );
+
+		// Register our the content filters.
+		add_filter( 'query_loop_block_query_vars', array( $this, 'replace_related_vars' ), 10, 3 );
 	}
 
 	/**
@@ -82,6 +85,7 @@ class Block_Patterns {
 		$patterns = array(
 			'lsx-projects/featured-basic' => $this->featured_basic(),
 			'lsx-projects/mobile-gallery-basic' => $this->mobile_gallery_basic(),
+			'lsx-projects/related-projects' => $this->related_portfolio(),
 		);
 
 		foreach ( $patterns as $key => $function ) {
@@ -219,5 +223,81 @@ class Block_Patterns {
 			<!-- /wp:columns --></div>
 			<!-- /wp:group -->',
 		);
+	}
+
+	/**
+	 * Portfolio - Related Posts
+	 *
+	 * @return void
+	 */
+	public function related_portfolio() {
+		return array(
+			'title'       => __( 'Related Projects', 'lsx-projects' ),
+			'description' => __( 'Displays the related portfolio based on the matching project category.', 'lsx-projects' ),
+			'categories'  => array( $this->pattern_category ),
+			'content'     => $this->get_related_portfolio_content(),
+		);
+	}
+
+	private function get_related_portfolio_content() {
+		$content = '
+		<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0"},"padding":{"top":"40px","bottom":"80px"}}},"backgroundColor":"base","className":"site-content","layout":{"type":"constrained"}} -->
+			<main class="wp-block-group site-content has-base-background-color has-background" style="margin-top:0;padding-top:40px;padding-bottom:80px">
+				<!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->
+					<div class="wp-block-group alignwide">
+						<!-- wp:heading {"level":3,"align":"wide","style":{"typography":{"fontStyle":"normal","fontWeight":"700"},"spacing":{"padding":{"bottom":"var:preset|spacing|x-small"}}},"fontSize":"max-48"} -->
+							<h3 class="wp-block-heading alignwide has-max-48-font-size" style="padding-bottom:var(--wp--preset--spacing--x-small);font-style:normal;font-weight:700"><strong>' . __( 'Related Projects', 'lsx-projects' ) . '</strong></h3>
+						<!-- /wp:heading -->
+						
+						<!-- wp:query {"queryId":5,"query":{"perPage":2,"pages":0,"offset":0,"postType":"project","order":"asc","orderBy":"title","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]},"displayLayout":{"type":"flex","columns":2},"align":"full","layout":{"type":"constrained"}} -->
+							<div class="wp-block-query alignfull">
+								<!-- wp:post-template -->
+									<!-- wp:post-title /-->
+									
+									<!-- wp:post-excerpt /-->
+								<!-- /wp:post-template -->
+								
+								<!-- wp:query-no-results -->
+									<!-- wp:paragraph {"placeholder":"Add text or blocks that will display when a query returns no results."} -->
+									<p></p>
+									<!-- /wp:paragraph -->
+								<!-- /wp:query-no-results -->
+							</div>
+						<!-- /wp:query -->
+					</div>
+				<!-- /wp:group -->
+			</main>
+		<!-- /wp:group -->';
+		return $content;
+	}
+
+	/**
+	 * A function to replace the query post vars.
+	 *
+	 * @param array $query
+	 * @param WP_Block $block
+	 * @param int $page
+	 * @return array
+	 */
+	public function replace_related_vars( $query, $block, $page ) {
+		if ( ! is_admin() && is_singular( 'project' ) && 'project' === $query['post_type'] ) {
+			$group     = array();
+			$terms     = get_the_terms( get_the_ID(), 'project-type' );
+
+			if ( is_array( $terms ) && ! empty( $terms ) ) {
+				foreach( $terms as $term ) {
+					$group[] = $term->term_id;
+				}
+			}
+			$query['tax_query'] = array(
+				array(
+					'taxonomy' => 'project-type',
+					'field'    => 'term_id',
+					'terms'     => $group,
+				)
+			);
+			$query['post__not_in'] = array( get_the_ID() );
+		}
+		return $query;
 	}
 }

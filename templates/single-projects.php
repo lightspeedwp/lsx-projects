@@ -5,7 +5,7 @@
  * @package lsx-projects
  */
 
-get_header(); ?>
+block_template_part( 'header' ); ?>
 
 <?php do_action( 'lsx_content_wrap_before' ); ?>
 
@@ -37,6 +37,4 @@ get_header(); ?>
 
 <?php do_action( 'lsx_content_wrap_after' ); ?>
 
-<?php get_sidebar(); ?>
-
-<?php get_footer();
+<?php block_template_part( 'footer' );
