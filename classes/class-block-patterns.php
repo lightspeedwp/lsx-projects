@@ -282,7 +282,7 @@ class Block_Patterns {
 	public function replace_related_vars( $query, $block, $page ) {
 		if ( ! is_admin() && is_singular( 'project' ) && 'project' === $query['post_type'] && isset( $block->context['query']['related'] ) ) {
 			$group     = array();
-			$terms     = get_the_terms( get_the_ID(), 'project-type' );
+			$terms     = get_the_terms( get_the_ID(), 'project-group' );
 
 			if ( is_array( $terms ) && ! empty( $terms ) ) {
 				foreach( $terms as $term ) {
@@ -291,7 +291,7 @@ class Block_Patterns {
 			}
 			$query['tax_query'] = array(
 				array(
-					'taxonomy' => 'project-type',
+					'taxonomy' => 'project-group',
 					'field'    => 'term_id',
 					'terms'     => $group,
 				)
