@@ -30,7 +30,7 @@ class LSX_Projects {
 			'size' => 'lsx-thumbnail-single',
 			'responsive' => 'true',
 			'show_image' => 'true',
-			'carousel' => 'true',
+			'carousel' => 'false',
 			'featured' => 'false',
 		), $atts ) );
 

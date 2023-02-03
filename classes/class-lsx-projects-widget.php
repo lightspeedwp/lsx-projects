@@ -34,7 +34,6 @@ class LSX_Projects_Widget extends WP_Widget {
 		$button_text = $instance['button_text'];
 		$responsive = $instance['responsive'];
 		$show_image = $instance['show_image'];
-		$carousel = $instance['carousel'];
 		$featured = $instance['featured'];
 
 		// If limit not set, display 99 posts
@@ -57,12 +56,6 @@ class LSX_Projects_Widget extends WP_Widget {
 			$show_image = 'true';
 		} else {
 			$show_image = 'false';
-		}
-
-		if ( '1' == $carousel ) {
-			$carousel = 'true';
-		} else {
-			$carousel = 'false';
 		}
 
 		if ( '1' == $featured ) {
@@ -106,7 +99,7 @@ class LSX_Projects_Widget extends WP_Widget {
 				'size' => $size,
 				'responsive' => $responsive,
 				'show_image' => $show_image,
-				'carousel' => $carousel,
+				'carousel' => false,
 				'featured' => $featured,
 			) );
 		};
@@ -134,7 +127,6 @@ class LSX_Projects_Widget extends WP_Widget {
 		$instance['button_text'] = strip_tags( $new_instance['button_text'] );
 		$instance['responsive'] = strip_tags( $new_instance['responsive'] );
 		$instance['show_image'] = strip_tags( $new_instance['show_image'] );
-		$instance['carousel'] = strip_tags( $new_instance['carousel'] );
 		$instance['featured'] = strip_tags( $new_instance['featured'] );
 
 		return $instance;
@@ -155,7 +147,6 @@ class LSX_Projects_Widget extends WP_Widget {
 			'button_text' => '',
 			'responsive' => 1,
 			'show_image' => 1,
-			'carousel' => 1,
 			'featured' => 0,
 		);
 
@@ -174,7 +165,6 @@ class LSX_Projects_Widget extends WP_Widget {
 		$button_text    = esc_attr( $instance['button_text'] );
 		$responsive     = esc_attr( $instance['responsive'] );
 		$show_image     = esc_attr( $instance['show_image'] );
-		$carousel       = esc_attr( $instance['carousel'] );
 		$featured       = esc_attr( $instance['featured'] );
 		?>
 		<p>
@@ -279,10 +269,6 @@ class LSX_Projects_Widget extends WP_Widget {
 		<p>
 			<input id="<?php echo esc_attr( $this->get_field_id( 'responsive' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'responsive' ) ); ?>" type="checkbox" value="1" <?php checked( '1', $responsive ); ?> />
 			<label for="<?php echo esc_attr( $this->get_field_id( 'responsive' ) ); ?>"><?php esc_html_e( 'Responsive Images', 'lsx-projects' ); ?></label>
-		</p>
-		<p>
-			<input id="<?php echo esc_attr( $this->get_field_id( 'carousel' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'carousel' ) ); ?>" type="checkbox" value="1" <?php checked( '1', $carousel ); ?> />
-			<label for="<?php echo esc_attr( $this->get_field_id( 'carousel' ) ); ?>"><?php esc_html_e( 'Carousel', 'lsx-projects' ); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo esc_attr( $this->get_field_id( 'featured' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'featured' ) ); ?>" type="checkbox" value="1" <?php checked( '1', $featured ); ?> />
