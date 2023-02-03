@@ -24,8 +24,6 @@ class LSX_Projects_Frontend {
 		wp_style_add_data( 'lsx-projects', 'rtl', 'replace' );
 	}
 
-
-
 	/**
 	 * Remove the "continue reading" when the single is disabled.
 	 */

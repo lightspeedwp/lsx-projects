@@ -1,6 +1,6 @@
 <?php
 /**
- * LSX Projects Main Class
+ * LSX Projects Shortcode Class
  *
  * @package   LSX Projects
  * @author    LightSpeed
@@ -13,26 +13,6 @@ class LSX_Projects {
 	public $columns, $responsive, $options;
 
 	public function __construct() {
-		$this->options = projects_get_options();
-
-		add_filter( 'lsx_banner_allowed_post_types', array( $this, 'lsx_banner_allowed_post_types' ) );
-		add_filter( 'lsx_banner_allowed_taxonomies', array( $this, 'lsx_banner_allowed_taxonomies' ) );
-	}
-
-	/**
-	 * Enable project custom post type on LSX Banners.
-	 */
-	public function lsx_banner_allowed_post_types( $post_types ) {
-		$post_types[] = 'project';
-		return $post_types;
-	}
-
-	/**
-	 * Enable project custom taxonomies on LSX Banners.
-	 */
-	public function lsx_banner_allowed_taxonomies( $taxonomies ) {
-		$taxonomies[] = 'project-group';
-		return $taxonomies;
 	}
 
 	/**
@@ -132,14 +112,6 @@ class LSX_Projects {
 						) );
 					} else {
 						$image = '';
-					}
-
-					if ( empty( $image ) ) {
-						if ( ! empty( $this->options['display']['projects_placeholder'] ) ) {
-							$image = '<img class="' . $responsive . '" src="' . $this->options['display']['projects_placeholder'] . '" width="' . $size . '" alt="placeholder" />';
-						} else {
-							$image = '';
-						}
 					}
 				} else {
 					$image = '';
