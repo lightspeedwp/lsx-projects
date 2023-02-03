@@ -171,7 +171,6 @@ class LSX_Projects_Admin {
 		wp_enqueue_style( 'thickbox' );
 
 		wp_enqueue_script( 'lsx-projects-admin', LSX_PROJECTS_URL . 'assets/js/lsx-projects-admin.min.js', array( 'jquery' ), LSX_PROJECTS_VER, true );
-		wp_enqueue_style( 'lsx-projects-admin', LSX_PROJECTS_URL . 'assets/css/lsx-projects-admin.css', array(), LSX_PROJECTS_VER );
 	}
 }
 
