@@ -36,11 +36,5 @@ require_once LSX_PROJECTS_PATH . '/classes/class-lsx-projects-core.php';
 // Frontend scripts and styles.
 require_once LSX_PROJECTS_PATH . '/classes/class-lsx-projects-frontend.php';
 
-// Shortcode and Template Tag.
-require_once LSX_PROJECTS_PATH . '/classes/class-lsx-projects.php';
-
-// Widget.
-require_once LSX_PROJECTS_PATH . '/classes/class-lsx-projects-widget.php';
-
 // Post reorder.
 require_once LSX_PROJECTS_PATH . '/includes/class-lsx-projects-scpo-engine.php';
