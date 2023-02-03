@@ -15,7 +15,6 @@ class LSX_Projects_Admin {
 		add_action( 'init', array( $this, 'taxonomy_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_project_type_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_project_tag_setup' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
 	}
 
 	/**
@@ -162,15 +161,6 @@ class LSX_Projects_Admin {
 		);
 
 		register_taxonomy( 'project-tag', array( 'project' ), $args );
-	}
-
-	public function assets() {
-		//wp_enqueue_media();
-		wp_enqueue_script( 'media-upload' );
-		wp_enqueue_script( 'thickbox' );
-		wp_enqueue_style( 'thickbox' );
-
-		wp_enqueue_script( 'lsx-projects-admin', LSX_PROJECTS_URL . 'assets/js/lsx-projects-admin.min.js', array( 'jquery' ), LSX_PROJECTS_VER, true );
 	}
 }
 

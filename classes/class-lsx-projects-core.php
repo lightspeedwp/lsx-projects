@@ -21,7 +21,6 @@ class LSX_Projects_Core {
 	 */
 	public function __construct() {
 		$this->load_classes();
-		$this->load_vendors();
 	}
 
 	/**
@@ -43,37 +42,11 @@ class LSX_Projects_Core {
 	}
 
 	/**
-	 * Loads the plugin functions.
-	 */
-	private function load_vendors() {
-		// Configure custom fields.
-		if ( ! class_exists( 'CMB2' ) ) {
-			require_once LSX_PROJECTS_PATH . 'vendor/CMB2/init.php';
-		}
-	}
-
-	/**
 	 * Loads the classes
 	 */
 	private function load_classes() {
 		require_once LSX_PROJECTS_PATH . '/classes/class-block-patterns.php';
 		\lsx\projects\classes\Block_Patterns::get_instance();
-	}
-
-	/**
-	 * Returns the post types currently active
-	 *
-	 * @return void
-	 */
-	public function get_post_types() {
-		$post_types = apply_filters( 'lsx_projects_post_types', isset( $this->post_types ) );
-		foreach ( $post_types as $index => $post_type ) {
-			$is_disabled = \cmb2_get_option( 'lsx_projects_options', $post_type . '_disabled', false );
-			if ( true === $is_disabled || 1 === $is_disabled || 'on' === $is_disabled ) {
-				unset( $post_types[ $index ] );
-			}
-		}
-		return $post_types;
 	}
 }
 
