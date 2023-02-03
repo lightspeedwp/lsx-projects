@@ -45,8 +45,8 @@ class Core {
 		require_once LSX_PROJECTS_PATH . '/classes/class-block-patterns.php';
 		\lsx\projects\classes\Block_Patterns::get_instance();
 
-		require_once LSX_PROJECTS_PATH . '/classes/class-admin.php';
-		\lsx\projects\classes\Admin::get_instance();
+		require_once LSX_PROJECTS_PATH . '/classes/class-setup.php';
+		\lsx\projects\classes\Setup::get_instance();
 
 		require_once LSX_PROJECTS_PATH . '/classes/class-frontend.php';
 		\lsx\projects\classes\Frontend::get_instance();

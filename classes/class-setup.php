@@ -2,7 +2,7 @@
 namespace lsx\projects\classes;
 
 /**
- * LSX Projects Admin Class
+ * LSX Projects Setup Class
  *
  * @package   LSX Projects
  * @author    LightSpeed
@@ -10,12 +10,12 @@ namespace lsx\projects\classes;
  * @link
  * @copyright 2016 LightSpeed
  */
-class Admin {
+class Setup {
 
 	/**
 	 * Holds class instance
 	 *
-	 * @var      object \lsx_projects\classes\Admin()
+	 * @var      object \lsx_projects\classes\Setup()
 	 */
 	protected static $instance = null;
 
@@ -33,7 +33,7 @@ class Admin {
 	/**
 	 * Return an instance of this class.
 	 *
-	 * @return    object \lsx_projects\classes\Admin()
+	 * @return    object \lsx_projects\classes\Setup()
 	 */
 	public static function get_instance() {
 
