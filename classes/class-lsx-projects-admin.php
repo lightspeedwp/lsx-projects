@@ -11,28 +11,11 @@
 class LSX_Projects_Admin {
 
 	public function __construct() {
-		$this->load_classes();
-
 		add_action( 'init', array( $this, 'post_type_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_project_type_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_project_tag_setup' ) );
-		add_filter( 'cmb2_admin_init', array( $this, 'field_setup' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'assets' ) );
-
-		add_filter( 'type_url_form_media', array( $this, 'change_attachment_field_button' ), 20, 1 );
-		add_filter( 'enter_title_here', array( $this, 'change_title_text' ) );
-	}
-
-	/**
-	 * Loads the admin subclasses
-	 */
-	private function load_classes() {
-		require_once LSX_PROJECTS_PATH . 'classes/admin/class-settings.php';
-		$this->settings = \lsx\projects\classes\admin\Settings::get_instance();
-
-		require_once LSX_PROJECTS_PATH . 'classes/admin/class-settings-theme.php';
-		$this->settings_theme = \lsx\projects\classes\admin\Settings_Theme::get_instance();
 	}
 
 	/**
@@ -181,35 +164,6 @@ class LSX_Projects_Admin {
 		register_taxonomy( 'project-tag', array( 'project' ), $args );
 	}
 
-	/**
-	 * Add metabox with custom fields to the Project post type
-	 */
-	public function field_setup() {
-		$prefix = 'lsx_project_';
-
-		$cmb = new_cmb2_box(
-			array(
-				'id'           => $prefix . '_project',
-				'title'        => __( 'General', 'lsx-projects' ),
-				'object_types' => 'project',
-				'context'      => 'normal',
-				'priority'     => 'low',
-				'show_names'   => true,
-			)
-		);
-
-		$cmb->add_field(
-			array(
-				'name'         => esc_html__( 'Featured:', 'lsx-projects' ),
-				'id'           => $prefix . 'featured',
-				'type'         => 'checkbox',
-				'value'        => 1,
-				'default'      => 0,
-				'show_in_rest' => true,
-			)
-		);
-	}
-
 	public function assets() {
 		//wp_enqueue_media();
 		wp_enqueue_script( 'media-upload' );
@@ -218,27 +172,6 @@ class LSX_Projects_Admin {
 
 		wp_enqueue_script( 'lsx-projects-admin', LSX_PROJECTS_URL . 'assets/js/lsx-projects-admin.min.js', array( 'jquery' ), LSX_PROJECTS_VER, true );
 		wp_enqueue_style( 'lsx-projects-admin', LSX_PROJECTS_URL . 'assets/css/lsx-projects-admin.css', array(), LSX_PROJECTS_VER );
-	}
-
-	/**
-	 * Change the "Insert into Post" button text when media modal is used for feature images
-	 */
-	public function change_attachment_field_button( $html ) {
-		if ( isset( $_GET['feature_image_text_button'] ) ) {
-			$html = str_replace( 'value="Insert into Post"', sprintf( 'value="%s"', esc_html__( 'Select featured image', 'lsx-projects' ) ), $html );
-		}
-
-		return $html;
-	}
-
-	public function change_title_text( $title ) {
-		$screen = get_current_screen();
-
-		if ( 'project' === $screen->post_type ) {
-			$title = esc_attr__( 'Enter project title', 'lsx-projects' );
-		}
-
-		return $title;
 	}
 }
 
