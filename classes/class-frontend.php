@@ -1,4 +1,6 @@
 <?php
+namespace lsx\projects\classes;
+
 /**
  * LSX Projects Frontend Class
  *
@@ -8,17 +10,48 @@
  * @link
  * @copyright 2017 LightSpeed
  */
-class LSX_Projects_Frontend {
+class Frontend {
 
+	/**
+	 * Holds class instance
+	 *
+	 * @var      object \lsx_projects\classes\Frontend()
+	 */
+	protected static $instance = null;
+
+
+	/**
+	 * Constructor
+	 */
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 5 );
-
 		add_filter( 'excerpt_more_p', array( $this, 'change_excerpt_more' ) );
 		add_filter( 'excerpt_length', array( $this, 'change_excerpt_length' ) );
 		add_filter( 'excerpt_strip_tags', array( $this, 'change_excerpt_strip_tags' ) );
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title' ), 100 );
 	}
 
+	/**
+	 * Return an instance of this class.
+	 *
+	 * @return    object \lsx_projects\classes\Frontend()
+	 */
+	public static function get_instance() {
+
+		// If the single instance hasn't been set, set it now.
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+
+	}
+
+	/**
+	 * Enqueue the plugin scripts and styles
+	 *
+	 * @return void
+	 */
 	public function enqueue_scripts() {
 		wp_enqueue_style( 'lsx-projects', LSX_PROJECTS_URL . 'assets/css/lsx-projects.css', array(), LSX_PROJECTS_VER );
 		wp_style_add_data( 'lsx-projects', 'rtl', 'replace' );
@@ -91,6 +124,3 @@ class LSX_Projects_Frontend {
 	}
 
 }
-
-global $lsx_projects_frontend;
-$lsx_projects_frontend = new LSX_Projects_Frontend();

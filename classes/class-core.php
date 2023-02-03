@@ -1,16 +1,15 @@
 <?php
+namespace lsx\projects\classes;
 
 /**
  * This class loads the other classes and function files
  *
  * @package lsx-projects
  */
-class LSX_Projects_Core {
+class Core {
 
 	/**
 	 * Holds class instance
-	 *
-	 * @since 1.0.0
 	 *
 	 * @var      object \lsx_projects\classes\Core()
 	 */
@@ -26,9 +25,7 @@ class LSX_Projects_Core {
 	/**
 	 * Return an instance of this class.
 	 *
-	 * @since 1.0.0
-	 *
-	 * @return    object \lsx_projects\classes\Core()    A single instance of this class.
+	 * @return    object \lsx_projects\classes\Core()
 	 */
 	public static function get_instance() {
 
@@ -47,7 +44,12 @@ class LSX_Projects_Core {
 	private function load_classes() {
 		require_once LSX_PROJECTS_PATH . '/classes/class-block-patterns.php';
 		\lsx\projects\classes\Block_Patterns::get_instance();
+
+		require_once LSX_PROJECTS_PATH . '/classes/class-admin.php';
+		\lsx\projects\classes\Admin::get_instance();
+
+		require_once LSX_PROJECTS_PATH . '/classes/class-frontend.php';
+		\lsx\projects\classes\Frontend::get_instance();
 	}
 }
-
-LSX_Projects_Core::get_instance();
+Core::get_instance();

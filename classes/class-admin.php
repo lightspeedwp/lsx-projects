@@ -1,4 +1,6 @@
 <?php
+namespace lsx\projects\classes;
+
 /**
  * LSX Projects Admin Class
  *
@@ -8,13 +10,40 @@
  * @link
  * @copyright 2016 LightSpeed
  */
-class LSX_Projects_Admin {
+class Admin {
 
+	/**
+	 * Holds class instance
+	 *
+	 * @var      object \lsx_projects\classes\Admin()
+	 */
+	protected static $instance = null;
+
+	/**
+	 * Contructor
+	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'post_type_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_project_type_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_project_tag_setup' ) );
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+	}
+
+	/**
+	 * Return an instance of this class.
+	 *
+	 * @return    object \lsx_projects\classes\Admin()
+	 */
+	public static function get_instance() {
+
+		// If the single instance hasn't been set, set it now.
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+
 	}
 
 	/**
@@ -162,6 +191,11 @@ class LSX_Projects_Admin {
 
 		register_taxonomy( 'project-tag', array( 'project' ), $args );
 	}
-}
 
-$lsx_projects_admin = new LSX_Projects_Admin();
+	/**
+	 * Add our action to init to set up our vars first.
+	 */
+	function load_plugin_textdomain() {
+		load_plugin_textdomain( 'lsx-projects', false, basename( LSX_PROJECTS_PATH ) . '/languages' );
+	}
+}
