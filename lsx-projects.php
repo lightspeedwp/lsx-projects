@@ -24,7 +24,7 @@ define( 'LSX_PROJECTS_VER', '2.0.0' );
 
 /* ======================= Below is the Plugin Class init ========================= */
 // Project Core.
-require_once LSX_PROJECTS_PATH . '/classes/class-lsx-projects-core.php';
+require_once LSX_PROJECTS_PATH . '/classes/class-core.php';
 
 // Post reorder.
 require_once LSX_PROJECTS_PATH . '/includes/class-lsx-projects-scpo-engine.php';
