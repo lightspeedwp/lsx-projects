@@ -34,7 +34,7 @@ class Core {
 			self::$instance = new self();
 		}
 
-		return self::$instance;
+		return self::$instance;	
 
 	}
 
