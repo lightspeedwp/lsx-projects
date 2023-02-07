@@ -29,6 +29,8 @@ class Frontend {
 		add_filter( 'excerpt_length', array( $this, 'change_excerpt_length' ) );
 		add_filter( 'excerpt_strip_tags', array( $this, 'change_excerpt_strip_tags' ) );
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title' ), 100 );
+
+		add_filter( "term_links-project-tag", array( $this, 'term_link_tags' ), 10, 1 );
 	}
 
 	/**
@@ -123,4 +125,15 @@ class Frontend {
 		return $title;
 	}
 
+
+	public function term_link_tags( $links ) {
+		$new_links = array();
+		foreach ( $links as $link ) {
+			preg_match( "|<a.*[^>]*>([^<]*)</a>|i", $link, $matches );
+			$class = sanitize_key( $matches[1] );
+			$link = str_replace( 'rel="tag"', 'class="' . str_replace( " ", "-", $class ) . '" rel="tag"', $link );
+			$new_links[] = $link;
+		}
+		return $new_links;
+	}
 }
