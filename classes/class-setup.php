@@ -66,6 +66,8 @@ class Setup {
 			'menu_name'          => esc_html_x( 'Projects', 'admin menu', 'lsx-projects' ),
 		);
 
+		$single_template = file_get_contents( LSX_PROJECTS_PATH . 'templates/single-project.html' );
+
 		$args = array(
 			'labels'             => $labels,
 			'public'             => true,
@@ -89,6 +91,11 @@ class Setup {
 				'custom-fields',
 			),
 			'show_in_rest'       => true,
+			/*'template'           => array(
+				array( 'core/pattern', array(
+					'slug' => 'lsx-projects/related-projects',
+				) ),
+			),*/
 		);
 
 		register_post_type( 'project', $args );

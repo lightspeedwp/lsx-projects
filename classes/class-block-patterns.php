@@ -83,8 +83,8 @@ class Block_Patterns {
 	 */
 	public function register_block_patterns() {
 		$patterns = array(
-			'lsx-projects/featured-basic' => $this->featured_basic(),
-			'lsx-projects/mobile-gallery-basic' => $this->mobile_gallery_basic(),
+			//'lsx-projects/featured-basic' => $this->featured_basic(),
+			//'lsx-projects/mobile-gallery-basic' => $this->mobile_gallery_basic(),
 			'lsx-projects/related-projects' => $this->related_portfolio(),
 		);
 
