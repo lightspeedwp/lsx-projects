@@ -128,6 +128,7 @@ class Setup {
 			'rewrite'           => array(
 				'slug' => 'portfolio-group',
 			),
+			'show_in_rest'      => true,
 		);
 
 		register_taxonomy( 'project-group', array( 'project' ), $args );
