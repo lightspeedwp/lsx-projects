@@ -1,5 +1,5 @@
 <?php
-namespace lsx\projects\classes;
+namespace LSX\Projects\Classes;
 
 /**
  * LSX Projects Setup Class
@@ -8,14 +8,14 @@ namespace lsx\projects\classes;
  * @author    LightSpeed
  * @license   GPL3
  * @link
- * @copyright 2016 LightSpeed
+ * @copyright 2023 LightSpeed
  */
 class Setup {
 
 	/**
 	 * Holds class instance
 	 *
-	 * @var      object \lsx_projects\classes\Setup()
+	 * @var      object \LSX\Projects\Classes\Setup()
 	 */
 	protected static $instance = null;
 
@@ -33,7 +33,7 @@ class Setup {
 	/**
 	 * Return an instance of this class.
 	 *
-	 * @return    object \lsx_projects\classes\Setup()
+	 * @return    object \LSX\Projects\Classes\Setup()
 	 */
 	public static function get_instance() {
 

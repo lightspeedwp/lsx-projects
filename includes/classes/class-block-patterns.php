@@ -1,14 +1,14 @@
 <?php
-namespace lsx\projects\classes;
+namespace LSX\Projects\Classes;
 
 /**
- * LSX Projects Frontend Class
+ * Block patterns and relate functions
  *
  * @package   LSX Projects
  * @author    LightSpeed
  * @license   GPL3
  * @link
- * @copyright 2017 LightSpeed
+ * @copyright 2023 LightSpeed
  */
 class Block_Patterns {
 
