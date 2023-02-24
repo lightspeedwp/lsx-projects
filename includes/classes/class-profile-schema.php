@@ -18,14 +18,22 @@ class Profile_Schema extends \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Pie
 			return false;
 		}*/
 
-		if ( ! is_singular( 'project' ) ) {
+		return false;
+
+		if ( ! is_singular( 'project' ) && ! is_post_type_archive( 'project' ) ) {
 			return false;
 		}
 
 		if ( ! \is_array( $this->context->schema_page_type ) ) {
 			$this->context->schema_page_type = [ $this->context->schema_page_type ];
 		}
-		$this->context->schema_page_type[]  = 'ProfilePage';
+
+		if ( is_post_type_archive( 'project' ) ) {
+			$this->context->schema_page_type[]  = 'CollectionPage';
+		} else {
+			$this->context->schema_page_type[]  = 'ProfilePage';
+		}
+		
 		$this->context->main_entity_of_page = $this->generate_ids();
 
 		return true;
