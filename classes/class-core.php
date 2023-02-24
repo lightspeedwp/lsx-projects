@@ -1,10 +1,14 @@
 <?php
-namespace lsx\projects\classes;
+namespace LSX\Projects\Classes;
 
 /**
- * This class loads the other classes and function files
+ * The main file loading the rest of the files
  *
- * @package lsx-projects
+ * @package   LSX Projects
+ * @author    LightSpeed
+ * @license   GPL3
+ * @link
+ * @copyright 2023 LightSpeed
  */
 class Core {
 
@@ -52,4 +56,3 @@ class Core {
 		\lsx\projects\classes\Frontend::get_instance();
 	}
 }
-Core::get_instance();

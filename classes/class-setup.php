@@ -1,5 +1,5 @@
 <?php
-namespace lsx\projects\classes;
+namespace LSX\Projects\Classes;
 
 /**
  * LSX Projects Setup Class
@@ -8,7 +8,7 @@ namespace lsx\projects\classes;
  * @author    LightSpeed
  * @license   GPL3
  * @link
- * @copyright 2016 LightSpeed
+ * @copyright 2023 LightSpeed
  */
 class Setup {
 

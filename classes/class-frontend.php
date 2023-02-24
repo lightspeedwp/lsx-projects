@@ -1,5 +1,5 @@
 <?php
-namespace lsx\projects\classes;
+namespace LSX\Projects\Classes;
 
 /**
  * LSX Projects Frontend Class
@@ -8,7 +8,7 @@ namespace lsx\projects\classes;
  * @author    LightSpeed
  * @license   GPL3
  * @link
- * @copyright 2017 LightSpeed
+ * @copyright 2023 LightSpeed
  */
 class Frontend {
 
