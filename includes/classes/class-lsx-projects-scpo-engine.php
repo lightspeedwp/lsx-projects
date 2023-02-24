@@ -1,7 +1,4 @@
 <?php
-
-$lsx_projects_scporder = new LSX_Projects_SCPO_Engine();
-
 /**
  * SCPO Engine
  *
@@ -9,7 +6,7 @@ $lsx_projects_scporder = new LSX_Projects_SCPO_Engine();
  * @author    LightSpeed
  * @license   GPL3
  * @link
- * @copyright 2016 LightSpeed
+ * @copyright 2023 LightSpeed
  */
 class LSX_Projects_SCPO_Engine {
 

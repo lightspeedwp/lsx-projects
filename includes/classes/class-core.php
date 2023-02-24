@@ -15,7 +15,7 @@ class Core {
 	/**
 	 * Holds class instance
 	 *
-	 * @var      object \lsx_projects\classes\Core()
+	 * @var      object \LSX\Projects\Classes\Core()
 	 */
 	protected static $instance = null;
 
@@ -29,7 +29,7 @@ class Core {
 	/**
 	 * Return an instance of this class.
 	 *
-	 * @return    object \lsx_projects\classes\Core()
+	 * @return    object \LSX\Projects\Classes\Core()
 	 */
 	public static function get_instance() {
 
@@ -46,13 +46,17 @@ class Core {
 	 * Loads the classes
 	 */
 	private function load_classes() {
-		require_once LSX_PROJECTS_PATH . '/classes/class-block-patterns.php';
-		\lsx\projects\classes\Block_Patterns::get_instance();
+		require_once LSX_PROJECTS_PATH . '/includes/classes/class-block-patterns.php';
+		\LSX\Projects\Classes\Block_Patterns::get_instance();
 
-		require_once LSX_PROJECTS_PATH . '/classes/class-setup.php';
-		\lsx\projects\classes\Setup::get_instance();
+		require_once LSX_PROJECTS_PATH . '/includes/classes/class-setup.php';
+		\LSX\Projects\Classes\Setup::get_instance();
 
-		require_once LSX_PROJECTS_PATH . '/classes/class-frontend.php';
-		\lsx\projects\classes\Frontend::get_instance();
+		require_once LSX_PROJECTS_PATH . '/includes/classes/class-frontend.php';
+		\LSX\Projects\Classes\Frontend::get_instance();
+
+		// Post reorder.
+		require_once LSX_PROJECTS_PATH . '/includes/classes/class-lsx-projects-scpo-engine.php';
+		$lsx_projects_scporder = new \LSX_Projects_SCPO_Engine();
 	}
 }

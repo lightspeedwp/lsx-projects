@@ -15,7 +15,7 @@ class Setup {
 	/**
 	 * Holds class instance
 	 *
-	 * @var      object \lsx_projects\classes\Setup()
+	 * @var      object \LSX\Projects\Classes\Setup()
 	 */
 	protected static $instance = null;
 
@@ -33,7 +33,7 @@ class Setup {
 	/**
 	 * Return an instance of this class.
 	 *
-	 * @return    object \lsx_projects\classes\Setup()
+	 * @return    object \LSX\Projects\Classes\Setup()
 	 */
 	public static function get_instance() {
 

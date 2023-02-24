@@ -15,7 +15,7 @@ class Frontend {
 	/**
 	 * Holds class instance
 	 *
-	 * @var      object \lsx_projects\classes\Frontend()
+	 * @var      object \LSX\Projects\Classes\Frontend()
 	 */
 	protected static $instance = null;
 
@@ -36,7 +36,7 @@ class Frontend {
 	/**
 	 * Return an instance of this class.
 	 *
-	 * @return    object \lsx_projects\classes\Frontend()
+	 * @return    object \LSX\Projects\Classes\Frontend()
 	 */
 	public static function get_instance() {
 
