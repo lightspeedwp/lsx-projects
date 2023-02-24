@@ -46,6 +46,7 @@ class Core {
 	 * Loads the classes
 	 */
 	private function load_classes() {
+
 		require_once LSX_PROJECTS_PATH . '/includes/classes/class-block-patterns.php';
 		\LSX\Projects\Classes\Block_Patterns::get_instance();
 

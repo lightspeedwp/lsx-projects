@@ -28,6 +28,7 @@ class Setup {
 		add_action( 'init', array( $this, 'taxonomy_project_type_setup' ) );
 		add_action( 'init', array( $this, 'taxonomy_project_tag_setup' ) );
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+		add_filter( 'wpseo_schema_graph_pieces', array( $this, 'register_schema' ), 11, 2 );
 	}
 
 	/**
@@ -203,7 +204,21 @@ class Setup {
 	/**
 	 * Add our action to init to set up our vars first.
 	 */
-	function load_plugin_textdomain() {
+	public function load_plugin_textdomain() {
 		load_plugin_textdomain( 'lsx-projects', false, basename( LSX_PROJECTS_PATH ) . '/languages' );
+	}
+
+	/**
+	 * Adds Schema pieces to our output.
+	 *
+	 * @param array                 $pieces  Graph pieces to output.
+	 * @param \WPSEO_Schema_Context $context Object with context variables.
+	 *
+	 * @return array Graph pieces to output.
+	 */
+	public function register_schema( $pieces, $context ) {
+		require_once LSX_PROJECTS_PATH . '/includes/classes/class-profile-schema.php';
+		$pieces[] = new Profile_Schema( $context );
+		return $pieces;
 	}
 }
