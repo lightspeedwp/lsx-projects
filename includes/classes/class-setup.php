@@ -67,8 +67,6 @@ class Setup {
 			'menu_name'          => esc_html_x( 'Projects', 'admin menu', 'lsx-projects' ),
 		);
 
-		$single_template = file_get_contents( LSX_PROJECTS_PATH . 'templates/single-project.html' );
-
 		$args = array(
 			'labels'             => $labels,
 			'public'             => true,
