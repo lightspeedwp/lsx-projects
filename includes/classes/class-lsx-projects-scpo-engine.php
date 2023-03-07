@@ -230,7 +230,7 @@ class LSX_Projects_SCPO_Engine {
 			return false;
 		}
 
-		if ( is_array( $wp_query->query['post_type'] ) ) {
+		if ( isset( $wp_query->query['post_type'] ) && is_array( $wp_query->query['post_type'] ) ) {
 			if ( isset( $wp_query->query['post_type'][0] ) ) {
 				$post_type = $wp_query->query['post_type'][0];
 			} else {
