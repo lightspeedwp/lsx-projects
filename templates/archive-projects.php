@@ -27,7 +27,7 @@ get_header(); ?>
 			$groups = get_terms( $args );
 			$group_selected = get_query_var( 'project-group' );
 
-			if ( count( $groups ) > 0 ) {
+			if ( count( $groups ) > 0 ) :
 			?>
 
 			<ul class="nav nav-tabs lsx-projects-filter">
@@ -55,21 +55,21 @@ get_header(); ?>
 			</ul>
 
 			<?php
-			}
+			endif;
 		}
 		?>
 
 		<?php if ( have_posts() ) : ?>
 
 			<div class="lsx-projects-container">
-				<div class="row row-flex lsx-projects-row">
+				<div class="row row-flex lsx-projects-row"">
 
 					<?php
 						$count = 0;
 
 						while ( have_posts() ) {
 							the_post();
-							include LSX_PROJECTS_PATH . '/templates/content-archive-projects.php';
+							include( LSX_PROJECTS_PATH . '/templates/content-archive-projects.php' );
 						}
 					?>
 

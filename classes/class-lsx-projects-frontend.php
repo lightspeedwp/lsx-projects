@@ -34,7 +34,7 @@ class LSX_Projects_Frontend {
 
 		add_filter( 'pre_get_posts', array( $this, 'posts_per_page' ) );
 		add_action( 'wp_footer', array( $this, 'add_form_modal' ) );
-
+		
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title' ), 100 );
 	}
 
@@ -217,7 +217,6 @@ class LSX_Projects_Frontend {
 				}
 			}
 		}
-
 		return $query;
 	}
 
@@ -225,16 +224,17 @@ class LSX_Projects_Frontend {
 	 * Add form modal
 	 */
 	public function add_form_modal() {
+		global $lsx_projects;
 
-		if ( empty( $this->options['display']['projects_modal_enable'] ) ) {
+		if ( empty( $lsx_projects->options['display']['projects_modal_enable'] ) ) {
 			return '';
 		}
 
-		if ( empty( $this->options['display']['projects_modal_cta_label'] ) || empty( $this->options['display']['projects_modal_form_id'] ) || empty( $this->options['display']['projects_wpform_modal_form_id'] ) ) {
+		if ( empty( $lsx_projects->options['display']['projects_modal_cta_label'] ) || empty( $lsx_projects->options['display']['projects_modal_form_id'] ) ) {
 			return '';
 		}
 
-		if ( ! is_singular( 'project' ) ) {
+		if ( ! is_single( 'project' ) ) {
 			return '';
 		}
 		?>
@@ -244,23 +244,17 @@ class LSX_Projects_Frontend {
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 					<div class="modal-header">
-						<h4 class="modal-title"><?php echo esc_html( $this->options['display']['projects_modal_cta_label'] ); ?></h4>
+						<h4 class="modal-title"><?php echo esc_html( $lsx_projects->options['display']['projects_modal_cta_label'] ); ?></h4>
 					</div>
 
 					<div class="modal-body">
-						<?php
-						if ( ! empty( $this->options['display']['projects_modal_form_id'] ) ) {
-							echo do_shortcode( '[caldera_form id="' . $this->options['display']['projects_modal_form_id'] . '"]' );
-						} elseif ( ! empty( $this->options['display']['projects_wpform_modal_form_id'] ) ) {
-							echo do_shortcode( '[wpforms id="' . $this->options['display']['projects_wpform_modal_form_id'] . '"]' );
-						} ?>
+						<?php echo do_shortcode( '[caldera_form id="' . $lsx_projects->options['display']['projects_modal_form_id'] . '"]' ); ?>
 					</div>
 				</div>
 			</div>
 		</div>
 		<?php
 	}
-
 	/**
 	 * Remove the "Archives:" from the post type archives.
 	 *
@@ -279,7 +273,6 @@ class LSX_Projects_Frontend {
 
 		return $title;
 	}
-
 }
 
 global $lsx_projects_frontend;
