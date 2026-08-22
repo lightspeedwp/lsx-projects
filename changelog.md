@@ -1,5 +1,11 @@
 # Change log
 
+## [Unreleased]
+
+### Security
+
+- Bumped wp-coding-standards/wpcs to patch GHSA-3pwp-g2mj-5p3v
+
 ## [[2.0.0]] - In development
 
 ### Removed
